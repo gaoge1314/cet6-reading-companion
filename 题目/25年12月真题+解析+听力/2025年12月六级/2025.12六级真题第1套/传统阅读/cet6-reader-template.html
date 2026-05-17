@@ -3,879 +3,1389 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>六级阅读陪练 · 模板</title>
+<title>@@META_TITLE@@ - 六级传统阅读</title>
 <style>
-/* =========================================================
-   固定资产 — 全部可复用
-   新特性：段落号 · 划线标注 · 扩展弹窗 · 暗色主题
-   使用方式：复制此文件 → 替换 HTML 内容 → 改答案
-   ========================================================= */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --purple-from:#667eea;
+  --purple-to:#764ba2;
+  --bg:#f5f5f5;
+  --card:#fff;
+  --border:#e0e0e0;
+  --text:#1d1d1f;
+  --text2:#86868b;
+  --text3:#aeaeb2;
+  --accent:var(--purple-from);
+  --success:#34c759;
+  --success-light:#e8f5e9;
+  --warn:#ff9f0a;
+  --warn-light:#fff8e1;
+  --error:#ff3b30;
+  --error-light:#ffebee;
+  --info:#1976d2;
+  --info-light:#e3f2fd;
+  --shadow:0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.18);
+  --radius:12px;
+  --radius-sm:8px;
+}
+html,body{height:100%;}
+body{
+  font-family:'Segoe UI','Microsoft YaHei',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:#c0c0c0;border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:#a0a0a0;}
 
-:root {
-  --bg: #f5f5f7;
-  --card: #fff;
-  --border: #d1d1d6;
-  --text: #1d1d1f;
-  --text2: #86868b;
-  --text3: #aeaeb2;
-  --accent: #0071e3;
-  --accent-light: #e8f4fd;
-  --success: #34c759;
-  --success-light: #e8f5e9;
-  --warn: #ff9f0a;
-  --warn-light: #fff8e1;
-  --error: #ff3b30;
-  --error-light: #ffebee;
-  --shadow: 0 2px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
-  --radius: 10px;
-  --radius-sm: 6px;
+.container{max-width:900px;margin:0 auto;padding:20px;}
+
+.header{
+  background:linear-gradient(135deg,var(--purple-from),var(--purple-to));
+  padding:28px 24px;
+  border-radius:var(--radius);
+  margin-bottom:20px;
+  color:#fff;
+  text-align:center;
+  box-shadow:var(--shadow-lg);
+}
+.header h1{font-size:22px;font-weight:700;letter-spacing:1px;}
+.header p{font-size:13px;opacity:.85;margin-top:6px;}
+
+.toolbar{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;flex:1;}
+.tab{
+  padding:7px 14px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:var(--card);
+  cursor:pointer;
+  font-size:12px;
+  font-weight:500;
+  white-space:nowrap;
+  transition:all .2s;
+  color:var(--text2);
+  user-select:none;
+}
+.tab:hover{border-color:var(--purple-from);color:var(--text);}
+.tab.active{background:linear-gradient(135deg,var(--purple-from),var(--purple-to));color:#fff;border-color:transparent;}
+.tab .badge{font-size:10px;opacity:.7;margin-left:2px;}
+.tab.done{position:relative;}
+.tab.done::after{
+  content:'✓';
+  font-size:10px;
+  color:var(--success);
+  margin-left:4px;
+  font-weight:700;
+}
+.tab.locked{background:#f0f0f0;color:#bdbdbd;cursor:not-allowed;pointer-events:none;}
+.tab.locked::before{content:'🔒 ';margin-right:2px;font-size:10px;}
+
+.tool-btn{
+  padding:7px 12px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:var(--card);
+  cursor:pointer;
+  font-size:12px;
+  white-space:nowrap;
+  transition:all .2s;
+  color:var(--text2);
+  user-select:none;
+}
+.tool-btn:hover{border-color:var(--purple-from);color:var(--text);}
+.tool-btn.active{background:linear-gradient(135deg,var(--purple-from),var(--purple-to));color:#fff;border-color:transparent;}
+
+.phase{display:none;}
+.phase.active{display:block;}
+
+.guidance-banner{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-left:5px solid var(--accent);
+  border-radius:var(--radius);
+  padding:16px 20px;
+  margin-bottom:16px;
+}
+.guidance-banner .g-icon{font-size:22px;margin-right:8px;vertical-align:middle;}
+.guidance-banner .g-title{font-weight:700;font-size:15px;margin-bottom:6px;color:var(--text);}
+.guidance-banner .g-what{font-size:14px;color:var(--text);margin-bottom:10px;line-height:1.7;}
+.guidance-banner .g-quote{font-size:13px;color:var(--text2);font-style:italic;padding-left:14px;border-left:3px solid var(--warn);margin-bottom:6px;line-height:1.7;}
+.guidance-banner .g-extra{font-size:13px;color:var(--text2);padding-left:14px;border-left:3px solid var(--info);margin-bottom:6px;line-height:1.7;font-style:italic;}
+.guidance-banner .g-time{font-size:12px;color:var(--text3);margin-top:4px;}
+
+.accordion-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  margin-bottom:10px;
+  overflow:hidden;
+}
+.accordion-header{
+  padding:14px 18px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-weight:600;
+  font-size:14px;
+  border-bottom:1px solid transparent;
+  transition:all .2s;
+  user-select:none;
+}
+.accordion-header:hover{background:#fafafa;}
+.accordion-header .arrow{
+  font-size:12px;
+  transition:transform .25s;
+  color:var(--text2);
+}
+.accordion-item.open .accordion-header{border-bottom-color:var(--border);}
+.accordion-item.open .accordion-header .arrow{transform:rotate(90deg);}
+.accordion-body{
+  display:none;
+  padding:16px 18px;
+  font-size:13px;
+  line-height:1.9;
+}
+.accordion-item.open .accordion-body{display:block;}
+
+.phase-instruction{
+  border-left:4px solid var(--info);
+  background:var(--info-light);
+  padding:12px 16px;
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom:14px;
+  font-size:13px;
+  color:#1565c0;
+}
+.center-summary{
+  border-left:4px solid var(--success);
+  background:var(--success-light);
+  padding:12px 16px;
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom:14px;
+  font-size:13px;
+  color:#2e7d32;
+}
+.center-summary .label{font-weight:700;margin-bottom:4px;}
+.analysis-box{
+  border-left:4px solid var(--warn);
+  background:var(--warn-light);
+  padding:14px 16px;
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom:10px;
+  font-size:13px;
+}
+.tip-box{
+  background:#fffde7;
+  border:1px solid #fdd835;
+  border-radius:var(--radius-sm);
+  padding:12px 16px;
+  margin:12px 0;
+  font-size:13px;
+  color:#f57f17;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1d1d1f;
-    --card: #2d2d2f;
-    --border: #424245;
-    --text: #f5f5f7;
-    --text2: #98989d;
-    --text3: #636366;
-    --accent: #0a84ff;
-    --accent-light: rgba(10,132,255,0.12);
-    --success-light: rgba(52,199,89,0.15);
-    --warn-light: rgba(255,159,10,0.12);
-    --error-light: rgba(255,59,48,0.12);
-    --shadow: 0 2px 12px rgba(0,0,0,0.3);
-    --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+.sentiment-tag{
+  display:inline-block;
+  font-size:10px;
+  padding:2px 8px;
+  border-radius:10px;
+  font-weight:600;
+  margin-right:4px;
+}
+.sentiment-pos{background:#e8f5e9;color:#2e7d32;}
+.sentiment-neg{background:#ffebee;color:#c62828;}
+.sentiment-neutral{background:#f5f5f5;color:#616161;}
+
+.question-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:14px 16px;
+  margin-bottom:12px;
+}
+.question-item .q-title{
+  font-weight:600;
+  font-size:13px;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.options div{
+  padding:8px 12px;
+  margin-bottom:4px;
+  border-radius:var(--radius-sm);
+  background:#f5f5f5;
+  cursor:pointer;
+  transition:all .15s;
+  font-size:13px;
+}
+.options div:hover{background:#e8e8ed;}
+.options .selected{
+  background:linear-gradient(135deg,rgba(102,126,234,.15),rgba(118,75,162,.15));
+  border:2px solid var(--purple-from);
+  font-weight:500;
+}
+.options .correct{
+  background:#e8f5e9;
+  border:2px solid var(--success);
+  font-weight:500;
+}
+.options .wrong{
+  background:#ffebee;
+  border:2px solid var(--error);
+  font-weight:500;
+}
+
+.tag{
+  font-size:10px;
+  padding:2px 8px;
+  border-radius:10px;
+  font-weight:600;
+  display:inline-block;
+}
+.tag-detail{background:#e3f2fd;color:#1565c0;}
+.tag-infer{background:#fce4ec;color:#c62828;}
+.tag-main{background:#e8f5e9;color:#2e7d32;}
+.tag-attitude{background:#f3e5f5;color:#7b1fa2;}
+
+.trans-panel{
+  display:flex;
+  gap:16px;
+  margin-bottom:12px;
+}
+.trans-col{flex:1;font-size:13px;line-height:2;}
+.key-word{
+  color:#2e7d32;
+  text-decoration:underline;
+  text-decoration-color:#2e7d32;
+  text-underline-offset:2px;
+  font-weight:500;
+}
+.key-tag{
+  display:inline-block;
+  font-size:9px;
+  background:#e8f5e9;
+  color:#2e7d32;
+  padding:1px 5px;
+  border-radius:3px;
+  font-weight:600;
+  margin-left:2px;
+  vertical-align:super;
+}
+.vocab-red{color:var(--error);font-weight:500;}
+.analysis-wrong{
+  border-left:4px solid var(--error);
+  background:var(--error-light);
+  padding:12px 16px;
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom:10px;
+  font-size:13px;
+}
+
+.phase-confirm-btn{
+  display:inline-block;
+  padding:10px 28px;
+  border:none;
+  border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,var(--purple-from),var(--purple-to));
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  box-shadow:0 2px 8px rgba(102,126,234,.3);
+}
+.phase-confirm-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(102,126,234,.4);}
+.phase-confirm-btn:active{transform:translateY(0);}
+.next-phase-btn{
+  display:block;
+  width:100%;
+  padding:14px 24px;
+  margin-top:20px;
+  border:none;
+  border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--purple-from),var(--purple-to));
+  color:#fff;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  text-align:center;
+  transition:all .2s;
+  box-shadow:0 2px 8px rgba(102,126,234,.3);
+}
+.next-phase-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(102,126,234,.4);}
+.next-phase-btn:active{transform:translateY(0);}
+.next-phase-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.phase-done-badge{
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:10px;
+  background:var(--success);
+  color:#fff;
+  font-size:12px;
+  font-weight:600;
+}
+
+.floating-window{
+  position:fixed;
+  display:flex;
+  flex-direction:column;
+  min-width:220px;
+  min-height:200px;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);
+  border:1px solid var(--border);
+  overflow:hidden;
+  z-index:900;
+}
+.floating-window .titlebar{
+  background:linear-gradient(135deg,var(--purple-from),var(--purple-to));
+  color:#fff;
+  padding:10px 14px;
+  cursor:move;
+  touch-action:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  user-select:none;
+  flex-shrink:0;
+  font-size:13px;
+  font-weight:600;
+}
+.floating-window .titlebar .close-btn{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+  padding:0 4px;
+  line-height:1;
+  transition:opacity .15s;
+}
+.floating-window .titlebar .close-btn:hover{opacity:.7;}
+.floating-window .body{
+  overflow-y:auto;
+  flex:1;
+  padding:14px;
+  font-size:13px;
+  line-height:1.9;
+}
+.floating-window .resize-handle{
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:20px;
+  height:20px;
+  cursor:nwse-resize;
+  touch-action:none;
+  z-index:10;
+  background:linear-gradient(135deg,transparent 50%,#bbb 50%,#bbb 55%,transparent 55%,transparent 60%,#bbb 60%,#bbb 65%,transparent 65%);
+}
+
+.window-article{left:60px;top:160px;width:400px;height:550px;z-index:900;}
+.window-options{right:60px;top:160px;width:380px;height:500px;z-index:901;}
+
+.word-list{
+  position:fixed;
+  right:80px;
+  top:80px;
+  width:300px;
+  min-width:220px;
+  min-height:200px;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);
+  z-index:1000;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+.word-list.show{display:flex;}
+
+.word-float-btn{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--purple-from),var(--purple-to));
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  font-size:20px;
+  box-shadow:var(--shadow-lg);
+  z-index:100;
+  transition:transform .2s;
+}
+.word-float-btn:hover{transform:scale(1.1);}
+.word-float-btn .badge{
+  position:absolute;
+  top:-4px;
+  right:-4px;
+  background:var(--error);
+  color:#fff;
+  border-radius:50%;
+  width:22px;
+  height:22px;
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.word-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 0;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+.word-item .del-word{
+  color:var(--error);
+  cursor:pointer;
+  font-size:12px;
+  padding:2px 6px;
+  border:none;
+  background:none;
+}
+.word-translation{
+  flex:1;
+  margin:0 8px;
+  padding:2px 6px;
+  border:1px solid transparent;
+  border-radius:4px;
+  font-size:12px;
+  color:var(--text2);
+  background:transparent;
+  outline:none;
+  transition:border-color .15s;
+}
+.word-translation:empty::before{
+  content:attr(data-placeholder);
+  color:#ccc;
+}
+.word-translation:focus{border-color:var(--purple-from);}
+
+.export-btn,.clear-btn{
+  padding:6px 12px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:var(--card);
+  cursor:pointer;
+  font-size:12px;
+  transition:all .15s;
+}
+.export-btn:hover,.clear-btn:hover{border-color:var(--purple-from);}
+.export-btn{background:linear-gradient(135deg,var(--purple-from),var(--purple-to));color:#fff;border-color:transparent;}
+.clear-btn{color:var(--error);border-color:var(--error);}
+
+.selection-menu{
+  position:fixed;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:10px 14px;
+  box-shadow:var(--shadow-lg);
+  z-index:999;
+  font-size:13px;
+  min-width:240px;
+  display:none;
+}
+.selection-menu .selected-text{font-weight:600;margin-bottom:8px;}
+.translation-input{
+  width:100%;
+  padding:6px 8px;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  font-size:12px;
+  background:var(--card);
+  color:var(--text);
+  margin-bottom:8px;
+  outline:none;
+}
+.translation-input:focus{border-color:var(--purple-from);}
+
+.para-number{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:9px;
+  font-weight:700;
+  color:var(--purple-from);
+  background:rgba(102,126,234,.1);
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  margin-right:8px;
+  flex-shrink:0;
+  vertical-align:middle;
+}
+
+.passage{font-size:14px;line-height:2;}
+.passage p{margin-bottom:12px;}
+
+.sentence-tag{
+  display:inline-block;
+  font-size:10px;
+  padding:0 5px;
+  border-radius:3px;
+  background:rgba(102,126,234,.1);
+  color:var(--purple-from);
+  margin-right:4px;
+  font-weight:500;
+}
+
+.annotated{
+  text-decoration:underline;
+  text-decoration-color:#ff9800;
+  text-decoration-thickness:2px;
+  text-underline-offset:2px;
+  cursor:pointer;
+  position:relative;
+  background:rgba(255,152,0,0.08);
+  border-radius:2px;
+}
+.annotated-tip{
+  font-size:9px;
+  color:#e65100;
+  vertical-align:super;
+  line-height:1;
+  margin-left:1px;
+  font-weight:600;
+}
+
+.score-display{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+.score-num{font-size:36px;font-weight:700;color:var(--success);}
+
+.progress-bar{
+  height:8px;
+  background:#e0e0e0;
+  border-radius:4px;
+  overflow:hidden;
+  display:flex;
+}
+.progress-bar .ok{background:var(--success);}
+.progress-bar .fail{background:var(--error);}
+
+.answer-row{
+  padding:8px 10px;
+  margin-bottom:4px;
+  border-radius:var(--radius-sm);
+  font-size:13px;
+}
+
+.annotate-panel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:12px;
+  margin-top:10px;
+}
+.annotate-list{max-height:200px;overflow-y:auto;}
+.annotate-item{
+  background:rgba(255,152,0,0.08);
+  border-radius:var(--radius-sm);
+  padding:6px 8px;
+  margin-bottom:4px;
+  font-size:12px;
+  border-left:3px solid #ff9800;
+  display:flex;
+  justify-content:space-between;
+}
+.annotate-empty{color:var(--text3);font-size:12px;text-align:center;padding:16px;}
+
+.btn{
+  padding:6px 12px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:var(--card);
+  cursor:pointer;
+  font-size:12px;
+  transition:all .15s;
+}
+.btn:hover{border-color:var(--purple-from);}
+.btn-accent{background:linear-gradient(135deg,var(--purple-from),var(--purple-to));color:#fff;border-color:transparent;}
+.btn-danger{color:var(--error);border-color:var(--error);}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  margin-bottom:10px;
+}
+.card-title{
+  font-weight:600;
+  font-size:14px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.mono{
+  font-size:12px;
+  color:var(--text2);
+  font-style:italic;
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px solid var(--border);
+}
+
+.options-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  font-size:13px;
+}
+.option-item{
+  padding:8px 12px;
+  background:#f5f5f5;
+  border-radius:var(--radius-sm);
+  border:2px solid transparent;
+  cursor:pointer;
+  transition:all .15s;
+}
+.option-item:hover{background:#e8e8ed;}
+.option-item.selected{
+  background:linear-gradient(135deg,rgba(102,126,234,.15),rgba(118,75,162,.15));
+  border-color:var(--purple-from);
+  font-weight:500;
+}
+
+@media(max-width:768px){
+  .container{padding:10px;}
+  .floating-window{
+    left:10px!important;
+    right:10px!important;
+    top:auto!important;
+    bottom:10px!important;
+    width:calc(100% - 20px)!important;
+    height:50vh!important;
   }
-}
-
-html, body { height: 100%; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.8;
-}
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-.container { max-width: 900px; margin: 0 auto; padding: 20px; }
-
-.header {
-  background: var(--card);
-  padding: 28px 20px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-.header h1 { font-size: 22px; font-weight: 700; }
-.header p { font-size: 13px; color: var(--text2); margin-top: 4px; }
-
-/* ===== Phase 导航 ===== */
-.tabs {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-.tab {
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: var(--card);
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: all .15s;
-  color: var(--text2);
-}
-.tab:hover { border-color: var(--accent); color: var(--text); }
-.tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-.tab .badge { font-size: 10px; opacity: .7; }
-
-.phase { display: none; }
-.phase.active { display: block; }
-
-/* ===== 卡片系统 ===== */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-bottom: 10px;
-}
-.card-title {
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* ===== ★ 段落号 ===== */
-.para-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--accent);
-  background: var(--accent-light);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-right: 8px;
-  flex-shrink: 0;
-  vertical-align: middle;
-}
-
-/* ===== ★ 划线标注 ===== */
-.annotated {
-  text-decoration: underline;
-  text-decoration-color: #ff9800;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 2px;
-  cursor: pointer;
-  position: relative;
-  background: rgba(255,152,0,0.08);
-  border-radius: 2px;
-}
-.annotated-tip {
-  font-size: 9px;
-  color: #e65100;
-  vertical-align: super;
-  line-height: 1;
-  margin-left: 1px;
-  font-weight: 600;
-}
-
-/* ===== 标签 ===== */
-.tag {
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 500;
-  display: inline-block;
-}
-.tag-blue { background: var(--accent-light); color: var(--accent); }
-.tag-green { background: var(--success-light); color: #2e7d32; }
-.tag-orange { background: var(--warn-light); color: #f57f17; }
-.tag-red { background: var(--error-light); color: #c62828; }
-.tag-detail { background: #e3f2fd; color: #1565c0; }
-.tag-infer { background: #fce4ec; color: #c62828; }
-.tag-main { background: var(--success-light); color: #2e7d32; }
-
-/* ===== 文章区 ===== */
-.passage { font-size: 14px; line-height: 2; }
-.passage p { margin-bottom: 12px; }
-
-/* ===== 首尾句 ===== */
-.sentence-tag {
-  display: inline-block;
-  font-size: 10px;
-  padding: 0 5px;
-  border-radius: 3px;
-  background: var(--accent-light);
-  color: var(--accent);
-  margin-right: 4px;
-  font-weight: 500;
-}
-.mono {
-  font-size: 12px;
-  color: var(--text2);
-  font-style: italic;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border);
-}
-
-/* ===== 选项网格 ===== */
-.options-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  font-size: 13px;
-}
-.option-item {
-  padding: 8px 12px;
-  background: #f5f5f7;
-  border-radius: var(--radius-sm);
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all .15s;
-}
-.option-item:hover { background: #e8e8ed; }
-.option-item.selected { background: #d4edda; border-color: var(--success); font-weight: 500; }
-
-@media (max-width: 768px) {
-  .options-grid { grid-template-columns: 1fr; }
-}
-
-/* ===== 说明框 ===== */
-.center-box {
-  background: var(--success-light);
-  border: 1px solid var(--success);
-  border-radius: var(--radius);
-  padding: 14px;
-  margin-bottom: 10px;
-  font-size: 13px;
-}
-.center-box .label { font-weight: 600; margin-bottom: 4px; color: #2e7d32; }
-
-.instruction-box {
-  background: var(--accent-light);
-  border-left: 4px solid var(--accent);
-  padding: 12px 16px;
-  margin-bottom: 14px;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-size: 13px;
-  color: var(--accent);
-}
-
-.analysis-box {
-  background: var(--card);
-  border: 1px solid var(--warn);
-  border-left: 4px solid var(--warn);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 14px;
-  margin-bottom: 10px;
-  font-size: 13px;
-}
-
-.tip-box {
-  background: var(--warn-light);
-  border: 1px solid var(--warn);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  margin: 12px 0;
-  font-size: 13px;
-}
-
-/* ===== 计分区 ===== */
-.score-display {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.score-num { font-size: 36px; font-weight: 700; color: var(--success); }
-
-.progress-bar {
-  height: 8px;
-  background: #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-  display: flex;
-}
-.progress-bar .ok { background: var(--success); }
-.progress-bar .fail { background: var(--error); }
-
-.answer-row {
-  padding: 8px 10px;
-  margin-bottom: 4px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-}
-
-/* ===== ★ 划线标注面板 ===== */
-.annotate-panel {
- background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px;
-  margin-top: 10px;
-}
-.annotate-list { max-height: 200px; overflow-y: auto; }
-.annotate-item {
-  background: rgba(255,152,0,0.08);
-  border-radius: var(--radius-sm);
-  padding: 6px 8px;
-  margin-bottom: 4px;
-  font-size: 12px;
-  border-left: 3px solid #ff9800;
-  display: flex;
-  justify-content: space-between;
-}
-.annotate-empty { color: var(--text3); font-size: 12px; text-align: center; padding: 16px; }
-
-/* ===== ★ 扩展弹窗 ===== */
-#word-popup {
-  display: none;
-  position: fixed;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 16px;
-  box-shadow: var(--shadow-lg);
-  z-index: 999;
-  font-size: 13px;
-  min-width: 260px;
-}
-#word-popup .selected-text { font-weight: 600; margin-bottom: 8px; }
-#word-popup .popup-input {
-  width: 100%;
-  padding: 6px 8px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  background: var(--card);
-  color: var(--text);
-  margin-bottom: 8px;
-  outline: none;
-}
-#word-popup .btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
-#word-popup .btn-row { display: flex; gap: 6px; margin-top: 4px; }
-#word-popup .btn-add { background: var(--accent); color: #fff; border: none; padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; }
-#word-popup .btn-annotate { background: var(--warn); color: #fff; border: none; padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; }
-#word-popup .btn-underline { background: #ff9800; color: #fff; border: none; padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; }
-#word-popup .btn-cancel { background: #f0f0f0; color: var(--text2); border: none; padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; }
-
-/* ===== 浮动生词本按钮 ===== */
-.word-float-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  box-shadow: var(--shadow-lg);
-  z-index: 100;
-  transition: transform .2s;
-}
-.word-float-btn:hover { transform: scale(1.1); }
-.word-float-btn .badge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background: var(--error);
-  color: #fff;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 11px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ===== 可拖拽生词本 ===== */
-.word-list {
-  position: fixed;
-  bottom: 80px;
-  right: 24px;
-  width: 300px;
-  min-width: 220px;
-  min-height: 200px;
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-  z-index: 100;
-  display: none;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.word-list.show { display: flex; flex-direction: column; }
-.word-list .wl-titlebar {
-  background: var(--accent);
-  color: #fff;
-  padding: 10px 14px;
-  cursor: move;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
-  flex-shrink: 0;
-  touch-action: none;
-}
-.word-list .wl-titlebar .wl-close {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0 4px;
-  line-height: 1;
-}
-.word-list .wl-body { padding: 12px 14px 14px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; }
-.wl-resize {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 20px;
-  height: 20px;
-  cursor: nwse-resize;
-  background: linear-gradient(135deg, transparent 50%, #ccc 50%, #ccc 55%, transparent 55%, transparent 60%, #ccc 60%, #ccc 65%, transparent 65%);
-  touch-action: none;
-  z-index: 10;
-}
-.word-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-}
-.word-item .del-word { color: var(--error); cursor: pointer; font-size: 12px; padding: 2px 6px; border: none; background: none; }
-.word-empty { color: var(--text3); font-size: 12px; text-align: center; padding: 20px; }
-.btn { padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card); cursor: pointer; font-size: 12px; }
-.btn:hover { border-color: var(--accent); }
-.btn-accent { background: var(--accent); color: #fff; border-color: var(--accent); }
-.btn-danger { color: var(--error); border-color: var(--error); }
-
-@media (max-width: 768px) {
-  .container { padding: 10px; }
-  .word-list { width: calc(100% - 20px) !important; left: 10px !important; top: auto !important; right: auto !important; bottom: 10px !important; height: 50vh !important; }
-  .word-float-btn { bottom: 20px; right: 20px; }
-  .tabs { gap: 2px; }
-  .tab { padding: 5px 10px; font-size: 11px; }
+  .window-article,.window-options{
+    left:10px!important;
+    right:10px!important;
+    width:calc(100% - 20px)!important;
+  }
+  .word-list{
+    width:calc(100% - 20px)!important;
+    left:10px!important;
+    right:10px!important;
+    top:auto!important;
+    bottom:10px!important;
+    height:50vh!important;
+  }
+  .word-float-btn{bottom:20px;right:20px;}
+  .tabs{gap:2px;}
+  .tab{padding:5px 10px;font-size:11px;}
+  .tool-btn{padding:5px 10px;font-size:11px;}
+  .trans-panel{flex-direction:column;}
 }
 </style>
 </head>
 <body>
 <div class="container">
   <div class="header">
-    <h1>六级传统阅读 · 实战陪练</h1>
-    <p>【试卷名称】· 【题型名称】</p>
+    <h1>📖 六级传统阅读 · 实战陪练</h1>
+    <p>@@META_TITLE@@ · @@META_PASSAGE@@ · @@META_TOPIC@@</p>
   </div>
-
-  <div class="tabs">
-    <div class="tab active" data-phase="1" onclick="switchPhase('1')">Phase 1 <span class="badge">扫描</span></div>
-    <div class="tab" data-phase="2a" onclick="switchPhase('2a')">Phase 2a <span class="badge">首尾定中心</span></div>
-    <div class="tab" data-phase="2b" onclick="switchPhase('2b')">Phase 2b <span class="badge">中心做题</span></div>
-    <div class="tab" data-phase="2c" onclick="switchPhase('2c')">Phase 2c <span class="badge">定位精读</span></div>
-    <div class="tab" data-phase="3" onclick="switchPhase('3')">Phase 3 <span class="badge">对答案</span></div>
-    <div class="tab" data-phase="4" onclick="switchPhase('4')">Phase 4 <span class="badge">复盘</span></div>
+  <div class="toolbar">
+    <div class="tabs">
+      <button class="tab active" onclick="switchPhase(1)">Phase 1 选项预判</button>
+      <button class="tab" onclick="switchPhase(2)">Phase 2a 首尾定中心</button>
+      <button class="tab" onclick="switchPhase(3)">Phase 2b 中心做题</button>
+      <button class="tab" onclick="switchPhase(4)">Phase 2c 定点精读</button>
+      <button class="tab" onclick="switchPhase(5)">Phase 3 核对答案</button>
+      <button class="tab" onclick="switchPhase(6)">Phase 4 全篇复盘</button>
+    </div>
+    <div class="tool-btns">
+      <button class="tool-btn active" id="btn-article" onclick="toggleWindow('article')">📄 原文</button>
+      <button class="tool-btn active" id="btn-options" onclick="toggleWindow('options')">📝 题目</button>
+    </div>
   </div>
-
-  <!-- =========================================================
-       Phase 1：全景扫描
-       ========================================================= -->
-  <div id="phase-1" class="phase active">
-    <div class="card">
-      <div class="card-title">主题预测</div>
-      <div style="font-size:13px;">从题干推断文章主题...</div>
+  <div class="phase-content active" id="phase1">
+    <div class="guidance-banner">
+      <div class="g-title"><span class="g-icon">🔍</span>Phase 1 — 选项预判</div>
+      <div class="g-what">扫读所有题目的题干和选项，找重复出现的主题词，判断文章大概在讲什么。</div>
+      <div class="g-quote">"先看题目，别急着读文章。把 5 道题的选项都扫一遍，找出重复出现的关键词，心里有个预判。"</div>
+      <div class="g-time">⏱ 建议用时：1 分钟</div>
     </div>
-    <div class="card">
-      <div class="card-title">题型 &amp; 定位词</div>
-      <div style="font-size:12px;color:var(--text2);">定位词：xxx</div>
-    </div>
-    <div class="card">
-      <div class="card-title">文章全文</div>
-      <div class="passage" id="article-text">
-        <!-- ★ 替换：每段 <p data-para="索引">，自动显示段落号 -->
-        <p data-para="0"><span class="para-number">¶1</span>第1段...</p>
-        <p data-para="1"><span class="para-number">¶2</span>第2段...</p>
-        <p data-para="2"><span class="para-number">¶3</span>第3段...</p>
-        <!-- 添加更多段落 -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>主题词扫描引导</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE1_KEYWORD_SCAN@@</p>
       </div>
     </div>
-    <div class="card">
-      <div class="card-title">题目预览</div>
-      <!-- ★ 替换：填充5道题 -->
-      <div class="question-item" style="margin-bottom:10px;padding:10px;background:#f5f5f7;border-radius:var(--radius-sm);">
-        <div style="font-weight:600;font-size:13px;margin-bottom:6px;"><span class="tag tag-detail">细节题</span> 46. 问题英文？</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;">
-          <div>A) 选项A</div>
-          <div>B) 选项B</div>
-          <div>C) 选项C</div>
-          <div>D) 选项D</div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>情感色彩分析引导</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE1_SENTIMENT_ANALYSIS@@</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>作者态度预判引导</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE1_AUTHOR_ATTITUDE_GUESS@@</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>题目类型标注</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE1_QUESTION_TYPES@@</p>
+      </div>
+    </div>
+    <button class="next-phase-btn" onclick="goNextPhase(1)">✅ 完成 Phase 1，进入 Phase 2a：首尾定中心 →</button>
+  </div>
+  <div class="phase-content" id="phase2">
+    <div class="guidance-banner">
+      <div class="g-title"><span class="g-icon">🧭</span>Phase 2a — 首尾定中心</div>
+      <div class="g-what">只读首段 + 各段首句 + 尾段（尾段太长则只读首尾句），2 分钟内抓住文章中心。</div>
+      <div class="g-quote">"读懂中心的好处是：无论题干问什么，四个选项当中和文章中心靠得最近的选项绝对是正确答案，无需定位！"</div>
+      <div class="g-extra">"即使中心没读懂，也至少找到出现频率最高的中心词。首段、各段首句和尾段至少会出 3 道题，就当提前定位了。"</div>
+      <div class="g-time">⏱ 建议用时：2 分钟</div>
+    </div>
+    <div class="sentences-scan">@@PHASE2A_SENTENCES@@</div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>情感色彩修正</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE2A_SENTIMENT_CORRECTION@@</p>
+      </div>
+    </div>
+    <div class="center-summary">
+      <div class="label">中心结论</div>
+      <p>@@PHASE2A_CENTER@@</p>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>出题位置预测</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE2A_QUESTION_PREDICTION@@</p>
+      </div>
+    </div>
+    <button class="next-phase-btn" onclick="goNextPhase(2)">✅ 完成 Phase 2a，进入 Phase 2b：中心做题 →</button>
+  </div>
+  <div class="phase-content" id="phase3">
+    <div class="guidance-banner">
+      <div class="g-title"><span class="g-icon">🎯</span>Phase 2b — 中心做题</div>
+      <div class="g-what">用中心法则做题：能和中心沾边的直接选，不能的标记留到下一步精读。</div>
+      <div class="g-quote">"所有细节全部服从中心。传统阅读 10 道题，至少有 5 道是不需要定位的——和中心靠得最近的就是答案。如果四个选项都和中心没关系，才需要定位。"</div>
+      <div class="g-extra">"读不懂中心但找到了中心词？选项中带中心词的通常也是正确答案，正确率 90% 以上。"</div>
+      <div class="g-time">⏱ 建议用时：3~4 分钟</div>
+    </div>
+    <div class="center-summary">
+      <div class="label">中心提示</div>
+      <p>@@PHASE2B_CENTER_HINT@@</p>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>逐题判断引导</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE2B_STRATEGY@@</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>做题策略</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE2B_TIPS@@</p>
+      </div>
+    </div>
+    <button class="next-phase-btn" onclick="goNextPhase(3)">✅ 完成 Phase 2b，进入 Phase 2c：定点精读 →</button>
+  </div>
+  <div class="phase-content" id="phase4">
+    <div class="guidance-banner">
+      <div class="g-title"><span class="g-icon">🔬</span>Phase 2c — 定点精读</div>
+      <div class="g-what">对标记的题目回原文精读定位，仔细比对选项与原文的同义替换。</div>
+      <div class="g-quote">"定位优先找专有名词（时间、地点、人名），其次是普通名词和动词。如果名词是中心词满篇都是，就找形容词和副词的比较级和最高级来定位。"</div>
+      <div class="g-time">⏱ 建议用时：4~5 分钟</div>
+    </div>
+    <div class="analysis-box">@@PHASE2C_LOCATE@@</div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>同义替换表格</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE2C_SYNONYM_TABLE@@</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>情感再确认</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p>@@PHASE2C_SENTIMENT@@</p>
+      </div>
+    </div>
+    <button class="next-phase-btn" onclick="goNextPhase(4)">✅ 完成 Phase 2c，进入 Phase 3：核对答案 →</button>
+  </div>
+  <div class="phase-content" id="phase5">
+    <div class="guidance-banner">
+      <div class="g-title"><span class="g-icon">📋</span>Phase 3 — 核对答案</div>
+      <div class="g-what">核对答案 → 看解析 → 中英对照精读全文 → 生词加入生词本。</div>
+      <div class="g-quote">"做完以后一定要核实对错，看对是怎么做对的，错是为什么错的。第三步精读全文，生单词查出来写在旁边。第四步在句子里背单词。"</div>
+      <div class="g-time">⏱ 建议用时：8~10 分钟</div>
+    </div>
+    <div id="result-section">
+      <div class="answer-section show" id="answers-display">
+        <div class="score-display">
+          <span class="score-num" id="score-display">0</span>
+          <span id="score-desc">/ 5</span>
         </div>
+        <div class="progress-bar">
+          <div class="ok" style="width:0%"></div>
+          <div class="fail" style="width:0%"></div>
+        </div>
+        <div style="margin-top:12px">@@PHASE3_ANSWERS@@</div>
       </div>
-      <!-- 47-50 以此类推 -->
+      <div class="trans-panel">@@PHASE3_TRANSLATION@@</div>
     </div>
+    <button class="next-phase-btn" onclick="goNextPhase(5)">✅ 完成 Phase 3，进入 Phase 4：全篇复盘 →</button>
   </div>
-
-  <!-- =========================================================
-       Phase 2a：首尾定中心
-       ========================================================= -->
-  <div id="phase-2a" class="phase">
-    <div class="center-box">
-      <div class="label">首尾句聚焦</div>
-      <div>快速扫读每段首尾句，抓文章骨架。</div>
+  <div class="phase-content" id="phase6">
+    <div class="guidance-banner">
+      <div class="g-title"><span class="g-icon">📊</span>Phase 4 — 全篇复盘</div>
+      <div class="g-what">复盘全篇：统计使用的技巧、回顾每道题的技术要点、注意陷阱。</div>
+      <div class="g-quote">"每天做 1~2 篇，用这个方法坚持 30 天。做完精读，单词在真题句子里背，比你单独背单词书效果好得多。"</div>
+      <div class="g-time">⏱ 建议用时：3~5 分钟</div>
     </div>
-    <!-- ★ 替换：填充各段首尾句 -->
-    <div class="card">
-      <div class="card-title">第1段</div>
-      <div class="passage">
-        <p><span class="sentence-tag">首</span>First sentence...</p>
-        <p><span class="sentence-tag">尾</span>Last sentence...</p>
-      </div>
-      <div class="mono">考生内心独白...</div>
-    </div>
-    <!-- 更多段 -->
-    <div class="center-box">
-      <div class="label">中心归纳</div>
-      <div>文章中心思想...</div>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       Phase 2b：中心做题
-       ========================================================= -->
-  <div id="phase-2b" class="phase">
-    <div class="center-box">
-      <div class="label">用中心做题</div>
-      <div>用首尾句确定的中心，先做能做的题。</div>
-    </div>
-    <!-- ★ 替换：5道题，加 data-q 属性 -->
-    <div class="card">
-      <div class="card-title">46. 问题英文 <span class="tag tag-green">可用中心做</span></div>
-      <div class="options-grid" data-q="46">
-        <div class="option-item" onclick="selectOption(46,'A')" data-opt="A">A) 选项A</div>
-        <div class="option-item" onclick="selectOption(46,'B')" data-opt="B">B) 选项B</div>
-        <div class="option-item" onclick="selectOption(46,'C')" data-opt="C">C) 选项C</div>
-        <div class="option-item" onclick="selectOption(46,'D')" data-opt="D">D) 选项D</div>
-      </div>
-      <div class="mono">考生内心独白...</div>
-    </div>
-    <!-- 47-50 -->
-  </div>
-
-  <!-- =========================================================
-       Phase 2c：定点精读
-       ========================================================= -->
-  <div id="phase-2c" class="phase">
-    <div class="center-box">
-      <div class="label">定位 + 段落锁定 + 同义替换</div>
-      <div>用题干关键词定位到原文具体段落。</div>
-    </div>
-    <div class="analysis-box">
-      <strong>47题定位 → 第X段</strong><br>
-      原文片段<br>
-      <div class="mono">同义替换分析...</div>
-    </div>
-    <!-- 48-50 -->
-  </div>
-
-  <!-- =========================================================
-       Phase 3：对答案
-       ========================================================= -->
-  <div id="phase-3" class="phase">
-    <div class="card">
-      <div class="card-title">统一对答案 <span class="tag tag-green">官方解析</span></div>
-      <div class="score-display">
-        <div class="score-num" id="score-display">?/5</div>
-      </div>
-      <!-- ★ 替换：正确答案 -->
-      <div style="display:grid;gap:6px;">
-        <div class="answer-row" style="background:#f0f0f0;"><strong>46.</strong> D) 答案标签</div>
-        <div class="answer-row" style="background:#f0f0f0;"><strong>47.</strong> A) 答案标签</div>
-        <div class="answer-row" style="background:#f0f0f0;"><strong>48.</strong> D) 答案标签</div>
-        <div class="answer-row" style="background:#f0f0f0;"><strong>49.</strong> B) 答案标签</div>
-        <div class="answer-row" style="background:#f0f0f0;"><strong>50.</strong> B) 答案标签</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       Phase 4：复盘
-       ========================================================= -->
-  <div id="phase-4" class="phase">
-    <div class="center-box">
-      <div class="label">文章中心</div>
-      <div>中心思想...</div>
+    <div class="center-summary">
+      <div class="label">中心总结</div>
+      <p>@@PHASE4_CENTER@@</p>
     </div>
     <div class="card">
-      <div class="card-title">技巧使用统计</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-        <div style="text-align:center;padding:10px;"><strong>T3</strong><br><span style="font-size:12px;color:var(--text2);">同义替换 X次</span></div>
-        <div style="text-align:center;padding:10px;"><strong>T4</strong><br><span style="font-size:12px;color:var(--text2);">定位法 X题</span></div>
-      </div>
+      <div class="card-title">技术统计</div>
+      <p>@@PHASE4_TECH_STATS@@</p>
     </div>
-    <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn btn-accent" onclick="exportWordList()">导出 .md 生词本</button>
-      <button class="btn btn-danger" onclick="if(confirm('确定清空？')){localStorage.removeItem('template_vocab');words=[];renderWords();updateWordCount();}">清空生词本</button>
-      <button class="btn btn-danger" onclick="if(confirm('确定清除所有划线标注？')){localStorage.removeItem('template_annotations');annotations=[];renderAnnotations();location.reload();}">清除划线</button>
+    <div class="card">
+      <div class="card-title">题目回顾</div>
+      <p>@@PHASE4_QUESTION_REVIEW@@</p>
     </div>
-    <div class="annotate-panel">
-      <div style="font-weight:600;font-size:13px;margin-bottom:6px;">划线标注 <span style="color:var(--warn);" id="annotate-count">0</span> 处</div>
-      <div class="annotate-list" id="annotate-list">
-        <div class="annotate-empty">选中文字 → 点击"划线标注"</div>
-      </div>
+    <div class="tip-box">@@PHASE4_PITFALLS@@</div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-accent" onclick="exportWordList()">📥 导出笔记</button>
+      <button class="btn btn-danger" onclick="if(confirm('确定清空所有数据？')){clearAll()}">🗑️ 清空数据</button>
     </div>
+    <button class="next-phase-btn" onclick="if(confirm('确定完成全部训练？')){clearAll()}">📋 完成训练，清空数据开始下一篇</button>
   </div>
 </div>
-
-<!-- ===== ★ 扩展弹窗 ===== -->
-<div id="word-popup">
-  <div class="selected-text"><span id="popup-word"></span></div>
-  <input class="popup-input" id="popup-annotation" placeholder="标注备注（可选）..." maxlength="30">
-  <div class="btn-group">
-    <button class="btn-add" onclick="addFromVocab()">加入生词本</button>
-    <button class="btn-annotate" onclick="addAnnotation()">划线 + 标注</button>
+<div class="floating-window window-article show" id="window-article">
+  <div class="titlebar" id="titlebar-article">
+    <span class="title">📄 原文</span>
+    <button class="close-btn" onclick="toggleWindow('article')">✕</button>
   </div>
-  <div class="btn-row">
-    <button class="btn-underline" onclick="addUnderlineOnly()">仅划线</button>
-    <button class="btn-cancel" onclick="hidePopup()">取消</button>
+  <div class="body" id="body-article">
+    <div class="article-text" id="article-text">@@ARTICLE_HTML@@</div>
   </div>
+  <div class="resize-handle" id="resize-article"></div>
 </div>
-
-<!-- ===== 生词本浮窗按钮 ===== -->
-<button class="word-float-btn" id="word-float-btn" onclick="toggleWordList()">📖<span class="badge" id="word-count">0</span></button>
-
-<!-- ===== 可拖拽生词本窗口 ===== -->
-<div class="word-list" id="word-list">
-  <div class="wl-titlebar" id="wl-titlebar">
-    <span>📚 我的生词本</span>
-    <button class="wl-close" onclick="toggleWordList()">✕</button>
+<div class="floating-window window-options show" id="window-options">
+  <div class="titlebar" id="titlebar-options">
+    <span class="title">📝 题目</span>
+    <button class="close-btn" onclick="toggleWindow('options')">✕</button>
   </div>
-  <div class="wl-body">
+  <div class="body" id="body-options">
+    <div id="opts-preview">@@QUESTIONS_PREVIEW_HTML@@</div>
+    <div id="opts-interactive" style="display:none">@@QUESTIONS_INTERACTIVE_HTML@@</div>
+    <div id="opts-answers" style="display:none">@@ANSWERS_HTML@@</div>
+    <div id="opts-stats" style="display:none">@@PHASE4_STATS_PANEL@@</div>
+  </div>
+  <div class="resize-handle" id="resize-options"></div>
+</div>
+<div class="floating-window word-list" id="word-list">
+  <div class="titlebar" id="wl-titlebar">
+    <span class="title">📚 我的生词本</span>
+    <button class="close-btn" onclick="toggleWordList()">✕</button>
+  </div>
+  <div class="body">
     <div id="word-items"></div>
-    <button class="btn btn-accent" onclick="exportWordList()" style="width:100%;margin-top:8px">导出 .md</button>
+    <button class="export-btn" onclick="exportWordList()" style="width:100%;margin-top:auto">📥 导出 .md</button>
+    <button class="clear-btn" onclick="if(confirm('确定清空？')){clearWordList()}" style="width:100%;margin-left:0">🗑️ 清空</button>
   </div>
-  <div class="wl-resize" id="wl-resize"></div>
+  <div class="resize-handle" id="wl-resize"></div>
 </div>
-
-<!-- =========================================================
-     固定资产 JavaScript — 全部可复用
-     ========================================================= -->
+<button class="word-float-btn" id="word-float-btn" onclick="toggleWordList()">📖<span class="badge" id="word-count">0</span></button>
+<div class="selection-menu" id="selection-menu">
+  <button onclick="addSelectedWord()">📝 加入生词本</button>
+  <div id="translation-input-wrap" style="display:none;padding:6px 8px">
+    <input type="text" id="translation-input" class="translation-input" placeholder="输入中文释义（可选）" />
+    <button onclick="confirmAddWord()" style="margin-top:4px;width:100%;padding:4px;background:var(--purple-from);color:#fff;border:none;border-radius:4px;cursor:pointer">确认</button>
+  </div>
+</div>
 <script>
-/* ===== 生词本 CRUD ===== */
-let words = JSON.parse(localStorage.getItem('template_vocab') || '[]');
+let words = JSON.parse(localStorage.getItem('cet6_words') || '[]');
+let phaseUnlock = JSON.parse(localStorage.getItem('cet6_phase_unlock') || '{"1":true}');
+let currentPhase = 1;
 
 function saveWords() {
-  localStorage.setItem('template_vocab', JSON.stringify(words));
-  renderWords();
+  localStorage.setItem('cet6_words', JSON.stringify(words));
   updateWordCount();
+  renderWords();
 }
+
 function updateWordCount() {
   document.getElementById('word-count').textContent = words.length;
 }
+
 function renderWords() {
-  const c = document.getElementById('word-items');
-  if (!c) return;
-  if (words.length === 0) { c.innerHTML = '<div class="word-empty">还没有生词，选中单词添加</div>'; return; }
-  c.innerHTML = words.map((w,i) =>
-    '<div class="word-item"><span><strong>' + w.word + '</strong><br><span style="font-size:11px;color:var(--text2)">' + (w.source||'') + '</span></span><button class="del-word" onclick="removeWord('+i+')">✕</button></div>'
-  ).join('');
+  const container = document.getElementById('word-items');
+  if (words.length === 0) {
+    container.innerHTML = '<div style="color:var(--text3);font-size:14px;padding:12px;text-align:center">还没有生词，选中文章中单词添加</div>';
+    return;
+  }
+  container.innerHTML = words.map((w, i) => {
+    const displayTranslation = w.customTranslation || w.translation || '';
+    const ctx = w.contextSentence || '';
+    return '<div class="word-item" style="flex-wrap:wrap">' +
+      '<div style="flex:1;min-width:0">' +
+        '<div><strong>' + w.word + '</strong>' +
+        (displayTranslation ? '<span style="color:var(--text2);font-size:12px;margin-left:6px;cursor:pointer" onclick="editTranslation(' + i + ')" title="点击编辑释义">' + displayTranslation + '</span>' : '<span style="color:var(--text3);font-size:12px;margin-left:6px">释义获取中...</span>') +
+        '</div>' +
+        (ctx ? '<div style="font-size:11px;color:var(--text3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px" title="' + ctx.replace(/"/g,'&quot;') + '">📝 ' + ctx + '</div>' : '') +
+      '</div>' +
+      '<button class="del-word" onclick="removeWord(' + i + ')">✕</button>' +
+    '</div>';
+  }).join('');
 }
+
+function editTranslation(i) {
+  const current = words[i].customTranslation || words[i].translation || '';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = current;
+  input.className = 'translation-input';
+  input.style.cssText = 'width:100%;margin-top:4px;padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-size:13px';
+  input.placeholder = '输入自定义释义（会覆盖API释义）';
+  input.onkeydown = function(e) {
+    if (e.key === 'Enter') {
+      words[i].customTranslation = input.value.trim();
+      saveWords();
+    } else if (e.key === 'Escape') {
+      renderWords();
+    }
+  };
+  input.onblur = function() {
+    words[i].customTranslation = input.value.trim();
+    saveWords();
+  };
+  const wordItem = document.querySelectorAll('.word-item')[i];
+  if (!wordItem) return;
+  const transSpan = wordItem.querySelector('span[style*="cursor:pointer"]') || wordItem.querySelector('span[style*="margin-left:6px"]');
+  if (transSpan) {
+    transSpan.innerHTML = '';
+    transSpan.appendChild(input);
+    input.focus();
+  }
+}
+
 function removeWord(i) { words.splice(i, 1); saveWords(); }
+function clearWordList() { words = []; saveWords(); }
+
 function toggleWordList() {
   document.getElementById('word-list').classList.toggle('show');
 }
-function exportWordList() {
-  if (words.length === 0) { alert('生词本为空'); return; }
-  let md = '# 六级生词本\n\n| 单词 | 出处 |\n|:--|:--|\n';
-  words.forEach(w => { md += '| ' + w.word + ' | ' + (w.source||'-') + ' |\n'; });
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([md], {type:'text/markdown'}));
-  a.download = '生词本_' + new Date().toISOString().slice(0,10) + '.md';
-  a.click();
-}
-updateWordCount();
-renderWords();
 
-/* ===== ★ 划线标注系统 ===== */
-let annotations = JSON.parse(localStorage.getItem('template_annotations') || '[]');
+let selectedText = '';
+let selectedRange = null;
 
-function saveAnnotations() {
-  localStorage.setItem('template_annotations', JSON.stringify(annotations));
-  renderAnnotations();
+document.addEventListener('pointerup', function(e) {
+  const sel = window.getSelection();
+  const text = sel.toString().trim();
+  if (!text || text.length > 50 || text.split(' ').length > 6) {
+    document.getElementById('selection-menu').style.display = 'none';
+    document.getElementById('translation-input-wrap').style.display = 'none';
+    return;
+  }
+  try {
+    const range = sel.getRangeAt(0);
+    const menu = document.getElementById('selection-menu');
+    const rect = range.getBoundingClientRect();
+    menu.style.left = Math.min(rect.left + rect.width / 2 - 50, window.innerWidth - 160) + 'px';
+    menu.style.top = (rect.bottom + 8) + 'px';
+    menu.style.display = 'block';
+    document.getElementById('translation-input-wrap').style.display = 'none';
+    selectedText = text;
+    selectedRange = range;
+  } catch(e) {
+    document.getElementById('selection-menu').style.display = 'none';
+  }
+});
+
+document.addEventListener('pointerdown', function(e) {
+  if (!e.target.closest('.selection-menu')) {
+    document.getElementById('selection-menu').style.display = 'none';
+    document.getElementById('translation-input-wrap').style.display = 'none';
+  }
+});
+
+function addSelectedWord() {
+  if (!selectedText) { closeSelectionMenu(); return; }
+  const para = selectedRange ? selectedRange.startContainer.parentElement.closest('[data-para]') : null;
+  const paraNum = para ? para.getAttribute('data-para') : '';
+
+  let contextSentence = '';
+  if (selectedRange) {
+    const node = selectedRange.startContainer;
+    let textEl = node;
+    while (textEl && textEl.nodeType !== Node.ELEMENT_NODE && textEl !== document.body) textEl = textEl.parentElement;
+    if (textEl) {
+      const fullText = textEl.textContent || '';
+      const idx = fullText.indexOf(selectedText);
+      if (idx !== -1) {
+        const start = Math.max(0, idx - 50);
+        const end = Math.min(fullText.length, idx + selectedText.length + 50);
+        contextSentence = (start > 0 ? '...' : '') + fullText.slice(start, end).trim() + (end < fullText.length ? '...' : '');
+      }
+    }
+  }
+
+  if (words.find(w => w.word === selectedText)) {
+    closeSelectionMenu();
+    return;
+  }
+
+  const wordData = {
+    word: selectedText,
+    translation: '',
+    customTranslation: '',
+    context: paraNum ? 'P' + paraNum : '',
+    contextSentence: contextSentence,
+    added: new Date().toLocaleString()
+  };
+
+  words.push(wordData);
+  const idx = words.length - 1;
+  saveWords();
+
+  closeSelectionMenu();
+  document.getElementById('word-list').classList.add('show');
+
+  fetchTranslation(wordData, idx);
 }
-function renderAnnotations() {
-  var c = document.getElementById('annotate-list');
-  var count = document.getElementById('annotate-count');
-  if (count) count.textContent = annotations.length;
-  if (!c) return;
-  if (annotations.length === 0) { c.innerHTML = '<div class="annotate-empty">选中文字 → 点击划线标注</div>'; return; }
-  c.innerHTML = annotations.map((a,i) =>
-    '<div class="annotate-item"><div><div style="font-weight:600;font-size:12px;">' + a.text + '</div>' + (a.note ? '<div style="font-size:10px;color:#e65100;">' + a.note + '</div>' : '') + '</div><span class="del-word" onclick="removeAnnotation('+i+')">✕</span></div>'
-  ).join('');
-}
-function removeAnnotation(i) {
-  annotations.splice(i, 1);
-  saveAnnotations();
-  applyAnnotationsToDOM();
-}
-function applyAnnotationsToDOM() {
-  annotations.forEach(function(a) {
-    document.querySelectorAll('[data-para]').forEach(function(p) {
-      var html = p.innerHTML;
-      if (html.indexOf('data-a="' + a.text.replace(/"/g,'&quot;') + '"') >= 0) return;
-      var escaped = a.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      try {
-        var regex = new RegExp('(' + escaped + ')', 'i');
-        if (a.note) {
-          html = html.replace(regex, '<span class="annotated" data-a="' + a.text.replace(/"/g,'&quot;') + '">$&<span class="annotated-tip">' + a.note + '</span></span>');
-        } else {
-          html = html.replace(regex, '<span class="annotated" data-a="' + a.text.replace(/"/g,'&quot;') + '">$&</span>');
+
+async function fetchTranslation(wordData, index) {
+  try {
+    const resp = await fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(wordData.word));
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data && data[0] && data[0].meanings) {
+        const parts = [];
+        for (const m of data[0].meanings) {
+          const pos = m.partOfSpeech || '';
+          const defList = m.definitions.slice(0, 2).map(d => d.definition).join('；');
+          parts.push((pos ? pos + '. ' : '') + defList);
         }
-        p.innerHTML = html;
-      } catch(e) {}
+        wordData.translation = parts.join(' | ');
+        saveWords();
+      }
+    }
+  } catch(e) {
+    wordData.translation = '';
+    saveWords();
+  }
+}
+
+function closeSelectionMenu() {
+  document.getElementById('selection-menu').style.display = 'none';
+  document.getElementById('translation-input-wrap').style.display = 'none';
+  selectedText = '';
+  selectedRange = null;
+}
+
+function confirmAddWord() {
+  closeSelectionMenu();
+}
+
+function makeDraggableResizable(windowEl, titlebarEl, resizeHandleEl) {
+  let mode = null;
+  let sx, sy, sw, sh, sl, st;
+
+  function onDown(e) {
+    if (e.target.closest('.close-btn') || e.target.closest('.export-btn') || e.target.closest('.clear-btn') || e.target.closest('.del-word') || e.target.closest('.translation-input')) return;
+    if (e.target === resizeHandleEl || e.target.closest('.resize-handle')) {
+      mode = 'resize';
+      const rect = windowEl.getBoundingClientRect();
+      sx = e.clientX; sy = e.clientY;
+      sw = rect.width; sh = rect.height;
+      resizeHandleEl.setPointerCapture(e.pointerId);
+    } else if (e.target === titlebarEl || e.target.closest('.titlebar')) {
+      if (e.target.closest('.close-btn')) return;
+      mode = 'drag';
+      const rect = windowEl.getBoundingClientRect();
+      sx = e.clientX - rect.left; sy = e.clientY - rect.top;
+      sl = rect.left; st = rect.top;
+      titlebarEl.setPointerCapture(e.pointerId);
+      windowEl.style.right = 'auto'; windowEl.style.bottom = 'auto';
+      windowEl.style.left = sl + 'px'; windowEl.style.top = st + 'px';
+    }
+  }
+
+  function onMove(e) {
+    if (mode === 'drag') { windowEl.style.left = (e.clientX - sx) + 'px'; windowEl.style.top = (e.clientY - sy) + 'px'; }
+    else if (mode === 'resize') { windowEl.style.width = Math.max(220, sw + (e.clientX - sx)) + 'px'; windowEl.style.height = Math.max(200, sh + (e.clientY - sy)) + 'px'; }
+  }
+
+  function onUp() { mode = null; }
+
+  titlebarEl.addEventListener('pointerdown', onDown);
+  resizeHandleEl.addEventListener('pointerdown', onDown);
+  document.addEventListener('pointermove', onMove);
+  document.addEventListener('pointerup', onUp);
+}
+
+let articleVisible = true;
+let optionsVisible = true;
+
+function toggleWindow(type) {
+  if (type === 'article') {
+    articleVisible = !articleVisible;
+    const el = document.getElementById('window-article');
+    const btn = document.getElementById('btn-article');
+    if (articleVisible) { el.classList.add('show'); btn.classList.add('active'); }
+    else { el.classList.remove('show'); btn.classList.remove('active'); }
+  } else if (type === 'options') {
+    optionsVisible = !optionsVisible;
+    const el = document.getElementById('window-options');
+    const btn = document.getElementById('btn-options');
+    if (optionsVisible) { el.classList.add('show'); btn.classList.add('active'); }
+    else { el.classList.remove('show'); btn.classList.remove('active'); }
+  }
+}
+
+const selectedOptions = {};
+
+function selectOption(qNum, opt) {
+  const container = document.querySelector('.options[data-q="' + qNum + '"]');
+  if (!container) return;
+  container.querySelectorAll('div').forEach(d => d.classList.remove('selected'));
+  const target = container.querySelector('div:nth-child(' + (opt.charCodeAt(0) - 64) + ')');
+  if (target) target.classList.add('selected');
+  selectedOptions[qNum] = opt;
+  updateScore();
+}
+
+function updateTabStates() {
+  document.querySelectorAll('.tab').forEach((tab, i) => {
+    const phaseNum = i + 1;
+    tab.classList.remove('locked', 'done', 'active');
+    if (currentPhase === phaseNum) {
+      tab.classList.add('active');
+    } else if (phaseUnlock[phaseNum]) {
+      tab.classList.add('done');
+    } else {
+      tab.classList.add('locked');
+    }
+  });
+}
+
+function goNextPhase(fromPhase) {
+  if (fromPhase === 3 || fromPhase === 4) {
+    const phaseMap = { 3: '2b', 4: '2c' };
+    const key = 'phase_' + phaseMap[fromPhase];
+    const snapshot = JSON.parse(JSON.stringify(selectedOptions));
+    const completed = JSON.parse(localStorage.getItem('cet6_phase_done') || '{}');
+    completed[key] = { done: true, snapshot: snapshot, time: new Date().toLocaleString() };
+    localStorage.setItem('cet6_phase_done', JSON.stringify(completed));
+  }
+  const nextPhase = fromPhase + 1;
+  if (nextPhase <= 6) {
+    phaseUnlock[nextPhase] = true;
+    localStorage.setItem('cet6_phase_unlock', JSON.stringify(phaseUnlock));
+  }
+  switchPhase(nextPhase);
+}
+
+function switchPhase(num) {
+  if (num < 1 || num > 6) return;
+  if (!phaseUnlock[num] && num !== 1) return;
+  currentPhase = num;
+
+  document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
+  document.getElementById('phase' + num).classList.add('active');
+  updateTabStates();
+
+  const preview = document.getElementById('opts-preview');
+  const interactive = document.getElementById('opts-interactive');
+  const answers = document.getElementById('opts-answers');
+  const stats = document.getElementById('opts-stats');
+  [preview, interactive, answers, stats].forEach(el => { if (el) el.style.display = 'none'; });
+
+  if (num === 1 || num === 2) {
+    if (preview) preview.style.display = 'block';
+  } else if (num === 3 || num === 4) {
+    if (interactive) interactive.style.display = 'block';
+  } else if (num === 5) {
+    if (answers) answers.style.display = 'block';
+    updateScore();
+    highlightVocabInTranslation();
+  } else if (num === 6) {
+    if (stats) stats.style.display = 'block';
+  }
+
+  updateArticleHighlights(num);
+}
+
+function updateArticleHighlights(phase) {
+  const articleText = document.getElementById('article-text');
+  if (!articleText) return;
+
+  articleText.querySelectorAll('.head-tail-highlight').forEach(el => el.classList.remove('head-tail-highlight'));
+  articleText.querySelectorAll('.locate-highlight').forEach(el => el.classList.remove('locate-highlight'));
+
+  if (phase === 2) {
+    articleText.querySelectorAll('[data-head="true"], [data-tail="true"]').forEach(el => {
+      el.classList.add('head-tail-highlight');
+    });
+  } else if (phase === 4) {
+    articleText.querySelectorAll('.locate-para').forEach(el => {
+      el.classList.add('locate-highlight');
+    });
+  }
+}
+
+function updateScore() {
+  const correct = @@CORRECT_ANSWERS_JS@@;
+  let score = 0;
+  const total = Object.keys(correct).length;
+  for (let q in correct) { if (selectedOptions[q] === correct[q]) score++; }
+  const answered = Object.keys(selectedOptions).length;
+  const el = document.getElementById('score-display');
+  const desc = document.getElementById('score-desc');
+  if (el) el.textContent = score + '/' + total;
+  if (desc) {
+    if (answered === 0) desc.textContent = '暂未选择答案';
+    else if (answered < total) desc.textContent = '已做 ' + answered + '/' + total + ' 题，正确 ' + score + ' 题';
+    else {
+      const pct = score / total;
+      if (pct === 1) desc.textContent = '🎉 全对！太棒了！';
+      else if (pct >= 0.8) desc.textContent = '👍 非常好！继续保持！';
+      else if (pct >= 0.6) desc.textContent = '💪 不错，还有提升空间！';
+      else desc.textContent = '📚 需要加强，看看错题分析！';
+    }
+  }
+  updateWrongAnalysis(correct);
+}
+
+const wrongAnalysis = @@WRONG_ANALYSIS_JS@@;
+
+function updateWrongAnalysis(correct) {
+  document.querySelectorAll('.wrong-item').forEach(el => el.remove());
+  const container = document.getElementById('wrong-analysis-container');
+  if (!container) return;
+
+  for (let q in selectedOptions) {
+    if (selectedOptions[q] !== correct[q] && wrongAnalysis[q] && wrongAnalysis[q][selectedOptions[q]]) {
+      const div = document.createElement('div');
+      div.className = 'analysis-wrong wrong-item';
+      div.innerHTML = '<strong>' + q + '题 你选了' + selectedOptions[q] + '（错误）</strong><br>' + wrongAnalysis[q][selectedOptions[q]];
+      container.appendChild(div);
+    }
+  }
+}
+
+function clearAll() {
+  localStorage.removeItem('cet6_words');
+  localStorage.removeItem('cet6_phase_unlock');
+  localStorage.removeItem('cet6_phase_done');
+  words = [];
+  phaseUnlock = { 1: true };
+  currentPhase = 1;
+  saveWords();
+  localStorage.setItem('cet6_phase_unlock', JSON.stringify(phaseUnlock));
+  switchPhase(1);
+}
+
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const arrow = header.querySelector('.arrow');
+  const isOpen = item.classList.contains('open');
+  item.classList.toggle('open');
+  if (arrow) arrow.textContent = isOpen ? '▶' : '▼';
+}
+
+function highlightVocabInTranslation() {
+  const leftCol = document.querySelector('.trans-left');
+  if (!leftCol) return;
+  const wordsList = JSON.parse(localStorage.getItem('cet6_words') || '[]');
+  wordsList.forEach(w => {
+    const escaped = w.word.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp('(^|[\\s>\\("\'\\-\\,])(' + escaped + ')([\\s<\\.\\,\\\\"\'\\;\\)\\:\\!\\?\\-]|$)', 'gi');
+    leftCol.querySelectorAll('.trans-p').forEach(p => {
+      p.innerHTML = p.innerHTML.replace(regex, function(m, b, w, a) {
+        if (w.includes('>') || w.includes('<')) return m;
+        return b + '<span class="vocab-red">' + w + '</span>' + a;
+      });
     });
   });
 }
 
-/* ===== ★ 扩展弹窗 + 选词 ===== */
-var selectedText = '';
-var selectedPara = 0;
-
-function hidePopup() {
-  document.getElementById('word-popup').style.display = 'none';
-  document.getElementById('popup-annotation').value = '';
-  selectedText = '';
+function exportWordList() {
+  if (words.length === 0) { alert('生词本为空！'); return; }
+  let md = '# 六级生词本\n\n| 单词 | 释义 | 所在段落 | 加入时间 |\n|:--|:--|:--|:--|\n';
+  words.forEach(w => { md += '| ' + w.word + ' | ' + (w.translation || '-') + ' | ' + (w.context || '-') + ' | ' + (w.added || '-') + ' |\n'; });
+  const blob = new Blob([md], {type: 'text/markdown'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '六级生词本_' + new Date().toISOString().slice(0,10) + '.md';
+  a.click();
 }
 
-function addFromVocab() {
-  if (!selectedText) return;
-  if (!words.find(function(w){return w.word===selectedText})) {
-    words.push({word:selectedText, source:'', time:new Date().toLocaleString()});
-    saveWords();
-  }
-  hidePopup();
-}
+makeDraggableResizable(
+  document.getElementById('window-article'),
+  document.getElementById('titlebar-article'),
+  document.getElementById('resize-article')
+);
+makeDraggableResizable(
+  document.getElementById('window-options'),
+  document.getElementById('titlebar-options'),
+  document.getElementById('resize-options')
+);
+makeDraggableResizable(
+  document.getElementById('word-list'),
+  document.getElementById('wl-titlebar'),
+  document.getElementById('wl-resize')
+);
 
-function addAnnotation() {
-  if (!selectedText) return;
-  var note = document.getElementById('popup-annotation').value.trim();
-  if (!annotations.find(function(a){return a.text===selectedText})) {
-    annotations.push({text:selectedText, note:note});
-    saveAnnotations();
-    applyAnnotationsToDOM();
-  }
-  hidePopup();
-}
-
-function addUnderlineOnly() {
-  if (!selectedText) return;
-  if (!annotations.find(function(a){return a.text===selectedText})) {
-    annotations.push({text:selectedText, note:''});
-    saveAnnotations();
-    applyAnnotationsToDOM();
-  }
-  hidePopup();
-}
-
-function findClosestPara(el) {
-  while (el) {
-    if (el.nodeType === Node.ELEMENT_NODE && el.hasAttribute('data-para')) {
-      var v = el.getAttribute('data-para');
-      return v.startsWith('detail-') ? 0 : parseInt(v);
-    }
-    el = el.parentElement;
-  }
-  return 0;
-}
-
-document.addEventListener('mouseup', function(e) {
-  if (e.target.closest && e.target.closest('#word-popup')) return;
-  var sel = window.getSelection();
-  var text = sel.toString().trim();
-  if (!text || text.split(/\s+/).length > 8 || text.length > 80) return;
-
-  var paraIdx = 0;
-  try {
-    if (sel.rangeCount > 0) {
-      var range = sel.getRangeAt(0);
-      paraIdx = findClosestPara(range.startContainer);
-    }
-  } catch(err) {}
-
-  selectedText = text;
-  selectedPara = paraIdx;
-
-  var popup = document.getElementById('word-popup');
-  popup.style.display = 'block';
-  document.getElementById('popup-word').textContent = text;
-  document.getElementById('popup-annotation').value = '';
-
-  try {
-    if (sel.rangeCount > 0) {
-      var rect = sel.getRangeAt(0).getBoundingClientRect();
-      popup.style.left = Math.max(10, Math.min(rect.left, window.innerWidth - 280)) + 'px';
-      popup.style.top = (rect.bottom + 10) + 'px';
-    }
-  } catch(err) {
-    popup.style.left = Math.max(10, e.clientX) + 'px';
-    popup.style.top = (e.clientY + 20) + 'px';
-  }
-});
-
-document.addEventListener('mousedown', function(e) {
-  var popup = document.getElementById('word-popup');
-  if (!popup || popup.style.display !== 'block') return;
-  if (popup.contains(e.target)) return;
-  popup.style.display = 'none';
-});
-
-/* ===== 选题 + 计分 ===== */
-var selectedOptions = {};
-
-function selectOption(qNum, opt) {
-  selectedOptions[qNum] = opt;
-  document.querySelectorAll('.options-grid[data-q="' + qNum + '"] .option-item').forEach(function(el) {
-    el.classList.remove('selected');
-    if (el.dataset.opt === opt) el.classList.add('selected');
-  });
-  updateScore();
-}
-
-function updateScore() {
-  var correct = {46:'D', 47:'A', 48:'D', 49:'B', 50:'B'}; /* ★ 修改为正确答案 */
-  var score = 0;
-  for (var q in correct) { if (selectedOptions[q] === correct[q]) score++; }
-  var el = document.getElementById('score-display');
-  if (el) el.textContent = score + '/5';
-}
-
-/* ===== Phase 切换 ===== */
-function switchPhase(phase) {
-  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-  var tab = document.querySelector('.tab[data-phase="' + phase + '"]');
-  if (tab) tab.classList.add('active');
-  document.querySelectorAll('.phase').forEach(function(p) { p.classList.remove('active'); });
-  var phaseEl = document.getElementById('phase-' + phase);
-  if (phaseEl) phaseEl.classList.add('active');
-  if (phase === '3') updateScore();
-}
-
-/* ===== 可拖拽生词本窗口 (Pointer Events) ===== */
-(function() {
-  var wl = document.getElementById('word-list');
-  var tb = document.getElementById('wl-titlebar');
-  var rh = document.getElementById('wl-resize');
-  var mode = null, sx, sy, sw, sh, sl, st;
-
-  function onDown(e) {
-    if (e.target.closest('.wl-close') || e.target.closest('.btn')) return;
-    if (e.target === rh || e.target.closest('#wl-resize')) {
-      mode = 'resize'; mode='resize';
-      var r = wl.getBoundingClientRect();
-      sx = e.clientX; sy = e.clientY; sw = r.width; sh = r.height;
-      rh.setPointerCapture(e.pointerId);
-    } else if (e.target === tb || e.target.closest('#wl-titlebar')) {
-      mode = 'drag';
-      var r = wl.getBoundingClientRect();
-      sx = e.clientX - r.left; sy = e.clientY - r.top;
-      sl = r.left; st = r.top;
-      tb.setPointerCapture(e.pointerId);
-      wl.style.right='auto'; wl.style.bottom='auto';
-      wl.style.left=sl+'px'; wl.style.top=st+'px';
-    }
-  }
-  function onMove(e) {
-    if (mode === 'drag') { wl.style.left=(e.clientX - sx)+'px'; wl.style.top=(e.clientY - sy)+'px'; }
-    else if (mode === 'resize') { wl.style.width=Math.max(220, sw + (e.clientX - sx))+'px'; wl.style.height=Math.max(200, sh + (e.clientY - sy))+'px'; }
-  }
-  function onUp() { mode = null; }
-  tb.addEventListener('pointerdown', onDown);
-  rh.addEventListener('pointerdown', onDown);
-  document.addEventListener('pointermove', onMove);
-  document.addEventListener('pointerup', onUp);
-})();
-
-renderAnnotations();
+renderWords();
+updateWordCount();
+updateTabStates();
 </script>
 </body>
 </html>
