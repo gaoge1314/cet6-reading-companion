@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>六级阅读突击手 · Passage One</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f5f5f7; --card: #fff; --border: #d1d1d6;
+  --text: #1d1d1f; --text2: #86868b; --text3: #aeaeb2;
+  --accent: #0071e3; --success: #34c759; --warn: #ff9f0a; --error: #ff3b30;
+  --tag-bg: #e8f4fd; --tag-border: #b6d4fe;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1d1d1f; --card: #2d2d2f; --border: #424245;
+    --text: #f5f5f7; --text2: #86868b; --text3: #636366;
+    --tag-bg: rgba(10,132,255,0.15); --tag-border: #0a84ff;
+  }
+}
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+  display: flex; flex-direction: column;
+}
+
+/* Header */
+.header {
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 12px 20px; display: flex; justify-content: space-between;
+  align-items: center; flex-shrink: 0; flex-wrap: wrap; gap: 8px;
+}
+.header h1 { font-size: 16px; font-weight: 600; }
+.header .meta { font-size: 12px; color: var(--text2); }
+
+/* Phase Tab Buttons */
+.tabs {
+  display: flex; gap: 4px; padding: 8px 20px; background: var(--card);
+  border-bottom: 1px solid var(--border); flex-shrink: 0; overflow-x: auto;
+}
+.tab {
+  padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--card); cursor: pointer; font-size: 12px; font-weight: 500;
+  white-space: nowrap; transition: all 0.15s; color: var(--text2);
+}
+.tab:hover { border-color: var(--accent); color: var(--text); }
+.tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tab .badge { font-size: 10px; opacity: 0.7; margin-left: 2px; }
+
+/* Main layout */
+.main {
+  flex: 1; display: flex; gap: 16px; padding: 16px 20px;
+  overflow: hidden; min-height: 0;
+}
+.content { flex: 2; overflow-y: auto; min-width: 0; padding-right: 4px; }
+.sidebar {
+  flex: 1; min-width: 220px; max-width: 320px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* Vocab panel */
+.vocab-panel {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px; display: flex; flex-direction: column;
+  max-height: 50%; overflow: hidden;
+}
+.vocab-panel .title {
+  font-weight: 600; font-size: 13px; margin-bottom: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.vocab-panel .title .count { color: var(--accent); }
+.vocab-list { flex: 1; overflow-y: auto; min-height: 60px; }
+.vocab-item {
+  background: #f8f9fa; border-radius: 6px; padding: 6px 8px; margin-bottom: 4px;
+  font-size: 12px; border-left: 3px solid var(--accent);
+}
+.vocab-item .word { font-weight: 600; font-size: 13px; }
+.vocab-item .src { font-size: 10px; color: var(--text2); }
+.vocab-empty {
+  color: var(--text3); font-size: 12px; text-align: center; padding: 20px;
+}
+
+/* Answer summary panel */
+.summary-panel {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px;
+}
+.summary-panel .title { font-weight: 600; font-size: 13px; margin-bottom: 8px; }
+.answer-row {
+  display: flex; align-items: center; gap: 6px; font-size: 12px;
+  padding: 3px 0;
+}
+.answer-row .qn { font-weight: 600; min-width: 24px; }
+.answer-row .ans {
+  background: #e8f5e9; color: #2e7d32; padding: 1px 8px;
+  border-radius: 4px; font-weight: 600; font-size: 11px;
+}
+
+/* Phase sections - show/hide */
+.phase { display: none; }
+.phase.active { display: block; }
+
+/* Cards */
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px; margin-bottom: 10px;
+}
+.card-title { font-weight: 600; font-size: 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+.tag {
+  font-size: 10px; padding: 2px 8px; border-radius: 4px;
+  font-weight: 500;
+}
+.tag-blue { background: var(--tag-bg); color: var(--accent); }
+.tag-green { background: #e8f5e9; color: #2e7d32; }
+.tag-orange { background: #fff8e1; color: #f57f17; }
+.tag-red { background: #ffebee; color: #c62828; }
+
+/* Passage text */
+.passage { font-size: 14px; line-height: 2; }
+.passage p { margin-bottom: 12px; }
+.sentence-tag {
+  display: inline-block; font-size: 10px; padding: 0 5px;
+  border-radius: 3px; background: var(--tag-bg); color: var(--accent);
+  margin-right: 4px; font-weight: 500;
+}
+
+/* Options grid */
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-size: 13px; }
+.option-item {
+  padding: 6px 10px; background: #f5f5f7; border-radius: 6px;
+  border: 2px solid transparent;
+}
+.option-item.selected { background: #d4edda; border-color: #28a745; }
+.option-item.wrong { background: #ffebee; border-color: #ff3b30; text-decoration: line-through; color: #999; }
+.option-item.correct { background: #d4edda; border-color: #28a745; font-weight: 500; }
+
+/* Monologue */
+.mono { font-size: 12px; color: var(--text2); font-style: italic; margin-top: 6px; padding-top: 6px; border-top: 1px solid #eee; }
+
+/* Center box */
+.center-box { background: #f0fdf4; border: 1px solid var(--success); border-radius: 8px; padding: 12px; margin-bottom: 10px; font-size: 13px; }
+.center-box .label { font-weight: 600; margin-bottom: 4px; }
+
+/* Locator bar */
+.locator { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.locator-item {
+  background: var(--card); border: 1px solid #ffb74d; border-radius: 6px;
+  padding: 5px 10px; font-size: 12px; flex: 1; text-align: center; min-width: 120px;
+}
+
+/* Progress bar */
+.progress-bar { height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; display: flex; }
+.progress-bar .ok { background: var(--success); }
+.progress-bar .fail { background: var(--error); }
+
+/* Score display */
+.score { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.score-num { font-size: 36px; font-weight: 700; color: var(--success); }
+
+/* Skill grid */
+.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.skill-item { background: #f8f9fa; border-radius: 6px; padding: 8px; text-align: center; font-size: 12px; }
+.skill-item .num { font-weight: 600; font-size: 18px; color: var(--accent); }
+
+/* Popup for word selection */
+#word-popup {
+  display: none; position: fixed; background: var(--card);
+  border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 999; font-size: 13px;
+  min-width: 180px;
+}
+#word-popup .selected-text { font-weight: 600; margin-bottom: 6px; word-break: break-all; }
+#word-popup .btn-group { display: flex; gap: 6px; }
+#word-popup .btn {
+  padding: 5px 12px; border-radius: 6px; border: none; cursor: pointer;
+  font-size: 12px; font-weight: 500;
+}
+#word-popup .btn-add { background: var(--accent); color: #fff; }
+#word-popup .btn-add:hover { opacity: 0.9; }
+#word-popup .btn-cancel { background: #f0f0f0; color: var(--text2); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main { flex-direction: column; padding: 10px; }
+  .sidebar { max-width: none; min-width: 0; }
+  .options-grid { grid-template-columns: 1fr; }
+  .header { padding: 10px; }
+  .tabs { padding: 6px 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>📖 六级阅读突击手</h1>
+    <div class="meta">2025.12 六级真题第1套 · Passage One</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <span id="vocab-header-count" style="font-size:13px;color:var(--accent);font-weight:600;">📝 0 词</span>
+    <button onclick="exportVocab()" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px;">📥 导出 .md</button>
+    <button onclick="clearVocab()" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px;color:var(--error);">🗑️ 清空</button>
+  </div>
+</div>
+
+<div class="tabs" id="phase-tabs">
+  <div class="tab active" data-phase="1" onclick="switchPhase(1)">Phase 1 <span class="badge">扫描</span></div>
+  <div class="tab" data-phase="2a" onclick="switchPhase('2a')">Phase 2a <span class="badge">首尾定中心</span></div>
+  <div class="tab" data-phase="2b" onclick="switchPhase('2b')">Phase 2b <span class="badge">中心做题</span></div>
+  <div class="tab" data-phase="2c" onclick="switchPhase('2c')">Phase 2c <span class="badge">定位精读</span></div>
+  <div class="tab" data-phase="3" onclick="switchPhase(3)">Phase 3 <span class="badge">对答案</span></div>
+  <div class="tab" data-phase="4" onclick="switchPhase(4)">Phase 4 <span class="badge">复盘</span></div>
+</div>
+
+<div class="main">
+  <div class="content" id="main-content">
+
+    <!-- ==================== PHASE 1 ==================== -->
+    <div class="phase active" id="phase-1">
+      <div class="card">
+        <div class="card-title">🔍 主题预测</div>
+        <div style="font-size:13px;">五道题围绕"追求个人成功"与"友谊"的关系——文章在批判个人主义文化下牺牲友谊的现象，呼吁重视人际关系。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 题型 & 定位词 <span class="tag tag-blue">46-49 细节题 · 50 推断题</span></div>
+        <div style="font-size:12px;color:var(--text2);">定位词：radical individualism · American society's assumption · success stories · preached</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">46. What often happens when people are eager to pursue individual success?</div>
+        <div class="options-grid">
+          <div class="option-item">A) lack a shoulder to cry on</div>
+          <div class="option-item">B) no soul to confide in</div>
+          <div class="option-item">C) cannot find reliable friends</div>
+          <div class="option-item">D) ignore their ties with friends</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">47. What does the author advise people to do in their pursuit of radical individualism?</div>
+        <div class="options-grid">
+          <div class="option-item">A) Reexamine its detrimental effects</div>
+          <div class="option-item">B) Shrug off the loss of loved ones</div>
+          <div class="option-item">C) Avoid the chaos and turmoil involved</div>
+          <div class="option-item">D) Remove aggressive obstacles in the way</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">48. What is American society's assumption of personal achievement?</div>
+        <div class="options-grid">
+          <div class="option-item">A) duly celebrated and highly commended</div>
+          <div class="option-item">B) a sure way to fulfill a person's dream</div>
+          <div class="option-item">C) revolves around an individualistic culture</div>
+          <div class="option-item">D) reflects a person's exceptional endeavor</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">49. What is preached in many success stories?</div>
+        <div class="options-grid">
+          <div class="option-item">A) attaching importance to academic gains</div>
+          <div class="option-item">B) investing time in work instead of connecting with friends</div>
+          <div class="option-item">C) trying to strengthen friendships</div>
+          <div class="option-item">D) excelling in academic performance to get into a prestigious college</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">50. What can we infer from the passage regarding the pursuit of success?</div>
+        <div class="options-grid">
+          <div class="option-item">A) No one can succeed without pushing limits</div>
+          <div class="option-item">B) No one can afford to neglect close friends</div>
+          <div class="option-item">C) Collectivism is superior to individualism</div>
+          <div class="option-item">D) Success experts often lead people to ruin</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PHASE 2a ==================== -->
+    <div class="phase" id="phase-2a">
+      <div class="center-box">
+        <div class="label">🎯 T7 首尾句聚焦</div>
+        <div>快速扫读每段首尾句，抓文章骨架。只看首尾，不读中间。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第1段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>Many see friendships as a comfort blanket: a shoulder to cry on, a reliable soul to confide in.</p>
+          <p><span class="sentence-tag">尾</span>However, more often than not, in our eagerness to seek individual success, we lose friends along the way and that has become part of the process.</p>
+        </div>
+        <div class="mono">💭 友谊是安慰毯，但追求成功的过程中会失去朋友...</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第2段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>The chaos and never-ending turmoil that accompanies everyday life is an aggressive obstacle in the pursuit of stable friendships.</p>
+          <p><span class="sentence-tag">尾</span>As students, we use this excuse to shrug off losing people who we once thought to be loved ones.</p>
+        </div>
+        <div class="mono">💭 日常混乱让友谊很难维持，我们拿这当借口甩掉朋友...</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第3段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>Instead of viewing our lives as a race, where everyone is on their own path to some form of success, we must relearn to value the connections we make along the track.</p>
+          <p><span class="sentence-tag">尾</span>We must reevaluate the harm of radical, individual freedom.</p>
+        </div>
+        <div class="mono">💭 不要只把人生当赛跑，要重新审视激进个人主义的危害——作者开始给建议了。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第4段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>Radical individualism elevates the freedom of the individual over the collective.</p>
+          <p><span class="sentence-tag">尾</span>It argues, for instance, that universal healthcare, an example of collectivism, threatened the dream of many Americans.</p>
+        </div>
+        <div class="mono">💭 解释 radical individualism 是啥——个人自由高于集体。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第5段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>Many of us have fallen victim to an individualistic culture.</p>
+          <p><span class="sentence-tag">尾</span>Society tends to celebrate personal achievement and commend it based on the assumption that winning or succeeding is a consequence of working harder than the next person.</p>
+        </div>
+        <div class="mono">💭 我们成了个人主义文化的受害者——社会默认"成功 = 比别人更努力"。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第6段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>As a society, we idolize the concept of "losing friends on the road to success."</p>
+          <p><span class="sentence-tag">尾</span>Invest time in your relationships? Invest time in your work instead.</p>
+        </div>
+        <div class="mono">💭 我们竟然崇拜"为成功失去朋友"！成功学让你把时间花在工作上而不是朋友上。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第7段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>This constant need to succeed has blinded us from seeing through the whirlwind of change that accompanies our everyday lives.</p>
+          <p><span class="sentence-tag">尾</span>In order to succeed, we lose friends, and that has sadly become normalized.</p>
+        </div>
+        <div class="mono">💭 成功让我们瞎了，失去朋友竟然变得"正常"了——挺无奈的。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第8段 <span class="tag tag-blue">首句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>We cannot be complacent with losing friendships because they are our anchors.</p>
+        </div>
+        <div class="mono">💭 不能对失去朋友无所谓——朋友是锚，是定心丸。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第9段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>Yes, pursue success. Challenge yourself. Push limits.</p>
+          <p><span class="sentence-tag">尾</span>doing it alone does not make you more successful or any better than someone who achieved it with the help of others.</p>
+        </div>
+        <div class="mono">💭 作者不是反对成功，而是反对"单打独斗"——跟别人一起成功不丢人。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第10段 <span class="tag tag-blue">首句 + 尾句</span></div>
+        <div class="passage">
+          <p><span class="sentence-tag">首</span>Put effort into fostering healthy relationships, and maintaining them through your busy schedule.</p>
+          <p><span class="sentence-tag">尾</span>having people to support and love you on the way is far more important than any end result.</p>
+        </div>
+        <div class="mono">💭 最后一锤定音：有人爱你支持你，比任何结果都重要。</div>
+      </div>
+
+      <div class="center-box">
+        <div class="label">🎯 中心归纳</div>
+        <div>文章在批判"个人主义文化下，追求成功=牺牲友谊"的观念。作者认为友谊比成功更重要，朋友是精神支柱，不应该对失去朋友无动于衷。</div>
+      </div>
+    </div>
+
+    <!-- ==================== PHASE 2b ==================== -->
+    <div class="phase" id="phase-2b">
+      <div class="center-box">
+        <div class="label">🎯 用中心做题（T1 中心优先 + T5 排除法）</div>
+        <div>用首尾句确定的中心，先做能做的题。拿不准的标记后精读。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">46. What often happens when people are eager to pursue individual success? <span class="tag tag-green">✅ 可用中心做</span></div>
+        <div class="options-grid">
+          <div class="option-item">A) lack a shoulder to cry on</div>
+          <div class="option-item">B) no soul to confide in</div>
+          <div class="option-item">C) cannot find reliable friends</div>
+          <div class="option-item selected">D) ignore their ties with friends ✅</div>
+        </div>
+        <div class="mono">💭 第1段尾句直接说了"we lose friends"——D的"ignore ties"就是同义改写。A/B/C都是原文提过但不是本题问的。（T3 同义替换）</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">50. What can we infer from the passage regarding the pursuit of success? <span class="tag tag-green">✅ 可用中心做</span></div>
+        <div class="options-grid">
+          <div class="option-item">A) No one can succeed without pushing limits</div>
+          <div class="option-item selected">B) No one can afford to neglect close friends ✅</div>
+          <div class="option-item">C) Collectivism is superior to individualism</div>
+          <div class="option-item">D) Success experts often lead people to ruin</div>
+        </div>
+        <div class="mono">💭 中心来看——作者说不能忽视朋友，B最贴近。A太绝对，C太过，D太极端。（T1 中心优先 + T5 排除法）</div>
+      </div>
+
+      <div class="card" style="border-color: var(--warn); border-style: dashed;">
+        <div class="card-title">47 · 48 · 49 <span class="tag tag-orange">⏳ 需要定位精读</span></div>
+        <div style="font-size:13px;color:var(--text2);">这三道题涉及具体概念（radical individualism / American society's assumption / success stories），需要定位到特定段落才能确定答案。</div>
+        <div class="mono">💭 47题→radical individualism→第4段。48题→American society→第5段。49题→success stories→第6段。待会精读！</div>
+      </div>
+    </div>
+
+    <!-- ==================== PHASE 2c ==================== -->
+    <div class="phase" id="phase-2c">
+      <div class="center-box">
+        <div class="label">🔍 T4 定位 + T6 段落锁定 + T3 同义替换</div>
+        <div>用题干关键词定位到原文具体段落，只精读相关段。</div>
+      </div>
+
+      <div class="locator">
+        <div class="locator-item">🔗 47题 radical individualism → <b>第4段</b></div>
+        <div class="locator-item">🔗 48题 society's assumption → <b>第5段</b></div>
+        <div class="locator-item">🔗 49题 success stories → <b>第6段</b></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第4段 → 做47题 <span class="tag tag-orange">T4定位</span></div>
+        <div class="passage">
+          <p>Radical individualism elevates the freedom of the individual over the collective. It argues, for instance, that universal healthcare, an example of collectivism, threatened the dream of many Americans.</p>
+        </div>
+        <div style="margin-top:8px;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:4px;">47. What does the author advise people to do about radical individualism?</div>
+          <div class="options-grid">
+            <div class="option-item selected">A) Reexamine its detrimental effects ✅</div>
+            <div class="option-item">B) Shrug off the loss of loved ones</div>
+            <div class="option-item">C) Avoid the chaos and turmoil involved</div>
+            <div class="option-item">D) Remove aggressive obstacles in the way</div>
+          </div>
+          <div class="mono">💭 注意！47题问的是"advise"——作者的建议。第4段只描述了radical individualism是什么，但第3段尾句说"we must reevaluate the harm"——"reevaluate the harm" = A的"Reexamine its detrimental effects"（T3 同义替换）！</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第5段 → 做48题 <span class="tag tag-orange">T6段落锁定</span></div>
+        <div class="passage">
+          <p>Many of us have fallen victim to an individualistic culture. Society tends to celebrate personal achievement and commend it based on the assumption that winning or succeeding is a consequence of working harder than the next person.</p>
+        </div>
+        <div style="margin-top:8px;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:4px;">48. What is American society's assumption of personal achievement?</div>
+          <div class="options-grid">
+            <div class="option-item">A) duly celebrated and highly commended</div>
+            <div class="option-item">B) a sure way to fulfill a person's dream</div>
+            <div class="option-item">C) revolves around an individualistic culture</div>
+            <div class="option-item selected">D) reflects a person's exceptional endeavor ✅</div>
+          </div>
+          <div class="mono">💭 原文的assumption是"winning = working harder than the next person"——也就是"成功比他人更努力的结果"。"endeavor"就是"努力"！D完美对应assumption的定义。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📌 第6段 → 做49题 <span class="tag tag-orange">T6段落锁定</span></div>
+        <div class="passage">
+          <p>As a society, we idolize the concept of "losing friends on the road to success." ... Motivational speakers will push their audience to be complacent to the inevitable end of losing friends. Spend too much time with friends? You're losing time better utilized on your achievements. Invest time in your relationships? Invest time in your work instead.</p>
+        </div>
+        <div style="margin-top:8px;">
+          <div style="font-weight:600;font-size:13px;margin-bottom:4px;">49. What is preached in many success stories?</div>
+          <div class="options-grid">
+            <div class="option-item">A) attaching importance to academic gains</div>
+            <div class="option-item selected">B) investing time in work instead of connecting with friends ✅</div>
+            <div class="option-item">C) trying to strengthen friendships</div>
+            <div class="option-item">D) excelling in academic performance for a prestigious college</div>
+          </div>
+          <div class="mono">💭 原文直接说了"Invest time in your work instead"——把时间花在工作上而不是朋友上。B完美对应！（T3 同义替换）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PHASE 3 ==================== -->
+    <div class="phase" id="phase-3">
+      <div class="card">
+        <div class="card-title">✅ 统一对答案 <span class="tag tag-green">来自官方解析</span></div>
+
+        <div class="score">
+          <div class="score-num">100%</div>
+          <div>
+            <div style="font-weight:600;font-size:15px;">5/5 全对！🎉</div>
+            <div style="font-size:12px;color:var(--text2);">四级阅读194 → 六级首篇全对！进步明显</div>
+          </div>
+        </div>
+        <div class="progress-bar" style="margin-bottom:12px;">
+          <div class="ok" style="flex:5;"></div>
+        </div>
+
+        <div style="display:grid;gap:6px;">
+          <div style="background:#f0fdf4;border:1px solid var(--success);border-radius:8px;padding:10px;">
+            <div style="display:flex;justify-content:space-between;"><span><b>46.</b> ignore ties with friends ✅</span><span style="font-size:11px;color:var(--text2);">暂选 D → 正确 D</span></div>
+            <div style="font-size:12px;color:var(--text2);margin-top:4px;">技巧：T3 同义替换 — "lose friends" = "ignore ties with friends"（第1段）</div>
+          </div>
+          <div style="background:#f0fdf4;border:1px solid var(--success);border-radius:8px;padding:10px;">
+            <div style="display:flex;justify-content:space-between;"><span><b>47.</b> Reexamine detrimental effects ✅</span><span style="font-size:11px;color:var(--text2);">暂选 A → 正确 A</span></div>
+            <div style="font-size:12px;color:var(--text2);margin-top:4px;">技巧：T4 定位(第3段) + T3 同义替换 — "reevaluate the harm" = "Reexamine detrimental effects"</div>
+          </div>
+          <div style="background:#f0fdf4;border:1px solid var(--success);border-radius:8px;padding:10px;">
+            <div style="display:flex;justify-content:space-between;"><span><b>48.</b> reflects exceptional endeavor ✅</span><span style="font-size:11px;color:var(--text2);">正确 D</span></div>
+            <div style="font-size:12px;color:var(--text2);margin-top:4px;">技巧：T6 段落锁定 — assumption = "winning = working harder" = "endeavor"</div>
+          </div>
+          <div style="background:#f0fdf4;border:1px solid var(--success);border-radius:8px;padding:10px;">
+            <div style="display:flex;justify-content:space-between;"><span><b>49.</b> investing time in work instead of friends ✅</span><span style="font-size:11px;color:var(--text2);">暂选 B → 正确 B</span></div>
+            <div style="font-size:12px;color:var(--text2);margin-top:4px;">技巧：T6 段落锁定 + T3 同义替换 — "Invest time in your work instead" 原文复现</div>
+          </div>
+          <div style="background:#f0fdf4;border:1px solid var(--success);border-radius:8px;padding:10px;">
+            <div style="display:flex;justify-content:space-between;"><span><b>50.</b> can't neglect close friends ✅</span><span style="font-size:11px;color:var(--text2);">暂选 B → 正确 B</span></div>
+            <div style="font-size:12px;color:var(--text2);margin-top:4px;">技巧：T1 中心优先 + T5 排除法 — 中心判断B最符合作者态度</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PHASE 4 ==================== -->
+    <div class="phase" id="phase-4">
+      <div class="card">
+        <div class="card-title">📊 技巧使用统计</div>
+        <div class="skill-grid">
+          <div class="skill-item"><div class="num">T3</div><div style="color:var(--text2);">同义替换 · 3次</div><div style="font-size:10px;color:var(--text3);">46·47·49</div></div>
+          <div class="skill-item"><div class="num">T1+T5</div><div style="color:var(--text2);">中心+排除法</div><div style="font-size:10px;color:var(--text3);">50题</div></div>
+          <div class="skill-item"><div class="num">T4+T6</div><div style="color:var(--text2);">定位+段落锁定</div><div style="font-size:10px;color:var(--text3);">47·48·49</div></div>
+          <div class="skill-item"><div class="num">T7</div><div style="color:var(--text2);">首尾句聚焦</div><div style="font-size:10px;color:var(--text3);">中心归纳</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📝 生词汇总</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;font-size:12px;">
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">confide</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">eagerness</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">turmoil</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">aggressive</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">obstacle</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">shrug off</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">radical</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">individualism</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">elevate</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">collectivism</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">commend</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">assumption</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">idolize</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">sentiment</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">embed</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">motivational</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">complacent</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">whirlwind</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">detrimental</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">endeavor</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">neglect</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">prestigious</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">anchor</div>
+          <div style="background:#f8f9fa;border-radius:4px;padding:4px 8px;">normalize</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <div class="sidebar">
+    <div class="vocab-panel">
+      <div class="title">
+        <span>📝 生词本</span>
+        <span class="count">已选: <span id="vocab-count">0</span> 词</span>
+      </div>
+      <div class="vocab-list" id="vocab-list">
+        <div class="vocab-empty">🖱️ 选中任意单词 → 弹出"加入生词本"</div>
+      </div>
+    </div>
+
+    <div class="summary-panel">
+      <div class="title">📋 答题卡</div>
+      <div id="answer-card">
+        <div class="answer-row"><span class="qn">46</span><span class="ans" style="background:#f0f0f0;color:var(--text2);">— 待做</span></div>
+        <div class="answer-row"><span class="qn">47</span><span class="ans" style="background:#f0f0f0;color:var(--text2);">— 待做</span></div>
+        <div class="answer-row"><span class="qn">48</span><span class="ans" style="background:#f0f0f0;color:var(--text2);">— 待做</span></div>
+        <div class="answer-row"><span class="qn">49</span><span class="ans" style="background:#f0f0f0;color:var(--text2);">— 待做</span></div>
+        <div class="answer-row"><span class="qn">50</span><span class="ans" style="background:#f0f0f0;color:var(--text2);">— 待做</span></div>
+        <div style="margin-top:6px;padding-top:6px;border-top:1px solid #eee;">
+          <div style="font-size:11px;color:var(--text2);">💡 进入 Phase 3 查看答案</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:11px;color:var(--text3);text-align:center;padding:8px;">
+      🖱️ 选中文章中的单词/短语 → 弹出加入生词本
+    </div>
+  </div>
+</div>
+
+<!-- Word selection popup -->
+<div id="word-popup">
+  <div class="selected-text">📝 <span id="popup-word"></span></div>
+  <div class="btn-group">
+    <button class="btn btn-add" onclick="addWord()">✅ 加入生词本</button>
+    <button class="btn btn-cancel" onclick="hidePopup()">取消</button>
+  </div>
+</div>
+
+<script>
+// ===== Vocabulary Management =====
+const VOCAB_KEY = 'cet6-passage1-vocab';
+
+function getVocab() {
+  let data = localStorage.getItem(VOCAB_KEY);
+  return data ? JSON.parse(data) : [];
+}
+
+function saveVocab(list) {
+  localStorage.setItem(VOCAB_KEY, JSON.stringify(list));
+}
+
+function renderVocab() {
+  const list = getVocab();
+  document.getElementById('vocab-count').textContent = list.length;
+  document.getElementById('vocab-header-count').textContent = '📝 ' + list.length + ' 词';
+
+  const container = document.getElementById('vocab-list');
+  if (list.length === 0) {
+    container.innerHTML = '<div class="vocab-empty">🖱️ 选中任意单词 → 弹出"加入生词本"</div>';
+    return;
+  }
+  container.innerHTML = list.map((w, i) =>
+    `<div class="vocab-item">
+      <div class="word">${w.word}</div>
+      <div class="src">${w.source || ''}</div>
+      <span style="font-size:10px;color:#ff3b30;cursor:pointer;float:right;" onclick="removeWord(${i})">✕</span>
+    </div>`
+  ).join('');
+}
+
+function removeWord(index) {
+  let list = getVocab();
+  list.splice(index, 1);
+  saveVocab(list);
+  renderVocab();
+}
+
+function addWord() {
+  const word = document.getElementById('popup-word').textContent.trim();
+  if (!word) return;
+  let list = getVocab();
+  if (!list.find(w => w.word === word)) {
+    let source = '';
+    let phaseTabs = document.querySelectorAll('.tab.active');
+    if (phaseTabs.length > 0) source = 'Phase ' + phaseTabs[0].dataset.phase;
+    list.push({ word, source, time: new Date().toLocaleString() });
+    saveVocab(list);
+    renderVocab();
+  }
+  hidePopup();
+}
+
+function clearVocab() {
+  if (confirm('确定清空所有生词？')) {
+    localStorage.removeItem(VOCAB_KEY);
+    renderVocab();
+  }
+}
+
+function exportVocab() {
+  const list = getVocab();
+  if (list.length === 0) { alert('生词本为空！'); return; }
+  let md = '# 📝 生词本 - 2025.12六级 Passage One\n\n| 单词 | 出处 | 时间 |\n|:--|:--|:--|\n';
+  list.forEach(w => { md += `| ${w.word} | ${w.source || '-'} | ${w.time || '-'} |\n`; });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([md], { type: 'text/markdown' }));
+  a.download = '生词本_PassageOne.md';
+  a.click();
+}
+
+// ===== Phase Switching =====
+function switchPhase(phase) {
+  // Update tabs
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.tab[data-phase="${phase}"]`).classList.add('active');
+
+  // Update content
+  document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+  document.getElementById(`phase-${phase}`).classList.add('active');
+
+  // Update answer card in Phase 3
+  if (phase === 3 || phase === '3') {
+    updateAnswerCard();
+  }
+}
+
+function updateAnswerCard() {
+  const card = document.getElementById('answer-card');
+  const answers = [
+    { q: 46, a: 'D', label: 'ignore ties with friends' },
+    { q: 47, a: 'A', label: 'Reexamine detrimental effects' },
+    { q: 48, a: 'D', label: 'reflects exceptional endeavor' },
+    { q: 49, a: 'B', label: 'invest in work, not friends' },
+    { q: 50, a: 'B', label: "can't neglect close friends" }
+  ];
+  card.innerHTML = answers.map(item =>
+    `<div class="answer-row"><span class="qn">${item.q}</span><span class="ans" style="background:#e8f5e9;color:#2e7d32;">${item.a} ${item.label.substring(0,20)}...</span><span style="font-size:10px;color:var(--success);margin-left:auto;">✅</span></div>`
+  ).join('');
+  card.innerHTML += '<div style="margin-top:6px;padding-top:6px;border-top:1px solid #eee;font-size:12px;font-weight:600;color:var(--success);">🎉 全对！正确率 5/5 (100%)</div>';
+}
+
+// ===== Word Selection Popup (方案B: 划词) =====
+let popupTimer = null;
+
+document.addEventListener('mouseup', function(e) {
+  const sel = window.getSelection();
+  const text = sel.toString().trim();
+
+  if (text && text.split(/\s+/).length <= 4 && e.target.closest('.content')) {
+    clearTimeout(popupTimer);
+    const popup = document.getElementById('word-popup');
+    popup.style.display = 'block';
+    const x = Math.min(e.pageX, window.innerWidth - 220);
+    popup.style.left = Math.max(10, x) + 'px';
+    popup.style.top = (e.pageY + 20) + 'px';
+    document.getElementById('popup-word').textContent = text;
+    window.getSelection().removeAllRanges();
+  } else {
+    popupTimer = setTimeout(() => { document.getElementById('word-popup').style.display = 'none'; }, 300);
+  }
+});
+
+function hidePopup() {
+  document.getElementById('word-popup').style.display = 'none';
+}
+
+// Close popup on scroll
+document.querySelector('.content').addEventListener('scroll', hidePopup);
+
+// Init
+renderVocab();
+</script>
+</body>
+</html>
