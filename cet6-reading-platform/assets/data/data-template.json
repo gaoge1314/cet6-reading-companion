@@ -1,0 +1,142 @@
+{
+  "_comment": "CET6阅读陪练平台 · JSON数据模板",
+  "_usage": "复制此文件，填写 meta / passage / questions / answers / phases 即可",
+  "_types": "reading(传统阅读) | matching(长篇匹配) | cloze(选词填空)",
+
+  "meta": {
+    "id": "YYYY-MM-cet6-setN-passageN",
+    "examDate": "20XX年X月",
+    "level": "CET6",
+    "setNumber": 1,
+    "passageNumber": 1,
+    "type": "reading",
+    "title": "文章中文主题",
+    "titleEn": "English Title",
+    "description": "20XX年X月六级真题第X套 · Passage X"
+  },
+
+  "passage": {
+    "topic": "话题关键词",
+    "paragraphs": [
+      "第1段英文原文...",
+      "第2段英文原文...",
+      "第3段英文原文..."
+    ]
+  },
+
+  "questions": [
+    {
+      "id": 46,
+      "number": 46,
+      "type": "细节题",
+      "text": "What does ... ?",
+      "locationTip": "定位关键词 → 对应段落",
+      "options": [
+        { "label": "A", "text": "选项A英文文本" },
+        { "label": "B", "text": "选项B英文文本" },
+        { "label": "C", "text": "选项C英文文本" },
+        { "label": "D", "text": "选项D英文文本" }
+      ]
+    },
+    {
+      "id": 47,
+      "number": 47,
+      "type": "推断题",
+      "text": "What can we infer ... ?",
+      "locationTip": "关键词 → 对应段落",
+      "options": [
+        { "label": "A", "text": "选项A" },
+        { "label": "B", "text": "选项B" },
+        { "label": "C", "text": "选项C" },
+        { "label": "D", "text": "选项D" }
+      ]
+    }
+  ],
+
+  "answers": [
+    { "id": 46, "correct": "D", "label": "短标签", "tip": "技巧：T3同义替换 — 原文X ≈ 选项Y" },
+    { "id": 47, "correct": "A", "label": "短标签", "tip": "技巧：T4定位 — 原文关键句 → 选项" }
+  ],
+
+  "phases": {
+    "phase1": {
+      "topicPrediction": { "title": "主题预测", "content": "从题干推断..." },
+      "questionTypes": { "title": "题型 & 定位词", "content": "定位词：xxx" },
+      "questionPreview": {
+        "items": [
+          { "id": 46, "number": 46, "type": "细节题", "text": "题目英文", "locationTip": "定位 → Px" }
+        ]
+      }
+    },
+
+    "phase2a": {
+      "instruction": { "title": "T7 首尾句聚焦", "content": "快速扫读每段首尾句..." },
+      "sections": [
+        {
+          "paragraph": "第1段",
+          "firstSentence": "首句英文...",
+          "lastSentence": "尾句英文...",
+          "monologue": "考生内心独白：中文解读..."
+        }
+      ],
+      "centerSummary": { "title": "中心归纳", "content": "文章中心思想..." }
+    },
+
+    "phase2b": {
+      "instruction": { "title": "用中心做题", "content": "用首尾句确定的中心..." },
+      "solvableItems": [
+        { "id": 46, "question": "题号. 题目英文", "status": "可用中心做", "monologue": "独白：解释..." }
+      ],
+      "pendingItems": [
+        { "id": 47, "description": "关键词 在第X段" }
+      ],
+      "pendingMonologue": "独白：待定位说明..."
+    },
+
+    "phase2c": {
+      "instruction": { "title": "T4 定位 + T6 段落锁定 + T3 同义替换", "content": "用题干关键词定位..." },
+      "locators": [
+        "47题 关键词 → 第X段"
+      ],
+      "detailItems": [
+        {
+          "id": 47,
+          "paragraph": "第X段 → 做47题",
+          "skill": "T4定位",
+          "passageSnippet": "对应段落原文片段...",
+          "question": "题号. 题目英文",
+          "monologue": "独白：同义替换分析..."
+        }
+      ]
+    },
+
+    "phase3": {
+      "title": "统一对答案",
+      "source": "官方解析",
+      "answers": [
+        { "id": 46, "correct": "D", "label": "短标签", "tip": "技巧说明" }
+      ]
+    },
+
+    "phase4": {
+      "centerReview": { "title": "文章中心", "content": "中心思想总结" },
+      "skillStats": {
+        "title": "技巧使用统计",
+        "items": [
+          { "name": "T3", "desc": "同义替换 · X次", "usedIn": "46·47·48" }
+        ]
+      },
+      "reviewItems": [
+        { "title": "46题 — T1中心优先", "content": "复盘分析..." }
+      ],
+      "pitfalls": {
+        "title": "易错点提醒",
+        "content": "• 注意点1...<br>• 注意点2..."
+      },
+      "vocabSummary": {
+        "title": "生词汇总",
+        "words": ["word1", "word2", "word3"]
+      }
+    }
+  }
+}

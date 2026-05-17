@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>六级阅读突击手</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 700px; margin: 0 auto; padding: 40px 20px; }
+  .hero { text-align: center; margin-bottom: 40px; }
+  .hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .hero p { font-size: 14px; color: #86868b; }
+  .card {
+    background: #fff;
+    border: 1px solid #d1d1d6;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .card:hover {
+    border-color: #0071e3;
+    box-shadow: 0 4px 16px rgba(0,113,227,0.15);
+    transform: translateY(-2px);
+  }
+  .card .info h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .card .info .meta { font-size: 12px; color: #86868b; }
+  .card .arrow { font-size: 20px; color: #86868b; transition: color 0.2s; }
+  .card:hover .arrow { color: #0071e3; }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-top: 6px;
+  }
+  .tag-reading { background: #e8f5e9; color: #2e7d32; }
+  .tag-done { background: #e3f2fd; color: #1565c0; }
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #86868b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    margin-top: 10px;
+  }
+  .empty {
+    text-align: center;
+    padding: 40px;
+    color: #aeaeb2;
+    font-size: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1d1d1f; color: #f5f5f7; }
+    .card { background: #2d2d2f; border-color: #424245; }
+    .card:hover { border-color: #0a84ff; box-shadow: 0 4px 16px rgba(10,132,255,0.2); }
+    .hero p { color: #98989d; }
+    .card .info .meta { color: #98989d; }
+    .card .arrow { color: #98989d; }
+    .card:hover .arrow { color: #0a84ff; }
+    .section-title { color: #98989d; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1>六级阅读突击手</h1>
+    <p>6-Phase实战陪练 · 7大技巧 · 划词生词本</p>
+  </div>
+
+  <div class="section-title">可用真题</div>
+  <div id="passage-list">
+    <div class="card" onclick="openPassage('2025-12-passage1')">
+      <div class="info">
+        <h3>友谊与个人成功</h3>
+        <div class="meta">2025年12月六级真题第1套 · Passage One</div>
+        <span class="tag tag-reading">传统阅读</span>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+  </div>
+
+  <div class="section-title" id="recent-title" style="display:none;">最近练习</div>
+  <div id="recent-section"></div>
+
+  <div style="text-align:center;margin-top:40px;">
+    <p style="font-size:12px;color:#aeaeb2;">
+      方法：全景扫描 → 首尾定中心 → 中心做题 → 定点精读 → 核对答案 → 全篇复盘
+    </p>
+  </div>
+</div>
+
+<script>
+function openPassage(id) {
+  window.location.href = 'player.html?data=' + id;
+}
+
+(function () {
+  try {
+    const recent = JSON.parse(localStorage.getItem('cet6-recent') || '[]');
+    if (recent.length > 0) {
+      const title = document.getElementById('recent-title');
+      title.style.display = 'block';
+      const section = document.getElementById('recent-section');
+      recent.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.onclick = function () { openPassage(r.id); };
+        card.innerHTML = `
+          <div class="info">
+            <h3>${r.title}</h3>
+            <div class="meta">${r.desc} · 最近: ${r.time}</div>
+            <span class="tag tag-done">${r.score || '未完成'}</span>
+          </div>
+          <div class="arrow">→</div>
+        `;
+        section.appendChild(card);
+      });
+    }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

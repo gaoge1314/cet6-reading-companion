@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "id": "2025-12-cet6-set1-passage1",
+    "examDate": "2025年12月",
+    "level": "CET6",
+    "setNumber": 1,
+    "passageNumber": 1,
+    "type": "reading",
+    "title": "友谊与个人成功",
+    "titleEn": "Friendship and Individual Success",
+    "description": "2025年12月六级真题第1套 · Passage One"
+  },
+  "passage": {
+    "topic": "个人主义文化对友谊的影响",
+    "paragraphs": [
+      "Many see friendships as a comfort blanket: a shoulder to cry on, a reliable soul to confide in. However, more often than not, in our eagerness to seek individual success, we lose friends along the way and that has become part of the process.",
+      "The chaos and never-ending turmoil that accompanies everyday life is an aggressive obstacle in the pursuit of stable friendships. As students, we use this excuse to shrug off losing people who we once thought to be loved ones.",
+      "Instead of viewing our lives as a race, where everyone is on their own path to some form of success, we must relearn to value the connections we make along the track. We must reevaluate the harm of radical, individual freedom.",
+      "Radical individualism elevates the freedom of the individual over the collective. It argues, for instance, that universal healthcare, an example of collectivism, threatened the dream of many Americans.",
+      "Many of us have fallen victim to an individualistic culture. Society tends to celebrate personal achievement and commend it based on the assumption that winning or succeeding is a consequence of working harder than the next person.",
+      "As a society, we idolize the concept of \"losing friends on the road to success.\" I remember hearing in high school, \"Don't worry about losing friendships, just focus on study and getting into college. That's all that will matter in the long run,\" a sentiment that is not unique to my experience. It's preached in many success stories, and it's embedded in the way we see growth. Motivational speakers will push their audience to be complacent to the inevitable end of losing friends. Spend too much time with friends? You're losing time better utilized on your achievements. Invest time in your relationships? Invest time in your work instead.",
+      "This constant need to succeed has blinded us from seeing through the whirlwind of change that accompanies our everyday lives. We are expected to tangibly succeed, earn awards, get higher positions, earn better grades. In order to succeed, we lose friends, and that has sadly become normalized.",
+      "We cannot be complacent with losing friendships because they are our anchors.",
+      "Yes, pursue success. Challenge yourself. Push limits. But contrary to all the self-proclaimed success experts, doing it alone does not make you more successful or any better than someone who achieved it with the help of others.",
+      "Put effort into fostering healthy relationships, and maintaining them through your busy schedule that seems like it leaves no time for anyone else. Although we may be living in a society that treasures the independent pursuit of achievement, having people to support and love you on the way is far more important than any end result."
+    ]
+  },
+  "questions": [
+    {
+      "id": 46,
+      "number": 46,
+      "type": "细节题",
+      "text": "What often happens when people are eager to pursue individual success?",
+      "locationTip": "pursue individual success → P1尾句",
+      "options": [
+        { "label": "A", "text": "They lack a shoulder to cry on." },
+        { "label": "B", "text": "They have no soul to confide in." },
+        { "label": "C", "text": "They cannot find reliable friends." },
+        { "label": "D", "text": "They ignore their ties with friends." }
+      ]
+    },
+    {
+      "id": 47,
+      "number": 47,
+      "type": "细节题",
+      "text": "What does the author advise people to do in their pursuit of radical individualism?",
+      "locationTip": "radical individualism → P3-P4",
+      "options": [
+        { "label": "A", "text": "Reexamine its detrimental effects." },
+        { "label": "B", "text": "Shrug off the loss of their loved ones." },
+        { "label": "C", "text": "Avoid the chaos and turmoil involved." },
+        { "label": "D", "text": "Remove aggressive obstacles in the way." }
+      ]
+    },
+    {
+      "id": 48,
+      "number": 48,
+      "type": "推断题",
+      "text": "What is American society's assumption of personal achievement?",
+      "locationTip": "assumption, personal achievement → P5",
+      "options": [
+        { "label": "A", "text": "It is to be duly celebrated and highly commended." },
+        { "label": "B", "text": "It is a sure way to fulfill a person's dream." },
+        { "label": "C", "text": "It revolves around an individualistic culture." },
+        { "label": "D", "text": "It reflects a person's exceptional endeavor." }
+      ]
+    },
+    {
+      "id": 49,
+      "number": 49,
+      "type": "细节题",
+      "text": "What is preached in many success stories?",
+      "locationTip": "preached, success stories → P6",
+      "options": [
+        { "label": "A", "text": "Attaching importance to academic gains on the road to success." },
+        { "label": "B", "text": "Investing one's time in work instead of connecting with friends." },
+        { "label": "C", "text": "Trying to strengthen friendships in one's pursuit of personal success." },
+        { "label": "D", "text": "Excelling in academic performance to get into a prestigious college." }
+      ]
+    },
+    {
+      "id": 50,
+      "number": 50,
+      "type": "推断题",
+      "text": "What can we infer from the passage regarding the pursuit of success?",
+      "locationTip": "作者态度 → P8-P10",
+      "options": [
+        { "label": "A", "text": "No one can succeed without pushing limits." },
+        { "label": "B", "text": "No one can afford to neglect close friends." },
+        { "label": "C", "text": "Collectivism is superior to individualism." },
+        { "label": "D", "text": "Success experts often lead people to ruin." }
+      ]
+    }
+  ],
+  "answers": [
+    { "id": 46, "correct": "D", "label": "ignore their ties with friends", "tip": "T3 同义替换 — \"lose friends\" = \"ignore ties with friends\"（第1段）" },
+    { "id": 47, "correct": "A", "label": "Reexamine detrimental effects", "tip": "T4 定位(第3段) + T3 同义替换 — \"reevaluate the harm\" = \"Reexamine detrimental effects\"" },
+    { "id": 48, "correct": "D", "label": "reflects exceptional endeavor", "tip": "T6 段落锁定 — assumption = \"winning = working harder\" = \"endeavor\"" },
+    { "id": 49, "correct": "B", "label": "investing time in work instead of friends", "tip": "T6 段落锁定 + T3 同义替换 — \"Invest time in your work instead\" 原文复现" },
+    { "id": 50, "correct": "B", "label": "can't neglect close friends", "tip": "T1 中心优先 + T5 排除法 — 中心判断B最符合作者态度" }
+  ],
+  "phases": {
+    "phase1": {
+      "topicPrediction": {
+        "title": "主题预测",
+        "content": "五道题围绕\"追求个人成功\"与\"友谊\"的关系——文章在批判个人主义文化下牺牲友谊的现象，呼吁重视人际关系。"
+      },
+      "questionTypes": {
+        "title": "题型 & 定位词",
+        "content": "定位词：radical individualism · American society's assumption · success stories · preached"
+      },
+      "passage": {
+        "title": "文章全文",
+        "paragraphs": [
+          "Many see friendships as a comfort blanket: a shoulder to cry on, a reliable soul to confide in. However, more often than not, in our eagerness to seek individual success, we lose friends along the way and that has become part of the process.",
+          "The chaos and never-ending turmoil that accompanies everyday life is an aggressive obstacle in the pursuit of stable friendships. As students, we use this excuse to shrug off losing people who we once thought to be loved ones.",
+          "Instead of viewing our lives as a race, where everyone is on their own path to some form of success, we must relearn to value the connections we make along the track. We must reevaluate the harm of radical, individual freedom.",
+          "Radical individualism elevates the freedom of the individual over the collective. It argues, for instance, that universal healthcare, an example of collectivism, threatened the dream of many Americans.",
+          "Many of us have fallen victim to an individualistic culture. Society tends to celebrate personal achievement and commend it based on the assumption that winning or succeeding is a consequence of working harder than the next person.",
+          "As a society, we idolize the concept of \"losing friends on the road to success.\" I remember hearing in high school, \"Don't worry about losing friendships, just focus on study and getting into college. That's all that will matter in the long run,\" a sentiment that is not unique to my experience. It's preached in many success stories, and it's embedded in the way we see growth. Motivational speakers will push their audience to be complacent to the inevitable end of losing friends. Spend too much time with friends? You're losing time better utilized on your achievements. Invest time in your relationships? Invest time in your work instead.",
+          "This constant need to succeed has blinded us from seeing through the whirlwind of change that accompanies our everyday lives. We are expected to tangibly succeed, earn awards, get higher positions, earn better grades. In order to succeed, we lose friends, and that has sadly become normalized.",
+          "We cannot be complacent with losing friendships because they are our anchors.",
+          "Yes, pursue success. Challenge yourself. Push limits. But contrary to all the self-proclaimed success experts, doing it alone does not make you more successful or any better than someone who achieved it with the help of others.",
+          "Put effort into fostering healthy relationships, and maintaining them through your busy schedule that seems like it leaves no time for anyone else. Although we may be living in a society that treasures the independent pursuit of achievement, having people to support and love you on the way is far more important than any end result."
+        ]
+      },
+      "questionPreview": {
+        "items": [
+          { "id": 46, "number": 46, "type": "细节题", "text": "What often happens when people are eager to pursue individual success?", "locationTip": "pursue individual success → P1尾句" },
+          { "id": 47, "number": 47, "type": "细节题", "text": "What does the author advise people to do in their pursuit of radical individualism?", "locationTip": "radical individualism → P3-P4" },
+          { "id": 48, "number": 48, "type": "推断题", "text": "What is American society's assumption of personal achievement?", "locationTip": "assumption, personal achievement → P5" },
+          { "id": 49, "number": 49, "type": "细节题", "text": "What is preached in many success stories?", "locationTip": "success stories → P6" },
+          { "id": 50, "number": 50, "type": "推断题", "text": "What can we infer from the passage regarding the pursuit of success?", "locationTip": "作者态度 → P8-P10" }
+        ]
+      }
+    },
+    "phase2a": {
+      "instruction": {
+        "title": "T7 首尾句聚焦",
+        "content": "快速扫读每段首尾句，抓文章骨架。只看首尾，不读中间。"
+      },
+      "sections": [
+        { "paragraph": "第1段", "firstSentence": "Many see friendships as a comfort blanket: a shoulder to cry on, a reliable soul to confide in.", "lastSentence": "However, more often than not, in our eagerness to seek individual success, we lose friends along the way and that has become part of the process.", "monologue": "友谊是安慰毯，但追求成功的过程中会失去朋友..." },
+        { "paragraph": "第2段", "firstSentence": "The chaos and never-ending turmoil that accompanies everyday life is an aggressive obstacle in the pursuit of stable friendships.", "lastSentence": "As students, we use this excuse to shrug off losing people who we once thought to be loved ones.", "monologue": "日常混乱让友谊很难维持，我们拿这当借口甩掉朋友..." },
+        { "paragraph": "第3段", "firstSentence": "Instead of viewing our lives as a race, where everyone is on their own path to some form of success, we must relearn to value the connections we make along the track.", "lastSentence": "We must reevaluate the harm of radical, individual freedom.", "monologue": "不要只把人生当赛跑，要重新审视激进个人主义的危害——作者开始给建议了。" },
+        { "paragraph": "第4段", "firstSentence": "Radical individualism elevates the freedom of the individual over the collective.", "lastSentence": "It argues, for instance, that universal healthcare, an example of collectivism, threatened the dream of many Americans.", "monologue": "解释 radical individualism 是啥——个人自由高于集体。" },
+        { "paragraph": "第5段", "firstSentence": "Many of us have fallen victim to an individualistic culture.", "lastSentence": "Society tends to celebrate personal achievement and commend it based on the assumption that winning or succeeding is a consequence of working harder than the next person.", "monologue": "我们成了个人主义文化的受害者——社会默认\"成功 = 比别人更努力\"。" },
+        { "paragraph": "第6段", "firstSentence": "As a society, we idolize the concept of \"losing friends on the road to success.\"", "lastSentence": "Invest time in your relationships? Invest time in your work instead.", "monologue": "我们竟然崇拜\"为成功失去朋友\"！成功学让你把时间花在工作上而不是朋友上。" },
+        { "paragraph": "第7段", "firstSentence": "This constant need to succeed has blinded us from seeing through the whirlwind of change that accompanies our everyday lives.", "lastSentence": "In order to succeed, we lose friends, and that has sadly become normalized.", "monologue": "成功让我们瞎了，失去朋友竟然变得\"正常\"了——挺无奈的。" },
+        { "paragraph": "第8段（仅1句）", "firstSentence": "We cannot be complacent with losing friendships because they are our anchors.", "lastSentence": null, "monologue": "不能对失去朋友无所谓——朋友是锚，是定心丸。" },
+        { "paragraph": "第9段", "firstSentence": "Yes, pursue success. Challenge yourself. Push limits.", "lastSentence": "doing it alone does not make you more successful or any better than someone who achieved it with the help of others.", "monologue": "作者不是反对成功，而是反对\"单打独斗\"——跟别人一起成功不丢人。" },
+        { "paragraph": "第10段", "firstSentence": "Put effort into fostering healthy relationships, and maintaining them through your busy schedule.", "lastSentence": "having people to support and love you on the way is far more important than any end result.", "monologue": "最后一锤定音：有人爱你支持你，比任何结果都重要。" }
+      ],
+      "centerSummary": {
+        "title": "中心归纳",
+        "content": "文章在批判\"个人主义文化下，追求成功=牺牲友谊\"的观念。作者认为友谊比成功更重要，朋友是精神支柱，不应该对失去朋友无动于衷。"
+      }
+    },
+    "phase2b": {
+      "instruction": {
+        "title": "用中心做题（T1 中心优先 + T5 排除法）",
+        "content": "用首尾句确定的中心，先做能做的题。拿不准的标记后精读。"
+      },
+      "solvableItems": [
+        { "id": 46, "question": "46. What often happens when people are eager to pursue individual success?", "status": "可用中心做", "monologue": "第1段尾句直接说了\"we lose friends\"——D的\"ignore ties\"就是同义改写。A/B/C都是原文提过但不是本题问的。（T3 同义替换）" },
+        { "id": 50, "question": "50. What can we infer from the passage regarding the pursuit of success?", "status": "可用中心做", "monologue": "中心来看——作者说不能忽视朋友，B最贴近。A太绝对，C太过，D太极端。（T1 中心优先 + T5 排除法）" }
+      ],
+      "pendingItems": [
+        { "id": 47, "description": "radical individualism 在第4段，需要精读定位" },
+        { "id": 48, "description": "American society's assumption 在第5段" },
+        { "id": 49, "description": "success stories 在第6段" }
+      ],
+      "pendingMonologue": "47题→radical individualism→第4段。48题→American society→第5段。49题→success stories→第6段。待会精读！"
+    },
+    "phase2c": {
+      "instruction": {
+        "title": "T4 定位 + T6 段落锁定 + T3 同义替换",
+        "content": "用题干关键词定位到原文具体段落，只精读相关段。"
+      },
+      "locators": [
+        "47题 radical individualism → 第4段",
+        "48题 society's assumption → 第5段",
+        "49题 success stories → 第6段"
+      ],
+      "detailItems": [
+        {
+          "id": 47,
+          "paragraph": "第3-4段 → 做47题",
+          "skill": "T4定位",
+          "passageSnippet": "Radical individualism elevates the freedom of the individual over the collective. It argues, for instance, that universal healthcare, an example of collectivism, threatened the dream of many Americans.",
+          "question": "47. What does the author advise people to do about radical individualism?",
+          "monologue": "注意！47题问的是\"advise\"——作者的建议。第4段只描述了radical individualism是什么，但第3段尾句说\"we must reevaluate the harm\"——\"reevaluate the harm\" = A的\"Reexamine its detrimental effects\"（T3 同义替换）！"
+        },
+        {
+          "id": 48,
+          "paragraph": "第5段 → 做48题",
+          "skill": "T6段落锁定",
+          "passageSnippet": "Many of us have fallen victim to an individualistic culture. Society tends to celebrate personal achievement and commend it based on the assumption that winning or succeeding is a consequence of working harder than the next person.",
+          "question": "48. What is American society's assumption of personal achievement?",
+          "monologue": "原文的assumption是\"winning = working harder than the next person\"——也就是\"成功=比别人更努力的结果\"。\"endeavor\"就是\"努力\"！D完美对应assumption的定义。"
+        },
+        {
+          "id": 49,
+          "paragraph": "第6段 → 做49题",
+          "skill": "T6段落锁定",
+          "passageSnippet": "As a society, we idolize the concept of \"losing friends on the road to success.\" ... Motivational speakers will push their audience to be complacent to the inevitable end of losing friends. Spend too much time with friends? You're losing time better utilized on your achievements. Invest time in your relationships? Invest time in your work instead.",
+          "question": "49. What is preached in many success stories?",
+          "monologue": "原文直接说了\"Invest time in your work instead\"——把时间花在工作上而不是朋友上。B完美对应！（T3 同义替换）"
+        }
+      ]
+    },
+    "phase3": {
+      "title": "统一对答案",
+      "source": "官方解析",
+      "answers": [
+        { "id": 46, "correct": "D", "label": "ignore ties with friends", "tip": "T3 同义替换 — \"lose friends\" = \"ignore ties with friends\"（第1段）" },
+        { "id": 47, "correct": "A", "label": "Reexamine detrimental effects", "tip": "T4 定位(第3段) + T3 同义替换 — \"reevaluate the harm\" = \"Reexamine detrimental effects\"" },
+        { "id": 48, "correct": "D", "label": "reflects exceptional endeavor", "tip": "T6 段落锁定 — assumption = \"winning = working harder\" = \"endeavor\"" },
+        { "id": 49, "correct": "B", "label": "investing time in work instead of friends", "tip": "T6 段落锁定 + T3 同义替换 — \"Invest time in your work instead\" 原文复现" },
+        { "id": 50, "correct": "B", "label": "can't neglect close friends", "tip": "T1 中心优先 + T5 排除法 — 中心判断B最符合作者态度" }
+      ]
+    },
+    "phase4": {
+      "centerReview": {
+        "title": "文章中心",
+        "content": "追求个人成功不应该以牺牲友谊为代价——朋友不是成功的绊脚石，而是支撑你的锚。"
+      },
+      "skillStats": {
+        "title": "技巧使用统计",
+        "items": [
+          { "name": "T3", "desc": "同义替换 · 3次", "usedIn": "46·47·49" },
+          { "name": "T1+T5", "desc": "中心+排除法", "usedIn": "50题" },
+          { "name": "T4+T6", "desc": "定位+段落锁定", "usedIn": "47·48·49" },
+          { "name": "T7", "desc": "首尾句聚焦", "usedIn": "中心归纳" }
+        ]
+      },
+      "reviewItems": [
+        { "title": "46题 — T1中心优先 + T5排除法", "content": "P1尾句直接对应，D是中心的重述。A/B/C都是以偏概全（friendship的功能不等于\"失去\"）。" },
+        { "title": "47题 — T3同义替换 + T4定位法", "content": "\"radical individualism\"定位到P3-P4，关键替换：reevaluate → reexamine, harm → detrimental effects。" },
+        { "title": "48题 — T3同义替换 + T4定位法", "content": "\"assumption\"定位到P5，关键替换：working harder → exceptional endeavor。D正确。A是事实描述不是\"assumption\"。" },
+        { "title": "49题 — T3同义替换 + T4定位法", "content": "\"success stories\"定位到P6，原文两个对比问句直接指向B。A/D都只提了学习，范围太窄。" },
+        { "title": "50题 — T1中心优先 + T5排除法", "content": "全文都在强调朋友的重要性，B是最贴近中心的。C太绝对（作者没说集体主义更优），D夸大了。" }
+      ],
+      "pitfalls": {
+        "title": "易错点提醒",
+        "content": "• 48题的A选项很具迷惑性：\"celebrate and commend\"确实是原文提到的，但题目问的是\"assumption\"（假设/前提），不是\"社会做了什么\"——社会的假设是\"成功=更努力\"，也就是D。<br>• 注意区分\"事实描述\"和\"作者观点\"——题干问什么就答什么，不要答非所问。<br>• 这篇文章的T3同义替换非常密集，是练习同义替换识别的好材料。"
+      },
+      "vocabSummary": {
+        "title": "生词汇总",
+        "words": [
+          "confide", "eagerness", "turmoil", "aggressive", "obstacle",
+          "shrug off", "radical", "individualism", "elevate", "collectivism",
+          "commend", "assumption", "idolize", "sentiment", "embed",
+          "motivational", "complacent", "whirlwind", "detrimental", "endeavor",
+          "neglect", "prestigious", "anchor", "normalize"
+        ]
+      }
+    }
+  }
+}
