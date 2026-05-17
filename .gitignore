@@ -1,0 +1,17 @@
+# 临时文件
+.superpowers/
+
+# 试题 PDF 文件（用户自行放置）
+*.pdf
+
+# 音频文件
+*.mp3
+*.m4a
+*.aac
+
+# Word 文档
+*.docx
+
+# 系统文件
+Thumbs.db
+.DS_Store
