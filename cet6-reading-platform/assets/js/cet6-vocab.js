@@ -1,119 +1,157 @@
 class CET6Vocab {
-  constructor(storageKey, options) {
-    this.storageKey = storageKey || 'cet6-vocab';
+  constructor(examId, moduleName) {
+    this.examId = examId;
+    this.moduleName = moduleName || '';
     this.onChange = null;
-    if (!options || !options.disableListener) {
-      this._initSelectionListener();
-    }
+    this._source = examId + ' ' + moduleName;
   }
 
-  getAll() {
+  _getGlobal() {
     try {
-      return JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+      return JSON.parse(localStorage.getItem(CET6Utils.storageKeys.vocab) || '[]');
     } catch (e) {
       return [];
     }
   }
 
-  _save(list) {
-    localStorage.setItem(this.storageKey, JSON.stringify(list));
+  _saveGlobal(list) {
+    localStorage.setItem(CET6Utils.storageKeys.vocab, JSON.stringify(list));
     if (this.onChange) this.onChange(list);
   }
 
-  add(word, source) {
-    const list = this.getAll();
-    if (!list.find(w => w.word === word)) {
-      list.push({ word, source: source || '', time: new Date().toLocaleString() });
-      this._save(list);
-      return true;
-    }
-    return false;
-  }
-
-  remove(index) {
-    const list = this.getAll();
-    if (index >= 0 && index < list.length) {
-      list.splice(index, 1);
-      this._save(list);
-    }
-  }
-
-  clear() {
-    if (confirm('确定清空所有生词？')) {
-      localStorage.removeItem(this.storageKey);
-      if (this.onChange) this.onChange([]);
-    }
+  getAll() {
+    return this._getGlobal().filter(w => {
+      if (!w.sources || w.sources.length === 0) return false;
+      return w.sources.some(s => s.indexOf(this.examId) === 0);
+    });
   }
 
   count() {
     return this.getAll().length;
   }
 
+  add(word, source) {
+    const list = this._getGlobal();
+    const existed = list.find(w => w.word === word);
+    const srcStr = this._source + (source ? ' - ' + source : '');
+    if (existed) {
+      if (!existed.sources) existed.sources = [];
+      if (!existed.sources.includes(srcStr)) {
+        existed.sources.push(srcStr);
+      }
+      this._saveGlobal(list);
+      return false;
+    }
+    list.push({
+      word: word,
+      pos: '',
+      meaning: '',
+      sources: [srcStr],
+      mastery: 0,
+      reviewStage: 0,
+      nextReview: null,
+      addedAt: new Date().toISOString().slice(0, 10),
+      history: [],
+      rootPrefix: '',
+      rootExplanation: '',
+      cognates: [],
+      examSentence: '',
+      mnemonic: '',
+      collocations: []
+    });
+    this._saveGlobal(list);
+    return true;
+  }
+
+  addRich(word, richData) {
+    const list = this._getGlobal();
+    const existed = list.find(w => w.word === word);
+    const srcStr = this._source + (richData.source ? ' - ' + richData.source : '');
+    if (existed) {
+      if (!existed.sources) existed.sources = [];
+      if (!existed.sources.includes(srcStr)) existed.sources.push(srcStr);
+      existed.pos = existed.pos || richData.pos || '';
+      existed.meaning = existed.meaning || richData.meaning || '';
+      existed.rootPrefix = existed.rootPrefix || richData.rootPrefix || '';
+      existed.rootExplanation = existed.rootExplanation || richData.rootExplanation || '';
+      existed.examSentence = existed.examSentence || richData.examSentence || '';
+      existed.mnemonic = existed.mnemonic || richData.mnemonic || '';
+      if (richData.cognates) existed.cognates = existed.cognates || richData.cognates;
+      if (richData.collocations) existed.collocations = existed.collocations || richData.collocations;
+      this._saveGlobal(list);
+      return false;
+    }
+    list.push({
+      word: word,
+      pos: richData.pos || '',
+      meaning: richData.meaning || '',
+      sources: [srcStr],
+      mastery: 0,
+      reviewStage: 0,
+      nextReview: null,
+      addedAt: new Date().toISOString().slice(0, 10),
+      history: [],
+      rootPrefix: richData.rootPrefix || '',
+      rootExplanation: richData.rootExplanation || '',
+      cognates: richData.cognates || [],
+      examSentence: richData.examSentence || '',
+      mnemonic: richData.mnemonic || '',
+      collocations: richData.collocations || []
+    });
+    this._saveGlobal(list);
+    return true;
+  }
+
+  has(word) {
+    return this._getGlobal().some(w => w.word === word);
+  }
+
+  remove(index) {
+    const local = this.getAll();
+    if (index >= 0 && index < local.length) {
+      const list = this._getGlobal();
+      const word = local[index].word;
+      const gIdx = list.findIndex(w => w.word === word);
+      if (gIdx >= 0) {
+        const entry = list[gIdx];
+        if (entry.sources) {
+          entry.sources = entry.sources.filter(s => s.indexOf(this.examId) !== 0);
+        }
+        if (!entry.sources || entry.sources.length === 0) {
+          list.splice(gIdx, 1);
+        } else {
+          list[gIdx] = entry;
+        }
+        this._saveGlobal(list);
+      }
+    }
+  }
+
+  clear() {
+    if (confirm('确定清空本试卷所有生词？')) {
+      const list = this._getGlobal();
+      const filtered = list.filter(w => {
+        if (!w.sources || w.sources.length === 0) return true;
+        return !w.sources.some(s => s.indexOf(this.examId) === 0);
+      });
+      this._saveGlobal(filtered);
+    }
+  }
+
   exportMarkdown(title) {
     const list = this.getAll();
     if (list.length === 0) { alert('生词本为空！'); return; }
-    let md = `# ${title || '六级生词本'}\n\n| 单词 | 出处 | 时间 |\n|:--|:--|:--|\n`;
-    list.forEach(w => { md += `| ${w.word} | ${w.source || '-'} | ${w.time || '-'} |\n`; });
+    let md = '# ' + (title || '六级生词本') + '\n\n| 单词 | 出处 | 时间 |\n|:--|:--|:--|\n';
+    list.forEach(w => {
+      md += '| ' + (w.word || '') + ' | ' + ((w.sources || []).join(', ') || '-') + ' | ' + (w.addedAt || '-') + ' |\n';
+    });
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([md], { type: 'text/markdown' }));
+    a.href = URL.createObjectURL(blob);
     a.download = '生词本_' + new Date().toISOString().slice(0, 10) + '.md';
+    document.body.appendChild(a);
     a.click();
-  }
-
-  _initSelectionListener() {
-    const self = this;
-    let popupTimer = null;
-
-    document.addEventListener('mouseup', function (e) {
-      const sel = window.getSelection();
-      const text = sel.toString().trim();
-      if (!text || text.split(/\s+/).length > 4) {
-        clearTimeout(popupTimer);
-        popupTimer = setTimeout(() => {
-          const popup = document.getElementById('word-popup');
-          if (popup) popup.style.display = 'none';
-        }, 300);
-        return;
-      }
-      const popup = document.getElementById('word-popup');
-      if (!popup) return;
-      clearTimeout(popupTimer);
-      popup.style.display = 'block';
-      const x = Math.min(e.pageX, window.innerWidth - 220);
-      popup.style.left = Math.max(10, x) + 'px';
-      popup.style.top = (e.pageY + 20) + 'px';
-      const wordSpan = popup.querySelector('#popup-word');
-      if (wordSpan) wordSpan.textContent = text;
-      popup._selectedWord = text;
-
-      let source = '';
-      const activeTab = document.querySelector('.tab.active');
-      if (activeTab) source = 'Phase ' + activeTab.dataset.phase;
-
-      window.getSelection().removeAllRanges();
-    });
-
-    document.addEventListener('mousedown', function (e) {
-      const popup = document.getElementById('word-popup');
-      if (popup && !popup.contains(e.target) && !e.target.closest('#word-popup')) {
-        popup.style.display = 'none';
-      }
-    });
-  }
-
-  addFromPopup() {
-    const popup = document.getElementById('word-popup');
-    if (!popup || !popup._selectedWord) return;
-    let source = '';
-    const activeTab = document.querySelector('.tab.active');
-    if (activeTab) source = 'Phase ' + activeTab.dataset.phase;
-    this.add(popup._selectedWord, source);
-    popup.style.display = 'none';
-    popup._selectedWord = null;
-  }
-
-  hidePopup() {
-    const popup = document.getElementById('word-popup');
-    if (popup) popup.style.display = 'none';
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
   }
 }

@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "id": "2025-12-cet6-cloze",
+    "examDate": "2025年12月",
+    "level": "CET6",
+    "type": "cloze",
+    "title": "运动与健康",
+    "description": "2025年12月六级真题第1套 · 选词填空"
+  },
+  "passage": {
+    "paragraphs": [
+      "By now, it is generally accepted that regular exercise comes with an assortment of health benefits for people who maintain the habit over time. But is it ___{26}___ too late to start?",
+      "New research looked at people who increased their exercise levels after their 40s beyond levels they had when they were younger and those individuals showed declines in their risk of early ___{27}___ which were similar to those of people who exercised consistently throughout their lives. This was a ___{28}___ of 32% to 35% compared to people who did not exercise. Those who began exercising in middle age also saw reductions in their incidence of ___{29}___ diseases, such as heart disease and cancer, which were similar to the steady exercisers.",
+      "So why bother exercising consistently throughout your life? The authors of the study ___{30}___ that some might interpret the study's findings to mean that they can delay starting an exercise program but this would be a mistake. There are other benefits, both mental and physical, to staying consistently active that we should not ___{31}___. These real health benefits include better ___{32}___ functioning and lowered risk of gaining weight. The latter is ___{33}___ important given the global obesity epidemic. In addition, experts assert that starting younger is better because, if you make a habit of exercising when you are young, you are more likely to keep up those ___{34}___ later in life. It is ideal, then, for people to start exercising when they are children or ___{35}___, and it is good to maintain an active lifestyle at all times regardless of your age. However, this study does indicate that, if you have not been active, you can still benefit if you start becoming active in your 40s and 50s."
+    ],
+    "blanks": [26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+  },
+  "banks": [
+    { "letter": "A", "word": "adolescents", "pos": "n.", "meaning": "青少年", "bankAnalysis": "adolesc=成长 + ent=人 + s复数 → 正在成长的人 → 青少年。常与children并列使用" },
+    { "letter": "B", "word": "arbitrarily", "pos": "adv.", "meaning": "武断地；任意地", "bankAnalysis": "arbitr=判断 + ary形容词 + ly副词 → 没有依据地判断 → 武断地、任意地" },
+    { "letter": "C", "word": "chronic", "pos": "adj.", "meaning": "慢性的；长期的", "bankAnalysis": "chron=时间 + ic形容词 → 长时间持续的 → 慢性的。常修饰disease（慢性病）" },
+    { "letter": "D", "word": "cognitive", "pos": "adj.", "meaning": "认知的", "bankAnalysis": "cogn=知道 + itive形容词 → 与认识相关的 → 认知的。常见搭配：cognitive functioning（认知功能）" },
+    { "letter": "E", "word": "concede", "pos": "v.", "meaning": "承认；让步", "bankAnalysis": "con=共同 + cede=退让 → 一起退让 → 承认、让步。常接that从句，表示勉强承认某事" },
+    { "letter": "F", "word": "disregard", "pos": "v.", "meaning": "忽视；不理会", "bankAnalysis": "dis=否定 + regard=关注 → 不关注 → 忽视、不理会。should not disregard = 不应忽视" },
+    { "letter": "G", "word": "drop", "pos": "n.", "meaning": "下降；跌幅", "bankAnalysis": "基础词汇，作名词表示降幅。常见搭配：a drop of + 百分比（下降了...）。文中指死亡率下降32%-35%" },
+    { "letter": "H", "word": "ever", "pos": "adv.", "meaning": "曾经；究竟", "bankAnalysis": "基础副词。在疑问句中表强调'究竟'：is it ever too late = 究竟是不是太晚了。不是'永远'的意思" },
+    { "letter": "I", "word": "maneuver", "pos": "n./v.", "meaning": "演习；操纵", "bankAnalysis": "manu=手 + ever=操作 → 用手操控 → 操纵、演习。常见于军事/政治语境，本文未使用" },
+    { "letter": "J", "word": "mortality", "pos": "n.", "meaning": "死亡率；必死性", "bankAnalysis": "mort=死亡 + ality名词尾 → 与死亡相关的 → 死亡率。常见搭配：early mortality（早逝）、mortality rate（死亡率）" },
+    { "letter": "K", "word": "particularly", "pos": "adv.", "meaning": "特别地；尤其", "bankAnalysis": "来自particular=特别的 + ly副词尾 → 特别地、尤其。常修饰形容词表示程度：particularly important（尤其重要）" },
+    { "letter": "L", "word": "patterns", "pos": "n.", "meaning": "模式；规律", "bankAnalysis": "模式、规律、习惯。文中keep up those patterns = 保持那些（运动）模式/习惯。s结尾说明是复数" },
+    { "letter": "M", "word": "refute", "pos": "v.", "meaning": "反驳；驳斥", "bankAnalysis": "re=回 + fute=打倒 → 打回去 → 反驳、驳斥。常接argument/claim。本文未使用" },
+    { "letter": "N", "word": "stereotype", "pos": "n.", "meaning": "刻板印象；陈规", "bankAnalysis": "stereo=固定 + type=类型 → 固定的类型 → 刻板印象。常见搭配：break stereotypes（打破刻板印象）" },
+    { "letter": "O", "word": "vocal", "pos": "adj.", "meaning": "发声的；直言的", "bankAnalysis": "voc=声音 + al形容词 → 与声音相关的 → 发声的、直言的。如vocal cords（声带）" }
+  ],
+  "answers": [
+    { "id": 26, "blank": 26, "correct": "H", "word": "ever", "tip": "副词修饰too表强调：is it ever too late = 究竟是不是太晚了",
+      "sentenceAnalysis": "空位在is和too late之间。is是系动词，too late是形容词短语，中间需要一个副词来修饰。整句是疑问句'But is it ___ too late to start?'，问的是'现在开始是不是太晚了？'。选项中副词有B.arbitrarily（武断地）、H.ever（究竟）、K.particularly（特别地）。ever常用于疑问句加强语气，'is it ever too late'就是'究竟会不会太晚'的意思。" },
+    { "id": 27, "blank": 27, "correct": "J", "word": "mortality", "tip": "名词，early mortality = 早逝，与risk of搭配",
+      "sentenceAnalysis": "空位在early的后面。early是形容词，后面应该修饰一个名词，构成'early ___'名词短语。前面的'risk of'表示'…的风险'，整段讲的是锻炼降低风险。early后面接什么词才合理？看选项中的名词：A.adolescents（青少年）、G.drop（降幅）、J.mortality（死亡率）、L.patterns（模式）、N.stereotype（刻板印象）。'early mortality'=早逝，与锻炼降低死亡风险的上下文完全吻合。" },
+    { "id": 28, "blank": 28, "correct": "G", "word": "drop", "tip": "名词，a drop of 32% = 32%的降幅",
+      "sentenceAnalysis": "空位在'a'后面、'of 32%'前面。a是冠词，后面需要名词。of 32% to 35%是数字百分比，说明这是一个'32%-35%的___'。选项中的名词有A、G、J、L、N。与百分比连用表示'降幅'的，只有G.drop最合适。a drop of 32%-35% = 32%-35%的降幅。" },
+    { "id": 29, "blank": 29, "correct": "C", "word": "chronic", "tip": "形容词修饰diseases，chronic diseases = 慢性病",
+      "sentenceAnalysis": "空位在diseases前面、incidence of后面。incidence of是'…的发生率'，后面是diseases（疾病），中间需要形容词修饰diseases。下文有such as heart disease and cancer（心脏病和癌症），这些都是什么类型的病？选项中形容词有C.chronic（慢性的）、D.cognitive（认知的）、O.vocal（发声的），心脏病和癌症属于chronic diseases（慢性病）。" },
+    { "id": 30, "blank": 30, "correct": "E", "word": "concede", "tip": "动词，concede that = 承认（让步语气）",
+      "sentenceAnalysis": "空位是整句的谓语动词，主语'The authors of the study'（研究作者），宾语是that从句。现在需要找一个动词，表示'作者___说'。看选项动词：E.concede（承认/让步）、F.disregard（忽视）、M.refute（反驳）。下文说'but this would be a mistake'，说明作者虽然承认了某种观点，但认为这是错的——这正是concede的语气：勉强承认但不同意。" },
+    { "id": 31, "blank": 31, "correct": "F", "word": "disregard", "tip": "动词，should not disregard = 不应忽视",
+      "sentenceAnalysis": "空位在'should not'后面，需要动词原形。前面的句子说'还有其他的好处，我们不应该___这些好处'。选项中动词还剩下F.disregard和M.refute。'should not disregard benefits'=不应忽视好处，语义通顺。refute（反驳）与benefits搭配不合理。" },
+    { "id": 32, "blank": 32, "correct": "D", "word": "cognitive", "tip": "形容词，cognitive functioning = 认知功能",
+      "sentenceAnalysis": "空位在better后面、functioning前面。better是形容词，functioning是名词（功能），所以空位需要形容词修饰functioning。'better ___ functioning'=更好的___功能。选项中形容词有C.chronic（慢性的）、D.cognitive（认知的）、O.vocal（发声的）。锻炼带来的好处包括'更好的认知功能'，cognitive functioning是医学常用搭配。" },
+    { "id": 33, "blank": 33, "correct": "K", "word": "particularly", "tip": "副词修饰important，particularly important = 尤其重要",
+      "sentenceAnalysis": "空位在is后面、important前面。is是系动词，important是形容词，中间可以用副词修饰important的程度。'The latter is ___ important'=后者___重要。看选项中的副词：B.arbitrarily（武断地）、H.ever（曾经/究竟）、K.particularly（特别地）。表达'尤其重要'的是particularly important。考虑到全球肥胖流行病，控制体重'尤其重要'。" },
+    { "id": 34, "blank": 34, "correct": "L", "word": "patterns", "tip": "名词，keep up those patterns = 保持那些（运动）模式",
+      "sentenceAnalysis": "空位在those后面。those是指示代词，后面需要名词复数（前面提到'年轻时养成运动习惯'）。keep up those ___=保持那些___。选项中的名词有A.adolescents、L.patterns、N.stereotype。patterns（模式/习惯）最合适：小时候养成锻炼的习惯，以后更容易保持那些习惯。" },
+    { "id": 35, "blank": 35, "correct": "A", "word": "adolescents", "tip": "名词，children or adolescents = 儿童或青少年",
+      "sentenceAnalysis": "空位在or后面、逗号前面。or是并列连词，前面是children（儿童），后面应该是另一个年龄段的名词。'children or ___'=儿童或___。选项中剩余的名词有A.adolescents（青少年）、N.stereotype（刻板印象）。children or adolescents = 儿童或青少年，完美对应。" }
+  ],
+  "wordAnalysis": [
+    {
+      "word": "adolescents",
+      "pos": "n.",
+      "meaning": "青少年",
+      "rootPrefix": "adolesc-（成长）+ -ent（人）+ -s（复数）",
+      "rootExplanation": "拉丁词根 adolesc=成长，adolescent=正在成长的人=青少年。同源词：adolescence（青春期）",
+      "cognates": ["adolescence", "adult"],
+      "examSentence": "It is ideal for people to start exercising when they are children or adolescents.",
+      "collocations": ["adolescent development 青少年发展", "adolescent psychology 青春期心理学"],
+      "mnemonic": "a + dole（悲伤）+ scent（气味）→ 青少年身上有淡淡的忧伤气息"
+    },
+    {
+      "word": "arbitrarily",
+      "pos": "adv.",
+      "meaning": "武断地；任意地",
+      "rootPrefix": "arbitr-（判断）+ -ary（形容词）+ -ly（副词）",
+      "rootExplanation": "拉丁词根 arbitr=判断、裁决。arbitrator=仲裁者，arbitrary=武断的",
+      "cognates": ["arbitrary", "arbitrate", "arbitrator"],
+      "examSentence": "（本篇未使用）",
+      "collocations": ["arbitrary decision 武断的决定", "arbitrarily chosen 任意选择的"],
+      "mnemonic": "arbitr 听起来像'阿比特'→ 阿比特随便做判断 → 武断地"
+    },
+    {
+      "word": "chronic",
+      "pos": "adj.",
+      "meaning": "慢性的；长期的",
+      "rootPrefix": "chron-（时间）+ -ic（形容词后缀）",
+      "rootExplanation": "希腊词根 chron=时间。chronic=持续很长时间的=慢性的",
+      "cognates": ["chronicle", "chronology", "synchronize", "chronic"],
+      "examSentence": "Those who began exercising in middle age also saw reductions in their incidence of chronic diseases.",
+      "collocations": ["chronic disease 慢性病", "chronic pain 慢性疼痛", "chronic problem 长期问题"],
+      "mnemonic": "chron（时间）→ 跨越很长时间的 → 慢性的"
+    },
+    {
+      "word": "cognitive",
+      "pos": "adj.",
+      "meaning": "认知的",
+      "rootPrefix": "cogn-（知道）+ -itive（形容词后缀）",
+      "rootExplanation": "拉丁词根 cogn=知道、认识。cognition=认知，cognitive=认知的",
+      "cognates": ["cognition", "recognize", "diagnosis", "prognosis"],
+      "examSentence": "These real health benefits include better cognitive functioning and lowered risk of gaining weight.",
+      "collocations": ["cognitive ability 认知能力", "cognitive development 认知发展", "cognitive bias 认知偏差"],
+      "mnemonic": "cogn（知道）→ 认识事物的能力 → 认知的"
+    },
+    {
+      "word": "concede",
+      "pos": "v.",
+      "meaning": "承认；让步",
+      "rootPrefix": "con-（共同）+ cede（退让）",
+      "rootExplanation": "拉丁词根 cede/cess=走、退让。concede=共同退让=让步承认",
+      "cognates": ["recede", "precede", "proceed", "access", "exceed"],
+      "examSentence": "The authors of the study concede that some might interpret the study's findings to mean that they can delay starting an exercise program.",
+      "collocations": ["concede defeat 承认失败", "concede a point 让步", "concede that 承认"],
+      "mnemonic": "con（一起）+ cede（走开）→ 一起走开 → 让步 → 承认"
+    },
+    {
+      "word": "disregard",
+      "pos": "v.",
+      "meaning": "忽视；不理会",
+      "rootPrefix": "dis-（否定）+ regard（关注）",
+      "rootExplanation": "dis=否定前缀，regard=关注、看待。disregard=不关注=忽视",
+      "cognates": ["regard", "regarding", "regardless"],
+      "examSentence": "There are other benefits that we should not disregard.",
+      "collocations": ["disregard for 忽视", "disregard a warning 无视警告", "complete disregard 完全忽视"],
+      "mnemonic": "dis（不）+ regard（看）→ 不看 → 忽视"
+    },
+    {
+      "word": "drop",
+      "pos": "n.",
+      "meaning": "下降；跌幅",
+      "rootPrefix": "原生词，无词根词缀拆解",
+      "rootExplanation": "古英语 dropa，基本词汇。作名词表示'下降、跌幅'，作动词表示'掉落、放弃'",
+      "cognates": ["droplet", "dropout"],
+      "examSentence": "This was a drop of 32% to 35% compared to people who did not exercise.",
+      "collocations": ["a drop in 下降", "drop by drop 一滴一滴地", "price drop 价格下跌"],
+      "mnemonic": "简单词，注意选词填空中常考名词用法'a drop of'表示降幅"
+    },
+    {
+      "word": "ever",
+      "pos": "adv.",
+      "meaning": "曾经；究竟",
+      "rootPrefix": "原生词，无词根词缀拆解",
+      "rootExplanation": "古英语 ǣfre，基本副词。常用于强调语气，如 is it ever too late = 究竟是不是太晚了",
+      "cognates": ["never", "forever", "however", "whatever"],
+      "examSentence": "But is it ever too late to start?",
+      "collocations": ["ever since 自从", "ever before 以前", "hardly ever 几乎从不"],
+      "mnemonic": "简单词，注意在疑问句中表强调'究竟'，不是'永远'"
+    },
+    {
+      "word": "maneuver",
+      "pos": "n./v.",
+      "meaning": "演习；操纵",
+      "rootPrefix": "manu-（手）+ -ever（操作）",
+      "rootExplanation": "拉丁词根 manu=手。maneuver=用手操作→操纵、演习",
+      "cognates": ["manual", "manufacture", "manuscript", "manipulate"],
+      "examSentence": "（本篇未使用）",
+      "collocations": ["military maneuver 军事演习", "political maneuver 政治手腕"],
+      "mnemonic": "manu（手）→ 用手操控 → 操纵"
+    },
+    {
+      "word": "mortality",
+      "pos": "n.",
+      "meaning": "死亡率；必死性",
+      "rootPrefix": "mort-（死亡）+ -ality（名词后缀）",
+      "rootExplanation": "拉丁词根 mort=死亡。mortal=必死的/凡人，mortality=死亡率",
+      "cognates": ["mortal", "immortal", "mortuary", "mortify"],
+      "examSentence": "Those individuals showed declines in their risk of early mortality.",
+      "collocations": ["infant mortality 婴儿死亡率", "mortality rate 死亡率", "reduce mortality 降低死亡率"],
+      "mnemonic": "mort（死）→ 和死亡有关的 → 死亡率。联想：mortuary 太平间"
+    },
+    {
+      "word": "particularly",
+      "pos": "adv.",
+      "meaning": "特别地；尤其",
+      "rootPrefix": "particul-（特殊的）+ -ar（形容词）+ -ly（副词）",
+      "rootExplanation": "来自 particular=特殊的、特定的。particularly=特别地、尤其",
+      "cognates": ["particular", "particularity"],
+      "examSentence": "The latter is particularly important given the global obesity epidemic.",
+      "collocations": ["particularly important 尤其重要", "particularly useful 特别有用"],
+      "mnemonic": "part（部分）→ particular（特定的部分）→ particularly（特别地）"
+    },
+    {
+      "word": "patterns",
+      "pos": "n.",
+      "meaning": "模式；规律",
+      "rootPrefix": "patter-（父亲）+ -n（后缀）",
+      "rootExplanation": "来自 patron=模型、范例。pattern=模式、规律、图案",
+      "cognates": ["pattern", "patron"],
+      "examSentence": "You are more likely to keep up those patterns later in life.",
+      "collocations": ["behavior pattern 行为模式", "sleep pattern 睡眠规律", "pattern recognition 模式识别"],
+      "mnemonic": "pat（轻拍）→ 反复轻拍形成 → 模式/规律"
+    },
+    {
+      "word": "refute",
+      "pos": "v.",
+      "meaning": "反驳；驳斥",
+      "rootPrefix": "re-（回）+ fute（打倒）",
+      "rootExplanation": "拉丁词根 refutare=击退、驳倒。re=回，futare=击倒",
+      "cognates": ["refutation", "refutable", "irrefutable"],
+      "examSentence": "（本篇未使用）",
+      "collocations": ["refute an argument 反驳论点", "refute a claim 驳斥主张"],
+      "mnemonic": "re（回）+ fute（打）→ 打回去 → 反驳"
+    },
+    {
+      "word": "stereotype",
+      "pos": "n.",
+      "meaning": "刻板印象；陈规",
+      "rootPrefix": "stereo-（固定的）+ type（类型）",
+      "rootExplanation": "stereo=固定的、立体的，type=类型。stereotype=固定类型=刻板印象",
+      "cognates": ["stereotype", "stereotypical", "stereoscopy"],
+      "examSentence": "（本篇未使用）",
+      "collocations": ["gender stereotype 性别刻板印象", "break stereotypes 打破刻板印象", "cultural stereotype 文化刻板印象"],
+      "mnemonic": "stereo（立体/固定）+ type（类型）→ 固定的类型 → 刻板印象"
+    },
+    {
+      "word": "vocal",
+      "pos": "adj.",
+      "meaning": "发声的；直言的",
+      "rootPrefix": "voc-（声音）+ -al（形容词后缀）",
+      "rootExplanation": "拉丁词根 voc/vok=声音、呼唤。vocal=声音的、发声的",
+      "cognates": ["vocabulary", "vocate", "advocate", "provoke", "evoke", "invoke"],
+      "examSentence": "（本篇未使用）",
+      "collocations": ["vocal cords 声带", "vocal support 公开支持", "be vocal about 对...直言不讳"],
+      "mnemonic": "voc（声音）→ 和声音有关的 → 发声的/直言的"
+    }
+  ],
+  "phases": {
+    "phase1": {
+      "instruction": { "title": "做真题", "content": "从15个候选词中选择填入10个空位。先判断词性，再根据上下文语义选择。" },
+      "showPassage": true,
+      "showBanks": true
+    },
+    "phase2": {
+      "title": "对答案",
+      "source": "官方解析",
+      "instruction": "逐空校对，查看解析。重点关注：词性判断是否正确、上下文语义是否理解。"
+    },
+    "phase3": {
+      "title": "单词舱",
+      "instruction": "15个候选词逐个学习：词根词缀拆解 → 真题原句 → 联想记忆。不认识的词点击'加入记忆系统'。",
+      "features": ["词根词缀", "真题原句", "词性分类", "加入记忆系统"]
+    },
+    "phase4": {
+      "title": "完成",
+      "instruction": "选词填空练习完成！去单词舱系统继续复习吧。"
+    }
+  }
+}

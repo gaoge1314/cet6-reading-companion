@@ -1,7 +1,8 @@
 class CET6Loader {
   static async load(dataPath) {
     try {
-      const resp = await fetch(dataPath);
+      const cacheBuster = dataPath.indexOf('?') > -1 ? '&_t=' : '?_t=';
+      const resp = await fetch(dataPath + cacheBuster + Date.now());
       if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
       const data = await resp.json();
       const errors = CET6Loader.validate(data);
@@ -25,9 +26,13 @@ class CET6Loader {
     if (!data.phases) errors.push('缺少 phases');
 
     var isMatching = data.meta && data.meta.type === 'matching';
+    var isCloze = data.meta && data.meta.type === 'cloze';
 
     if (isMatching) {
       if (!data.options || !Array.isArray(data.options)) errors.push('缺少 options 数组');
+    } else if (isCloze) {
+      if (!data.banks || !Array.isArray(data.banks)) errors.push('缺少 banks 数组');
+      if (!data.wordAnalysis || !Array.isArray(data.wordAnalysis)) errors.push('缺少 wordAnalysis 数组');
     } else {
       if (!data.questions || !Array.isArray(data.questions)) errors.push('缺少 questions 数组');
     }
@@ -35,8 +40,14 @@ class CET6Loader {
     if (isMatching && data.options && data.answers && data.options.length !== data.answers.length) {
       errors.push('选项数量(' + data.options.length + ')与答案数量(' + data.answers.length + ')不匹配');
     }
-    if (!isMatching && data.questions && data.answers && data.questions.length !== data.answers.length) {
+    if (!isMatching && !isCloze && data.questions && data.answers && data.questions.length !== data.answers.length) {
       errors.push('题目数量(' + data.questions.length + ')与答案数量(' + data.answers.length + ')不匹配');
+    }
+    if (isCloze && data.banks && data.banks.length !== 15) {
+      errors.push('选词填空候选词数量应为15，当前为' + data.banks.length);
+    }
+    if (isCloze && data.answers && data.answers.length !== 10) {
+      errors.push('选词填空答案数量应为10，当前为' + data.answers.length);
     }
 
     if (data.answers) {
@@ -65,6 +76,8 @@ class CET6Loader {
       if (!data.phases.phase3) errors.push('缺少 phases.phase3');
       if (!data.phases.phase4) errors.push('缺少 phases.phase4');
       if (isMatching) {
+        if (!data.phases.phase2) errors.push('缺少 phases.phase2');
+      } else if (isCloze) {
         if (!data.phases.phase2) errors.push('缺少 phases.phase2');
       } else {
         if (!data.phases.phase2a) errors.push('缺少 phases.phase2a');

@@ -1,19 +1,20 @@
 class CET6Engine {
-  constructor(data, vocab) {
+  constructor(data, vocab, annotate, examId) {
     this.data = data;
     this.vocab = vocab;
-    this.annotate = null;
+    this.annotate = annotate;
     this.selectedOptions = {};
-    this.progressKey = 'cet6-progress-' + (data.meta?.id || 'default');
+    this.currentPhase = '1';
+    this._containerSelector = null;
+    this.examId = examId;
+    this.progressKey = CET6Utils.storageKeys.examsState + '-' + examId + '-reading';
     this._loadProgress();
   }
 
-  setAnnotate(annotate) {
-    this.annotate = annotate;
-  }
+
 
   reRenderCurrentPhase() {
-    const target = document.querySelector('#main-content');
+    const target = document.querySelector(this._containerSelector);
     if (!target) return;
     target.innerHTML = '';
     const phases = this.data.phases;
@@ -26,8 +27,7 @@ class CET6Engine {
     this.switchPhase(this.currentPhase);
     this._restoreSelections();
     this._renderAnswerCard();
-    this._renderVocabPanel();
-    this._renderAnnotatePanel();
+    this.updateSidebar();
   }
 
   _restoreSelections() {
@@ -41,8 +41,8 @@ class CET6Engine {
   _loadProgress() {
     try {
       const saved = JSON.parse(localStorage.getItem(this.progressKey) || '{}');
-      this.selectedOptions = saved.options || {};
-      this.currentPhase = saved.phase || '1';
+      this.selectedOptions = saved.selectedOptions || {};
+      this.currentPhase = saved.currentPhase || '1';
     } catch (e) {
       this.selectedOptions = {};
       this.currentPhase = '1';
@@ -51,14 +51,15 @@ class CET6Engine {
 
   _saveProgress() {
     localStorage.setItem(this.progressKey, JSON.stringify({
-      options: this.selectedOptions,
-      phase: this.currentPhase,
+      selectedOptions: this.selectedOptions,
+      currentPhase: this.currentPhase,
       time: new Date().toISOString()
     }));
   }
 
-  init(targetSelector) {
-    const target = document.querySelector(targetSelector);
+  init(containerSelector) {
+    this._containerSelector = containerSelector;
+    const target = document.querySelector(containerSelector);
     if (!target) return;
     target.innerHTML = '';
 
@@ -74,19 +75,10 @@ class CET6Engine {
     this.switchPhase(this.currentPhase);
     this._restoreSelections();
     this._renderAnswerCard();
-    this._renderVocabPanel();
-    this._renderAnnotatePanel();
+    this.updateSidebar();
   }
 
-  _loadProgress() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(this.progressKey) || '{}');
-      this.selectedOptions = saved.options || {};
-      this.currentPhase = saved.phase || '1';
-    } catch (e) {
-      this.selectedOptions = {};
-      this.currentPhase = '1';
-    }
+  destroy() {
   }
 
   _renderPhase1(container, p) {
@@ -418,49 +410,41 @@ class CET6Engine {
     card.innerHTML = html;
   }
 
-  _renderVocabPanel() {
+  updateSidebar() {
     const list = this.vocab ? this.vocab.getAll() : [];
-    const countEl = document.getElementById('vocab-count');
-    const countHeader = document.getElementById('vocab-header-count');
-    const container = document.getElementById('vocab-list');
+    const vocabCount = list.length;
+    const annotateCount = this.annotate ? this.annotate.getAll().length : 0;
 
-    if (countEl) countEl.textContent = list.length;
-    if (countHeader) countHeader.textContent = list.length + ' 词';
+    CET6Shell.updateSidebarCounts({ vocab: vocabCount, annotate: annotateCount });
 
-    if (!container) return;
-    if (list.length === 0) {
-      container.innerHTML = '<div class="vocab-empty">选中任意单词 → 弹出"加入生词本"</div>';
-      return;
+    const vocabListEl = document.getElementById('vocab-list');
+    if (vocabListEl) {
+      vocabListEl.innerHTML = CET6Shell.renderVocabList(list, 'window._app.currentEngine.removeVocab');
     }
-    container.innerHTML = list.map((w, i) =>
-      `<div class="vocab-item">
-        <div><div class="word">${w.word}</div><div class="src">${w.source || ''}</div></div>
-        <span class="del" onclick="window._vocab.remove(${i});window._engine._renderVocabPanel();">✕</span>
-      </div>`
-    ).join('');
+
+    const annotateListEl = document.getElementById('annotate-list');
+    if (annotateListEl) {
+      annotateListEl.innerHTML = CET6Shell.renderAnnotateList(
+        this.annotate ? this.annotate.getAll() : [],
+        'window._app.currentEngine.removeAnnotate'
+      );
+    }
   }
 
-  _renderAnnotatePanel() {
-    const list = this.annotate ? this.annotate.getAll() : [];
-    const countEl = document.getElementById('annotate-count');
-    const container = document.getElementById('annotate-list');
-
-    if (countEl) countEl.textContent = list.length;
-    if (!container) return;
-    if (list.length === 0) {
-      container.innerHTML = '<div class="annotate-empty">选中文字 → 点击"划线标注"</div>';
-      return;
+  removeVocab(index) {
+    if (this.vocab) {
+      this.vocab.remove(index);
+      this.reRenderCurrentPhase();
+      this.updateSidebar();
     }
-    container.innerHTML = list.map((a, i) =>
-      `<div class="annotate-item">
-        <div>
-          <div class="a-text">${a.text}</div>
-          <div class="a-para">¶${(a.paraIdx + 1) || '-'}</div>
-          ${a.annotation ? `<div class="a-note">${a.annotation}</div>` : ''}
-        </div>
-        <span class="del" onclick="window._annotate.remove(${i});window._engine._renderAnnotatePanel();">✕</span>
-      </div>`
-    ).join('');
+  }
+
+  removeAnnotate(index) {
+    if (this.annotate) {
+      this.annotate.remove(index);
+      this.reRenderCurrentPhase();
+      this.updateSidebar();
+    }
   }
 
   selectOption(qNum, opt) {
@@ -503,7 +487,6 @@ class CET6Engine {
       this._renderAnswerCard();
     }
 
-    this._renderVocabPanel();
-    this._renderAnnotatePanel();
+    this.updateSidebar();
   }
 }

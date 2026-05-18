@@ -1,6 +1,12 @@
 class CET6Annotate {
-  constructor(storageKey) {
-    this.storageKey = storageKey || 'cet6-annotations';
+  constructor(examId, moduleName) {
+    if (typeof examId === 'string' && examId.indexOf('-annotations') > -1) {
+      this.storageKey = examId;
+    } else if (examId) {
+      this.storageKey = CET6Utils.storageKeys.annotations + '-' + examId + '-' + (moduleName || 'global');
+    } else {
+      this.storageKey = CET6Utils.storageKeys.annotations;
+    }
     this.onChange = null;
   }
 

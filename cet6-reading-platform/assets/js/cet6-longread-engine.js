@@ -1,8 +1,8 @@
 class CET6LongReadEngine {
-  constructor(data, vocab, locateWord) {
+  constructor(data, vocab, annotate, locateWord, examId) {
     this.data = data;
     this.vocab = vocab;
-    this.annotate = null;
+    this.annotate = annotate;
     this.locateWord = locateWord;
 
     this.matches = {};
@@ -22,8 +22,10 @@ class CET6LongReadEngine {
     this.perQuestionLimit = 60;
 
     this.dataId = data.meta.id;
-    this.progressKey = 'cet6-longread-' + this.dataId;
+    this.progressKey = CET6Utils.storageKeys.examsState + '-' + examId + '-matching';
     this.currentPhase = '1';
+    this._contentEl = null;
+    this._timerEl = null;
     this._loadProgress();
   }
 
@@ -38,7 +40,7 @@ class CET6LongReadEngine {
       this.gaveUps = new Set(saved.gaveUps || []);
       this.otItems = new Set(saved.otItems || []);
       this.timings = saved.timings || {};
-      this.currentPhase = saved.phase || '1';
+      this.currentPhase = saved.currentPhase || '1';
     } catch (e) {
       this.matches = {};
       this.gaveUps = new Set();
@@ -54,17 +56,21 @@ class CET6LongReadEngine {
       gaveUps: Array.from(this.gaveUps),
       otItems: Array.from(this.otItems),
       timings: this.timings,
-      phase: this.currentPhase,
+      currentPhase: this.currentPhase,
       time: new Date().toISOString()
     }));
   }
 
-  init(containerEl, contentEl, timerEl) {
-    this._containerEl = containerEl;
-    this._contentEl = contentEl;
-    this._timerEl = timerEl;
+  init(containerSelector, contentEl) {
+    this._containerSelector = containerSelector;
+    this._contentEl = contentEl || document.querySelector(containerSelector);
+    this._timerEl = document.getElementById('timer-display');
     this.renderAll();
     this.switchPhase(this.currentPhase);
+  }
+
+  destroy() {
+    if (this.timerRunning) this.stopTimer();
   }
 
   renderAll() {
@@ -147,7 +153,7 @@ class CET6LongReadEngine {
       paragraphs.forEach(para => {
         html += `<div class="para-block" data-para="${para.id}" id="p1-para-${para.id}">`;
         html += `<div class="para-header"><span class="para-badge">${para.id}</span></div>`;
-        html += `<div class="para-text">${this._esc(para.text)}</div>`;
+        html += `<div class="para-text">${CET6Utils.esc(para.text)}</div>`;
         html += `</div>`;
       });
       html += `</div></div>`;
@@ -175,25 +181,25 @@ class CET6LongReadEngine {
       if (opt.locateWords) {
         if (opt.locateWords.properNoun && opt.locateWords.properNoun.length) {
           opt.locateWords.properNoun.forEach(w => {
-            html += `<span class="location-tag proper">${this._esc(w)}</span>`;
+            html += `<span class="location-tag proper">${CET6Utils.esc(w)}</span>`;
           });
         }
         if (opt.locateWords.normalNoun && opt.locateWords.normalNoun.length) {
           opt.locateWords.normalNoun.forEach(w => {
-            html += `<span class="location-tag normal">${this._esc(w)}</span>`;
+            html += `<span class="location-tag normal">${CET6Utils.esc(w)}</span>`;
           });
         }
         if (opt.locateWords.comparative && opt.locateWords.comparative.length) {
           opt.locateWords.comparative.forEach(w => {
-            html += `<span class="location-tag comp">${this._esc(w)}</span>`;
+            html += `<span class="location-tag comp">${CET6Utils.esc(w)}</span>`;
           });
         }
       }
       html += `</div>`;
       html += `</div>`;
-      html += `<div class="option-analysis-text">${this._esc(opt.text)}</div>`;
+      html += `<div class="option-analysis-text">${CET6Utils.esc(opt.text)}</div>`;
       if (thinking) {
-        html += `<div class="thinking-prompt">💡 ${this._esc(thinking)}</div>`;
+        html += `<div class="thinking-prompt">💡 ${CET6Utils.esc(thinking)}</div>`;
       }
       html += `</div>`;
     });
@@ -202,7 +208,7 @@ class CET6LongReadEngine {
     const overallAnalysis = this._buildOverallAnalysis();
     if (overallAnalysis) {
       html += `<div class="card"><div class="card-title">📊 整体分析</div>`;
-      html += `<div class="overall-analysis">${this._esc(overallAnalysis)}</div>`;
+      html += `<div class="overall-analysis">${CET6Utils.esc(overallAnalysis)}</div>`;
       html += `</div>`;
     }
 
@@ -242,7 +248,7 @@ class CET6LongReadEngine {
         html += `</span>`;
       }
       html += `</div>`;
-      html += `<div class="para-text">${this._esc(para.text)}</div>`;
+      html += `<div class="para-text">${CET6Utils.esc(para.text)}</div>`;
       html += `</div>`;
     });
     html += `</div>`;
@@ -283,7 +289,7 @@ class CET6LongReadEngine {
     html += `<span><span class="id-num">${opt.id}.</span> ${statusHtml}</span>`;
     html += `<span class="per-question-timer ${elapsedClass}" id="qtimer-${opt.id}">${elapsed > 0 ? this._fmtTime(elapsed) : ''}</span>`;
     html += `</div>`;
-    html += `<div class="option-match-text" data-opt="${opt.id}">${this._esc(opt.text)}</div>`;
+    html += `<div class="option-match-text" data-opt="${opt.id}">${CET6Utils.esc(opt.text)}</div>`;
 
     if (isMatched) {
       const matchedParaId = this.matches[opt.id];
@@ -291,7 +297,7 @@ class CET6LongReadEngine {
       if (matchedPara) {
         html += `<div class="matched-para-toggle" id="para-toggle-${opt.id}" onclick="window._engine.toggleParaExpand(${opt.id})">📄 展开段落 ${matchedParaId}</div>`;
         html += `<div class="matched-para-content" id="para-content-${opt.id}" style="display:none;">`;
-        html += `<div class="para-text" style="font-size:12px;line-height:1.8;color:var(--text2);background:var(--bg);padding:8px 10px;border-radius:6px;border:1px solid var(--border);">${this._esc(matchedPara.text)}</div>`;
+        html += `<div class="para-text" style="font-size:12px;line-height:1.8;color:var(--text2);background:var(--bg);padding:8px 10px;border-radius:6px;border:1px solid var(--border);">${CET6Utils.esc(matchedPara.text)}</div>`;
         html += `</div>`;
       }
     }
@@ -402,8 +408,8 @@ class CET6LongReadEngine {
     let html = `<div class="locate-compare">`;
     html += `<div style="font-size:11px;font-weight:600;margin-bottom:4px;">📍 定位词对比</div>`;
     html += `<div style="font-size:11px;display:flex;gap:12px;flex-wrap:wrap;">`;
-    html += `<span>你标记: ${userWords.length > 0 ? userWords.map(w => `<span class="locate-compare-tag user">${this._esc(w)}</span>`).join(' ') : '<span style="color:var(--text3);">未标记</span>'}</span>`;
-    html += `<span>正确: ${correctWords.length > 0 ? correctWords.map(w => `<span class="locate-compare-tag correct">${this._esc(w)}</span>`).join(' ') : '<span style="color:var(--text3);">无</span>'}</span>`;
+    html += `<span>你标记: ${userWords.length > 0 ? userWords.map(w => `<span class="locate-compare-tag user">${CET6Utils.esc(w)}</span>`).join(' ') : '<span style="color:var(--text3);">未标记</span>'}</span>`;
+    html += `<span>正确: ${correctWords.length > 0 ? correctWords.map(w => `<span class="locate-compare-tag correct">${CET6Utils.esc(w)}</span>`).join(' ') : '<span style="color:var(--text3);">无</span>'}</span>`;
     html += `</div>`;
 
     if (userWords.length > 0 && correctWords.length > 0) {
@@ -492,7 +498,7 @@ class CET6LongReadEngine {
       html += `<span class="locate-stat-words">`;
       words.forEach(w => {
         const isHit = correctWords.map(c => c.toLowerCase()).includes(w.toLowerCase());
-        html += `<span class="locate-stat-tag ${isHit ? 'hit' : 'miss'}">${this._esc(w)}</span>`;
+        html += `<span class="locate-stat-tag ${isHit ? 'hit' : 'miss'}">${CET6Utils.esc(w)}</span>`;
       });
       html += `</span>`;
       html += `<span class="locate-stat-result">${hits.length}/${words.length} 命中</span>`;
@@ -630,9 +636,9 @@ class CET6LongReadEngine {
       html += `<div class="synonym-box">`;
       html += `<div style="font-weight:600;margin-bottom:4px;">${opt.id}题 → ${opt.correctPara || '?'}段</div>`;
       html += `<div class="map-item">`;
-      html += `<span class="opt-text">${this._esc(opt.text.substring(0, 80))}${opt.text.length > 80 ? '...' : ''}</span>`;
+      html += `<span class="opt-text">${CET6Utils.esc(opt.text.substring(0, 80))}${opt.text.length > 80 ? '...' : ''}</span>`;
       html += `</div>`;
-      html += `<div class="map-item" style="font-size:11px;color:var(--text2);">${this._esc(opt.synonymMapping)}</div>`;
+      html += `<div class="map-item" style="font-size:11px;color:var(--text2);">${CET6Utils.esc(opt.synonymMapping)}</div>`;
       html += `</div>`;
     });
     html += `</div>`;
@@ -667,12 +673,7 @@ class CET6LongReadEngine {
     return m + 'm' + s + 's';
   }
 
-  _esc(s) {
-    if (!s) return '';
-    const div = document.createElement('div');
-    div.textContent = s;
-    return div.innerHTML;
-  }
+  
 
   startTimer() {
     if (this.timerRunning) return;
@@ -805,42 +806,18 @@ class CET6LongReadEngine {
   addLocateWord(optId, word) {
     if (!this.locateWord) return;
     this.locateWord.add(optId, word);
-    this._renderLocateWordPanel();
+    this.updateSidebar();
     this.locateWord.applyToDOM();
   }
 
   removeLocateWord(optId, word) {
     if (!this.locateWord) return;
     this.locateWord.remove(optId, word);
-    this._renderLocateWordPanel();
+    this.updateSidebar();
     this.reRenderCurrentPhase();
   }
 
   _renderLocateWordPanel() {
-    const container = document.getElementById('locateword-list');
-    const countEl = document.getElementById('locateword-count');
-    if (!container) return;
-    if (!this.locateWord) {
-      container.innerHTML = '<div class="locateword-empty">选中单词 → 点击"标记为定位词"</div>';
-      return;
-    }
-    const data = this.locateWord.getAll();
-    const total = this.locateWord.count();
-    if (countEl) countEl.textContent = total;
-    if (total === 0) {
-      container.innerHTML = '<div class="locateword-empty">选中单词 → 点击"标记为定位词"</div>';
-      return;
-    }
-    let html = '';
-    Object.entries(data).forEach(([optId, words]) => {
-      words.forEach((w, i) => {
-        html += `<div class="locateword-item">
-          <div><span class="lw-id">${optId}题</span> <span class="lw-word">${this._esc(w)}</span></div>
-          <span class="del" onclick="window._engine.removeLocateWord(${optId},'${this._esc(w)}');">✕</span>
-        </div>`;
-      });
-    });
-    container.innerHTML = html;
   }
 
   _refreshPhase2UI() {
@@ -865,7 +842,7 @@ class CET6LongReadEngine {
           <span class="para-badge">${para.id}</span>
           ${isMatched ? '<span class="para-matched-tags">' + matchedIds.map(id => `<span class="para-matched-tag">${id}</span>`).join('') + '</span>' : ''}
         </div>
-        <div class="para-text">${this._esc(para.text)}</div>`;
+        <div class="para-text">${CET6Utils.esc(para.text)}</div>`;
       passageEl.appendChild(div);
     });
 
@@ -910,7 +887,7 @@ class CET6LongReadEngine {
       this._refreshPhase3();
     }
 
-    this._renderSidePanels();
+    this.updateSidebar();
   }
 
   _refreshPhase3() {
@@ -925,52 +902,35 @@ class CET6LongReadEngine {
     }
   }
 
-  _renderSidePanels() {
-    this._renderVocabPanel();
-    this._renderAnnotatePanel();
-    this._renderLocateWordPanel();
-  }
+  
 
-  _renderVocabPanel() {
+  updateSidebar() {
     const list = this.vocab ? this.vocab.getAll() : [];
-    const countEl = document.getElementById('vocab-count');
-    const countHeader = document.getElementById('vocab-header-count');
-    const container = document.getElementById('vocab-list');
-    if (countEl) countEl.textContent = list.length;
-    if (countHeader) countHeader.textContent = list.length + ' 词';
-    if (!container) return;
-    if (list.length === 0) {
-      container.innerHTML = '<div class="vocab-empty">选中任意单词 → 弹出"加入生词本"</div>';
-      return;
+    const annotateList = this.annotate ? this.annotate.getAll() : [];
+    const locateWordData = this.locateWord ? this.locateWord.getAll() : {};
+    const locateWordTotal = this.locateWord ? this.locateWord.count() : 0;
+
+    CET6Shell.updateSidebarCounts({ vocab: list.length, annotate: annotateList.length, locateword: locateWordTotal });
+
+    const vocabListEl = document.getElementById('vocab-list');
+    if (vocabListEl) {
+      vocabListEl.innerHTML = CET6Shell.renderVocabList(list, 'window._app.currentEngine.removeVocab');
     }
-    container.innerHTML = list.map((w, i) =>
-      `<div class="vocab-item">
-        <div><div class="word">${this._esc(w.word)}</div><div class="src">${w.source || ''}</div></div>
-        <span class="del" onclick="window._vocab.remove(${i});window._engine._renderVocabPanel();">✕</span>
-      </div>`
-    ).join('');
+    const annotateListEl = document.getElementById('annotate-list');
+    if (annotateListEl) {
+      annotateListEl.innerHTML = CET6Shell.renderAnnotateList(annotateList, 'window._app.currentEngine.removeAnnotate');
+    }
+    const locateListEl = document.getElementById('locateword-list');
+    if (locateListEl) {
+      locateListEl.innerHTML = CET6Shell.renderLocateWordList(locateWordData, 'window._app.currentEngine.removeLocateWord');
+    }
   }
 
-  _renderAnnotatePanel() {
-    const list = this.annotate ? this.annotate.getAll() : [];
-    const countEl = document.getElementById('annotate-count');
-    const container = document.getElementById('annotate-list');
-    if (countEl) countEl.textContent = list.length;
-    if (!container) return;
-    if (list.length === 0) {
-      container.innerHTML = '<div class="annotate-empty">选中文字 → 点击"划线标注"</div>';
-      return;
-    }
-    container.innerHTML = list.map((a, i) =>
-      `<div class="annotate-item">
-        <div>
-          <div class="a-text">${this._esc(a.text)}</div>
-          <div class="a-para">¶${(a.paraIdx + 1) || '-'}</div>
-          ${a.annotation ? `<div class="a-note">${this._esc(a.annotation)}</div>` : ''}
-        </div>
-        <span class="del" onclick="window._annotate.remove(${i});window._engine._renderAnnotatePanel();">✕</span>
-      </div>`
-    ).join('');
+  removeVocab(index) {
+    if (this.vocab) { this.vocab.remove(index); this.reRenderCurrentPhase(); this.updateSidebar(); }
+  }
+  removeAnnotate(index) {
+    if (this.annotate) { this.annotate.remove(index); this.reRenderCurrentPhase(); this.updateSidebar(); }
   }
 
   reRenderCurrentPhase() {

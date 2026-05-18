@@ -1,0 +1,272 @@
+{
+  "_comment": "2025年12月六级真题第1套 · 长篇阅读（匹配题）",
+  "meta": {
+    "id": "2025-12-longread",
+    "examDate": "2025年12月",
+    "level": "CET6",
+    "type": "matching",
+    "title": "机器人与餐饮业",
+    "titleEn": "Restaurants are now employing robots—should chefs be worried?",
+    "description": "2025年12月六级真题第1套 · 长篇阅读（匹配题）",
+    "timeLimit": 15
+  },
+
+  "passage": {
+    "paragraphs": [
+      {
+        "id": "A",
+        "text": "Like most chefs, Flippy is not afraid of hard work. Since last summer, that has meant 11am until 7pm shifts at Caliburger in Pasadena, California, as well as short assignments at Chick-N-Tots at Dodger Stadium in Los Angeles. These are long hours of repetitive work, where the boss demands absolute consistency. But you won't hear Flippy complain or say anything, in fact. For Flippy is a robot—a cloud-connected mechanical arm with 3D thermal scanners for eyes—that can flip burgers or fry 80 baskets of food an hour, monitor that food and even clean up afterwards."
+      },
+      {
+        "id": "B",
+        "text": "Flippy was created by Miso Robotics, part of the Cali Group, which is described by its CEO, John Miller, as: \"A technology company that happens to sell cheeseburgers.\" Cali creates new machines that it road-tests in its Caliburger restaurants across the world, into which Flippy will be deployed this year. And Flippy is not alone. Also in California, Bear Robotics has developed a self-guiding robot, Penny, which has so far served 40,000 diners."
+      },
+      {
+        "id": "C",
+        "text": "Ten years ago, robot-chefs and waiters were pure science fiction. Today, they are a reality, and at prices that make them a plausible investment. From May, Penny will be shipped on a subscription basis that offers \"an immediate return\", says Bear Robotics' chief operating officer, Juan Higueros. Flippy will cost a reported $60,000 to $100,000. Fully automated burger restaurants managed with minimal human oversight—where customers order at screens, pay electronically and eat food cooked and delivered by robots—are now a possibility."
+      },
+      {
+        "id": "D",
+        "text": "The technology exists, it just needs knitting together cost-effectively and in a way diners buy into. In an industry keen to slash labour costs and increase profits, further automation seems inevitable. After an eight-month test at Kang Nam Tofu House in California, Bear Robotics credited Penny with driving a 28% increase in sales. Meanwhile, in US trials, the self-ordering screens that McDonald's is currently installing at its 1,300 UK restaurants yielded a reported 30% rise in order values."
+      },
+      {
+        "id": "E",
+        "text": "Personalisation is seen as key to the appeal of this technology, alongside its ability to reliably push so-called \"upsells\" (meal deals, extras, larger drinks) to customers. Soon when you log into a restaurant app, it will be able to use your data and purchasing history to recommend dishes to you—factoring in everything from the weather to, if you are ordering at a screen that can read your face, your mood."
+      },
+      {
+        "id": "F",
+        "text": "\"Right now people compromise on choice. We're presented with a one-size-fits-all menu. Ultimately, technology can allow us to make personal choices. You love spicy food and chicken? Here's the dish people like you mostly order,\" says Tom Weaver, CEO at the hospitality tech company Flyt. He talks enthusiastically about the Helsinki pop-up Take-In, a full-service restaurant where diners ordered dishes in from various delivery services. \"For the first time in a few hundred years, digital is allowing us to create new versions of restaurants.\""
+      },
+      {
+        "id": "G",
+        "text": "If high-street fast food is automation-ready, its impact on high-end restaurants is likely to be subtler and slower. \"It'll probably be a very long time before we see a five-star robot-chef,\" says Noel Sharkey, professor of AI and robotics at the University of Sheffield. \"Apart from the AI creativity gap, great cooking involves a subtle understanding of ingredients and delicate cooking that would be enormously challenging for robots. Placing fragile foods on plates would be incredibly slow.\""
+      },
+      {
+        "id": "H",
+        "text": "Currently, robots have limited functionality. A human needs to load Penny with plates that diners lift off themselves. At the robot-powered US pizza-delivery company Zume, the more difficult jobs, such as topping pizzas, are still done by humans. But Moley, which will launch soon, offers an idea of the sophistication to come. Modelled on the movements of a MasterChef contest winner, Tim Anderson, its robotic arms are fixed over a stove and programmed to prepare dishes from raw ingredients. It is designed for domestic use, but a commercial version is planned that opens up the possibility of restaurant kitchens automating even highly technically challenging tasks."
+      },
+      {
+        "id": "I",
+        "text": "For now, the kitchen technology that QSR Automations supplies to Mitchells & Butlers' pubs or KFC is less glamorous. Rather than having a chef shouting out diners' orders, the QSR system automatically distributes those orders across screens. The kitchen screens then tell chefs when to start cooking each dish, so that your plate of fish, chips and peas comes together at the right time."
+      },
+      {
+        "id": "J",
+        "text": "The restaurant industry is currently suffering a severe shortage of skilled chefs—a deficit of 11,000, according to the skills agency People 1st. \"Automation systems designed to make the process more idiot-proof are trying to bridge that gap,\" says Stefan Chomka, the editor of Restaurant magazine."
+      },
+      {
+        "id": "K",
+        "text": "In terms of simplifying or enhancing the customer experience, online restaurant booking has been the easily-won success of the internet age. Automated at-table ordering and payment is seen as the next landmark. Until then, early adopters, such as the Manchester bar owner Andy Smith, who uses the Ordoo app at his venue 33 Oldham Street, may well experience growing but \"lower than expected\" acceptance."
+      },
+      {
+        "id": "L",
+        "text": "Embarrassing failures in restaurant tech frequently hit the headlines. The TGI Fridays drone that injured a Brooklyn Daily photographer; US burger chain Shake Shack having to retreat from plans for entirely cashless ordering sites. But, says Chomka, such technology could miss the mark if it only offers \"solutions to problems that don't really exist\". \"Payments being automatic\" could be useful, he adds. But, in an expensive restaurant, \"how quick do you need dinner to be?\""
+      },
+      {
+        "id": "M",
+        "text": "That attachment to the human art of hospitality will be heartening for staff who see automation as a threat to jobs. \"Unite is concerned that without safeguards, any benefits will bypass workers in low-paying jobs, such as waiters,\" says the union's London regional officer, Dave Turnbull. \"We're urging Members of Parliament to ensure automation does not just benefit a wealthy few like previous industrial revolutions.\""
+      },
+      {
+        "id": "N",
+        "text": "The industry principle is that automation will allow it to redeploy staff more effectively. Jobs will change, if not immediately decrease in number. \"Self-order screens mean more demand for people front-of-house. Last year, we recruited 1,000 new managers,\" says McDonald's COO, Jason Clark. Caliburger has a programme to retrain staff as robot engineers or \"chef techs\"."
+      },
+      {
+        "id": "O",
+        "text": "But ultimately the chance to reduce overheads by employing fewer people or at lower rates will be what attracts big brands to technology. Invariably, over the next 10 years, jobs will go in conventional bricks-built restaurants, not least because automation will boost their rapidly growing rival: delivery. Companies such as Domino and Just Eat have both experimented with robot and drone delivery, which is already legal in Reykjavik, Iceland. \"Robot food deliveries are the future,\" says Noel Sharkey. \"Small, 4mph ground robots are safe and will work 24 hours a day.\""
+      },
+      {
+        "id": "P",
+        "text": "Combined with machine learning of anticipated order volumes and the minute-by-minute cooking data generated by systems such as QSR, that robot fleet could deliver almost instantly. \"Restaurants will prepare food ahead of orders coming in,\" predicts Just Eat's director of engineering, Daniel Richardson. \"I'll be able to say 'Let's have pizza' to my family, my intelligent assistant will hear and 10 minutes later the food will be at my door.\" No one is putting an exact date on it yet. But in the dining room and on your doorstep, the robots are coming."
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": 36,
+      "text": "It is now possible to fully automate a burger restaurant with little human supervision.",
+      "correctPara": "C",
+      "locateWords": {
+        "properNoun": [],
+        "normalNoun": ["burger restaurant", "human supervision"],
+        "comparative": []
+      },
+      "synonymMapping": "fully automated ... with minimal human oversight ≈ fully automate ... with little human supervision"
+    },
+    {
+      "id": 37,
+      "text": "At a robot-powered US company, complicated tasks still have to be performed by humans.",
+      "correctPara": "H",
+      "locateWords": {
+        "properNoun": ["US"],
+        "normalNoun": ["complicated tasks", "humans"],
+        "comparative": []
+      },
+      "synonymMapping": "more difficult jobs ... still done by humans ≈ complicated tasks ... performed by humans"
+    },
+    {
+      "id": 38,
+      "text": "More automation appears to be a certainty in industries eager to cut labour costs and raise profits.",
+      "correctPara": "D",
+      "locateWords": {
+        "properNoun": [],
+        "normalNoun": ["automation", "labour costs", "profits"],
+        "comparative": []
+      },
+      "synonymMapping": "slash labour costs and increase profits ≈ cut labour costs and raise profits"
+    },
+    {
+      "id": 39,
+      "text": "There are often front-page reports of failures in technological innovation of the restaurant industry.",
+      "correctPara": "L",
+      "locateWords": {
+        "properNoun": [],
+        "normalNoun": ["failures", "technological innovation", "restaurant industry"],
+        "comparative": []
+      },
+      "synonymMapping": "Embarrassing failures ... hit the headlines ≈ front-page reports of failures"
+    },
+    {
+      "id": 40,
+      "text": "Robot-chef Flippy does not fear laborious work, nor does it make any complaints.",
+      "correctPara": "A",
+      "locateWords": {
+        "properNoun": ["Flippy"],
+        "normalNoun": ["laborious work", "complaints"],
+        "comparative": []
+      },
+      "synonymMapping": "not afraid of hard work ... won't hear Flippy complain ≈ does not fear laborious work ... does not make any complaints"
+    },
+    {
+      "id": 41,
+      "text": "Digital technology makes it possible for businesses to innovate restaurant models.",
+      "correctPara": "F",
+      "locateWords": {
+        "properNoun": [],
+        "normalNoun": ["Digital technology", "restaurant models"],
+        "comparative": []
+      },
+      "synonymMapping": "digital is allowing us to create new versions of restaurants ≈ Digital technology ... innovate restaurant models"
+    },
+    {
+      "id": 42,
+      "text": "Fondness for human warmth in catering to customers will give hope to employees who are afraid of losing jobs to robots.",
+      "correctPara": "M",
+      "locateWords": {
+        "properNoun": [],
+        "normalNoun": ["human warmth", "employees", "losing jobs"],
+        "comparative": []
+      },
+      "synonymMapping": "attachment to the human art of hospitality ... heartening for staff who see automation as a threat ≈ Fondness for human warmth ... give hope to employees afraid of losing jobs"
+    },
+    {
+      "id": 43,
+      "text": "There is an acute shortage of experienced chefs in the catering industry and automated cooking is expected to fill the gap.",
+      "correctPara": "J",
+      "locateWords": {
+        "properNoun": [],
+        "normalNoun": ["experienced chefs", "automated cooking"],
+        "comparative": ["acute"]
+      },
+      "synonymMapping": "severe shortage of skilled chefs ... Automation systems ... trying to bridge that gap ≈ acute shortage of experienced chefs ... automated cooking expected to fill the gap"
+    },
+    {
+      "id": 44,
+      "text": "Over the coming decade, many jobs in traditional restaurants will disappear due to robot delivery.",
+      "correctPara": "O",
+      "locateWords": {
+        "properNoun": [],
+        "normalNoun": ["jobs", "traditional restaurants", "robot delivery"],
+        "comparative": []
+      },
+      "synonymMapping": "over the next 10 years, jobs will go in conventional bricks-built restaurants ... robot and drone delivery ≈ Over the coming decade, jobs ... disappear due to robot delivery"
+    },
+    {
+      "id": 45,
+      "text": "According to an expert in AI and robotics, it may be quite some time before a master robot-chef appears.",
+      "correctPara": "G",
+      "locateWords": {
+        "properNoun": ["AI", "robotics"],
+        "normalNoun": ["expert", "master robot-chef"],
+        "comparative": ["quite some time"]
+      },
+      "synonymMapping": "a very long time before we see a five-star robot-chef ≈ quite some time before a master robot-chef appears"
+    }
+  ],
+
+  "answers": [
+    { "id": 36, "correct": "C", "tip": "定位：burger restaurant, human supervision → C段 fully automated...minimal human oversight 同义替换" },
+    { "id": 37, "correct": "H", "tip": "定位：US（专有名词）→ H段 robot-powered US pizza-delivery company Zume, difficult jobs still done by humans" },
+    { "id": 38, "correct": "D", "tip": "定位：automation, labour costs, profits → D段 slash labour costs and increase profits, further automation inevitable" },
+    { "id": 39, "correct": "L", "tip": "定位：failures, restaurant industry → L段 Embarrassing failures in restaurant tech frequently hit the headlines" },
+    { "id": 40, "correct": "A", "tip": "定位：Flippy（专有名词）→ A段 not afraid of hard work, won't hear Flippy complain" },
+    { "id": 41, "correct": "F", "tip": "定位：Digital technology, restaurant models → F段 digital is allowing us to create new versions of restaurants" },
+    { "id": 42, "correct": "M", "tip": "定位：human warmth, employees, losing jobs → M段 attachment to human art of hospitality...heartening for staff who see automation as a threat" },
+    { "id": 43, "correct": "J", "tip": "定位：shortage（比较级acute）、experienced chefs → J段 severe shortage of skilled chefs...Automation systems...bridge that gap" },
+    { "id": 44, "correct": "O", "tip": "定位：traditional restaurants, robot delivery → O段 over the next 10 years, jobs will go in conventional bricks-built restaurants" },
+    { "id": 45, "correct": "G", "tip": "定位：AI, robotics（专有名词）→ G段 Noel Sharkey, professor of AI and robotics...a very long time before we see a five-star robot-chef" }
+  ],
+
+  "overallAnalysis": "这篇讲机器人在餐饮业的应用。前 3 道题（{easyIds}）都有专有名词（Flippy、US、AI/robotics），在 Phase 2 可以先做。{easyCount} 题用专有名词定位即可快速锁定答案。剩下的 {hardCount} 道（{hardIds}）主要靠普通名词+同义替换，建议留到后面做。其中第38题（automation/labour costs/profits）和44题（traditional restaurants/robot delivery）的核心名词在原文中几乎原词复现。",
+
+  "phases": {
+    "phase1": {
+      "showFullPassage": true,
+      "instruction": {
+        "title": "Phase 1 · 选项扫读",
+        "content": "先快速浏览10个选项，识别每道题的定位词类型。不需要看原文，只需要训练你「一眼识别定位词」的能力。"
+      },
+      "locateStrategy": {
+        "title": "三层定位法",
+        "items": [
+          { "level": "① 最佳", "type": "专有名词", "desc": "时间、地点、人名、地名、机构名、数字" },
+          { "level": "② 备用", "type": "普通名词 + 动词", "desc": "注意同义替换的可能性" },
+          { "level": "③ 兜底", "type": "比较级 / 最高级", "desc": "形容词易被替换，但比较级/最高级是锚点" }
+        ]
+      },
+      "thinkingPrompt": {
+        "template": "先扫描定位词类型。{properNouns} 是专有名词，这是黄金定位词，直接去原文找大写字母。{normalNouns} 是普通名词，如果专有名词没找到，用它们搜索，注意同义替换。最后检查 {comparatives} 作为兜底确认。"
+      }
+    },
+
+    "phase2": {
+      "instruction": {
+        "title": "Phase 2 · 计时定位匹配",
+        "content": "15分钟严格限时。用三层定位法快速匹配选项与段落。超过1分钟找不到的题果断放弃。目标是做对7-8道。"
+      },
+      "timing": {
+        "totalMinutes": 15,
+        "warnMinutes": [10, 5, 1],
+        "perQuestionLimit": 60
+      }
+    },
+
+    "phase3": {
+      "title": "Phase 3 · 对答案",
+      "source": "官方解析",
+      "instruction": "校对答案，重点关注：你做对了但超时的题 · 做错了但花时间少的题 · 主动放弃的题 · 超时未做的题"
+    },
+
+    "phase4": {
+      "summary": {
+        "title": "复盘总结",
+        "content": "长篇阅读的核心是「快速定位能力」+「学会放弃」。复盘重点：定位策略是否高效、放弃决策是否合理、时间分配是否科学。"
+      },
+      "skillStats": {
+        "title": "定位策略使用统计",
+        "items": [
+          { "name": "专有名词", "desc": "使用次数", "questionIds": "" },
+          { "name": "普通名词/动词", "desc": "使用次数", "questionIds": "" },
+          { "name": "比较级/最高级", "desc": "使用次数", "questionIds": "" }
+        ]
+      },
+      "pitfalls": {
+        "title": "易错点提醒",
+        "content": "• 注意同义替换陷阱：选项中的词汇可能在原文中被替换成近义词<br>• 注意段落可能匹配多个选项，也可能不匹配任何选项<br>• 注意专有名词可能以缩写、全称、代称等形式出现"
+      },
+      "vocabSummary": {
+        "title": "生词汇总",
+        "words": []
+      }
+    }
+  }
+}

@@ -17,6 +17,8 @@
   --error-light: #ffebee;
   --tag-bg: #e8f4fd;
   --tag-border: #b6d4fe;
+  --purple: #af52de;
+  --purple-light: #f3e5f5;
   --shadow: 0 2px 12px rgba(0,0,0,0.08);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
   --radius: 10px;
@@ -35,6 +37,7 @@
     --tag-border: #0a84ff;
     --accent: #0a84ff;
     --accent-light: rgba(10,132,255,0.12);
+    --purple-light: rgba(175,82,222,0.15);
     --success-light: rgba(52,199,89,0.15);
     --warn-light: rgba(255,159,10,0.12);
     --error-light: rgba(255,59,48,0.12);

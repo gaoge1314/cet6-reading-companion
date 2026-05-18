@@ -1,0 +1,24 @@
+# 废弃的独立 HTML 页面（已整合为 SPA app.html）
+player.html
+longread-player.html
+cloze-player.html
+vocab-review.html
+
+# 原始首页（已废弃，保留参考但排除 git 追踪）
+index.html
+
+# 模板文件
+assets/data/cloze-template.json
+
+# 临时文件
+*~
+*.swp
+*.swo
+
+# 操作系统文件
+Thumbs.db
+.DS_Store
+
+# Python 缓存
+__pycache__/
+*.pyc
