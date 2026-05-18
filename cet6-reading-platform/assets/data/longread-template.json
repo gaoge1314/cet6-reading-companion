@@ -37,7 +37,8 @@
         "normalNoun": ["普通名词", "verb"],
         "comparative": ["比较级词汇"]
       },
-      "synonymMapping": "选项中的xxx ≈ 原文中的yyy"
+      "synonymMapping": "选项中的xxx ≈ 原文中的yyy",
+      "thinkingPrompt": ""
     },
     {
       "id": 37,
@@ -48,7 +49,8 @@
         "normalNoun": ["普通名词"],
         "comparative": []
       },
-      "synonymMapping": ""
+      "synonymMapping": "",
+      "thinkingPrompt": ""
     }
   ],
 
@@ -57,8 +59,11 @@
     { "id": 37, "correct": "C", "tip": "定位：普通名词yyy → C段，动词zzz → 同义替换为www" }
   ],
 
+  "overallAnalysis": "前 {easyCount} 道题（{easyIds}）都有专有名词，建议在Phase 2优先做。后 {hardCount} 道（{hardIds}）没有专有名词，主要靠同义替换定位，建议留到后面做。",
+
   "phases": {
     "phase1": {
+      "showFullPassage": true,
       "instruction": {
         "title": "Phase 1 · 选项扫读",
         "content": "先快速浏览10个选项，识别每道题的定位词类型。不需要看原文，只需要训练你「一眼识别定位词」的能力。"
@@ -70,6 +75,9 @@
           { "level": "② 备用", "type": "普通名词 + 动词", "desc": "注意同义替换的可能性" },
           { "level": "③ 兜底", "type": "比较级 / 最高级", "desc": "形容词易被替换，但比较级/最高级是锚点" }
         ]
+      },
+      "thinkingPrompt": {
+        "template": "先扫一眼选项。{properNouns} 是专有名词，这是黄金定位词，直接去原文找大写字母。{normalNouns} 是普通名词，如果专有名词没找到，用它们搜索，注意同义替换。最后检查 {comparatives} 作为兜底确认。"
       }
     },
 

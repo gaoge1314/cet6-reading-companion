@@ -1,5 +1,6 @@
 # 临时文件
 .superpowers/
+.trae-cn/
 
 # 试题 PDF 文件（用户自行放置）
 *.pdf

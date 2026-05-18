@@ -68,6 +68,16 @@
       </div>
     </div>
 
+    <div class="locateword-panel">
+      <div class="title">
+        <span>📍 定位词</span>
+        <span class="count"><span id="locateword-count">0</span> 个</span>
+      </div>
+      <div class="locateword-list" id="locateword-list">
+        <div class="locateword-empty">选中单词 → 点击"标记为定位词"</div>
+      </div>
+    </div>
+
     <div class="summary-panel">
       <div class="title">匹配状态</div>
       <div id="match-status-card">
@@ -90,14 +100,16 @@
   </div>
   <div class="btn-row">
     <button class="btn-underline" onclick="addUnderlineOnly()">仅划线</button>
+    <button class="btn-locateword" onclick="addAsLocateWord()">🖍 定位词</button>
     <button class="btn-cancel" onclick="hidePopup()">取消</button>
   </div>
-  <div class="popup-hint">划线后文字下方会出现橙色标记</div>
+  <div class="popup-hint">划线后文字下方会出现橙色标记 · 定位词以黄色高亮显示</div>
 </div>
 
 <script src="assets/js/cet6-loader.js"></script>
 <script src="assets/js/cet6-vocab.js"></script>
 <script src="assets/js/cet6-annotate.js"></script>
+<script src="assets/js/cet6-locateword.js"></script>
 <script src="assets/js/cet6-longread-engine.js"></script>
 
 <script>
@@ -130,6 +142,22 @@ function addUnderlineOnly() {
   window._annotate.add(selectedText, selectedPara, '');
   window._engine.reRenderCurrentPhase();
   window._engine._renderAnnotatePanel();
+  hidePopup();
+}
+
+function addAsLocateWord() {
+  if (!selectedText) return;
+  const activeTab = document.querySelector('.tab.active');
+  if (!activeTab || activeTab.dataset.phase !== '2') {
+    alert('请在 Phase 2 中标记定位词');
+    return;
+  }
+  const focusedOpt = window._engine.currentFocus;
+  if (!focusedOpt) {
+    alert('请先点击一个选项卡片聚焦，再标记定位词');
+    return;
+  }
+  window._engine.addLocateWord(focusedOpt, selectedText);
   hidePopup();
 }
 
@@ -213,7 +241,16 @@ function updateMatchStatusCard() {
         }
       };
 
-      const engine = new CET6LongReadEngine(data, vocab);
+      const locateWord = new CET6LocateWord('cet6-longread-locatewords-' + dataId);
+      window._locateWord = locateWord;
+
+      locateWord.onChange = function () {
+        if (window._engine) {
+          window._engine._renderLocateWordPanel();
+        }
+      };
+
+      const engine = new CET6LongReadEngine(data, vocab, locateWord);
       engine.setAnnotate(annotate);
       window._engine = engine;
 

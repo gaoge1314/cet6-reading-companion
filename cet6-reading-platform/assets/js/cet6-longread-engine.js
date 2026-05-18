@@ -1,8 +1,9 @@
 class CET6LongReadEngine {
-  constructor(data, vocab) {
+  constructor(data, vocab, locateWord) {
     this.data = data;
     this.vocab = vocab;
     this.annotate = null;
+    this.locateWord = locateWord;
 
     this.matches = {};
     this.gaveUps = new Set();
@@ -76,6 +77,57 @@ class CET6LongReadEngine {
     this._updateTimerDisplay();
   }
 
+  _buildThinkingPrompt(opt) {
+    const p1 = this.data.phases.phase1;
+    const globalTemplate = (p1.thinkingPrompt && p1.thinkingPrompt.template) || '';
+    const customPrompt = opt.thinkingPrompt || '';
+    const template = customPrompt || globalTemplate;
+    if (!template) return '';
+
+    const lw = opt.locateWords || {};
+    const properNouns = (lw.properNoun || []).join(', ');
+    const normalNouns = (lw.normalNoun || []).join(', ');
+    const comparatives = (lw.comparative || []).join(', ');
+
+    let result = template;
+    result = result.replace(/\{properNouns\}/g, properNouns || '（无）');
+    result = result.replace(/\{normalNouns\}/g, normalNouns || '（无）');
+    result = result.replace(/\{comparatives\}/g, comparatives || '（无）');
+    result = result.replace(/\{text\}/g, (opt.text || '').substring(0, 60));
+    result = result.replace(/\{id\}/g, String(opt.id));
+    return result;
+  }
+
+  _buildOverallAnalysis() {
+    const template = this.data.overallAnalysis || '';
+    if (!template) return '';
+
+    const options = this.data.options || [];
+    const easyIds = [];
+    const hardIds = [];
+    const vars = {};
+
+    options.forEach(opt => {
+      const lw = opt.locateWords || {};
+      const hasProper = lw.properNoun && lw.properNoun.length > 0;
+      if (hasProper) easyIds.push(opt.id);
+      else hardIds.push(opt.id);
+      vars['q' + opt.id + '_properNouns'] = (lw.properNoun || []).join(', ');
+      vars['q' + opt.id + '_normalNouns'] = (lw.normalNoun || []).join(', ');
+      vars['q' + opt.id + '_comparatives'] = (lw.comparative || []).join(', ');
+    });
+
+    let result = template;
+    result = result.replace(/\{easyCount\}/g, String(easyIds.length));
+    result = result.replace(/\{hardCount\}/g, String(hardIds.length));
+    result = result.replace(/\{easyIds\}/g, easyIds.join(', ') || '无');
+    result = result.replace(/\{hardIds\}/g, hardIds.join(', ') || '无');
+    Object.entries(vars).forEach(([key, val]) => {
+      result = result.replace(new RegExp('\\{' + key + '\\}', 'g'), val || '（无）');
+    });
+    return result;
+  }
+
   _renderPhase1(container) {
     const div = document.createElement('div');
     div.className = 'phase';
@@ -83,8 +135,22 @@ class CET6LongReadEngine {
     const p = this.data.phases.phase1;
 
     let html = '';
+
     if (p.instruction) {
       html += `<div class="center-box"><div class="label">${p.instruction.title}</div><div style="font-size:13px;">${p.instruction.content}</div></div>`;
+    }
+
+    if (p.showFullPassage !== false) {
+      html += `<div class="card"><div class="card-title">📖 完整原文</div>`;
+      html += `<div class="passage-scroll">`;
+      const paragraphs = this.data.passage.paragraphs || [];
+      paragraphs.forEach(para => {
+        html += `<div class="para-block" data-para="${para.id}" id="p1-para-${para.id}">`;
+        html += `<div class="para-header"><span class="para-badge">${para.id}</span></div>`;
+        html += `<div class="para-text">${this._esc(para.text)}</div>`;
+        html += `</div>`;
+      });
+      html += `</div></div>`;
     }
 
     if (p.locateStrategy) {
@@ -99,10 +165,12 @@ class CET6LongReadEngine {
       html += `</div>`;
     }
 
-    html += `<div class="card"><div class="card-title">选项列表 · 识别定位词</div>`;
+    html += `<div class="card"><div class="card-title">选项逐题分析</div>`;
     (this.data.options || []).forEach(opt => {
-      html += `<div class="option-match-card">`;
-      html += `<div class="option-match-id"><span class="id-num">${opt.id}.</span></div>`;
+      const thinking = this._buildThinkingPrompt(opt);
+      html += `<div class="option-analysis-card">`;
+      html += `<div class="option-analysis-header">`;
+      html += `<span class="id-num">${opt.id}.</span>`;
       html += `<div class="location-tags">`;
       if (opt.locateWords) {
         if (opt.locateWords.properNoun && opt.locateWords.properNoun.length) {
@@ -122,10 +190,21 @@ class CET6LongReadEngine {
         }
       }
       html += `</div>`;
-      html += `<div class="option-match-text">${this._esc(opt.text)}</div>`;
+      html += `</div>`;
+      html += `<div class="option-analysis-text">${this._esc(opt.text)}</div>`;
+      if (thinking) {
+        html += `<div class="thinking-prompt">💡 ${this._esc(thinking)}</div>`;
+      }
       html += `</div>`;
     });
     html += `</div>`;
+
+    const overallAnalysis = this._buildOverallAnalysis();
+    if (overallAnalysis) {
+      html += `<div class="card"><div class="card-title">📊 整体分析</div>`;
+      html += `<div class="overall-analysis">${this._esc(overallAnalysis)}</div>`;
+      html += `</div>`;
+    }
 
     div.innerHTML = html;
     container.appendChild(div);
@@ -170,52 +249,84 @@ class CET6LongReadEngine {
 
     html += `<div class="matching-options" id="match-options">`;
     (this.data.options || []).forEach(opt => {
-      const isMatched = this.matches[opt.id] !== undefined;
-      const isGaveUp = this.gaveUps.has(opt.id);
-      const isOT = this.otItems.has(opt.id);
-
-      let cardClass = 'option-match-card';
-      if (isMatched) cardClass += ' matched';
-      else if (isGaveUp) cardClass += ' gave-up';
-      if (isOT) cardClass += ' overtime';
-
-      let statusHtml = '';
-      if (isMatched) statusHtml = `<span class="option-match-status matched-status">→ ${this.matches[opt.id]}</span>`;
-      else if (isGaveUp) statusHtml = `<span class="option-match-status gaveup-status">放弃</span>`;
-      else if (isOT) statusHtml = `<span class="option-match-status overtime-status">超时</span>`;
-      else statusHtml = `<span class="option-match-status pending-status">未做</span>`;
-
-      const elapsed = this.questionElapsed[opt.id] || 0;
-      const elapsedClass = elapsed > this.perQuestionLimit ? 'over' : '';
-
-      html += `<div class="${cardClass}" data-opt="${opt.id}" id="opt-card-${opt.id}">`;
-      html += `<div class="option-match-id">`;
-      html += `<span><span class="id-num">${opt.id}.</span> ${statusHtml}</span>`;
-      html += `<span class="per-question-timer ${elapsedClass}" id="qtimer-${opt.id}">${elapsed > 0 ? this._fmtTime(elapsed) : ''}</span>`;
-      html += `</div>`;
-      html += `<div class="option-match-text">${this._esc(opt.text)}</div>`;
-      html += `<div class="para-selector" id="selector-${opt.id}">`;
-      (this.data.passage.paragraphs || []).forEach(para => {
-        const sel = this.matches[opt.id] === para.id ? ' selected' : '';
-        const disabled = isGaveUp ? ' disabled' : '';
-        html += `<div class="para-select-btn${sel}${disabled}" data-para="${para.id}" onclick="window._engine.selectPara(${opt.id},'${para.id}')">${para.id}</div>`;
-      });
-      html += `</div>`;
-      const giveupLabel = isGaveUp ? '恢复' : '放弃';
-      const giveupCls = isGaveUp ? 'giveup-btn undo' : 'giveup-btn';
-      const giveupActive = isGaveUp ? ' active' : '';
-      html += `<div style="margin-top:6px;">`;
-      html += `<span class="giveup-hint${isOT && !isMatched && !isGaveUp ? ' show' : ''}" id="hint-${opt.id}">建议放弃（超过60秒）</span>`;
-      html += `<button class="${giveupCls}${giveupActive}" id="giveup-btn-${opt.id}" onclick="window._engine.toggleGiveUp(${opt.id})">${giveupLabel}</button>`;
-      html += `</div>`;
-      html += `</div>`;
+      html += this._buildOptionCard(opt);
     });
     html += `</div>`;
 
-    html += `</div>`; // matching-layout
+    html += `</div>`;
 
     div.innerHTML = html;
     container.appendChild(div);
+  }
+
+  _buildOptionCard(opt) {
+    const isMatched = this.matches[opt.id] !== undefined;
+    const isGaveUp = this.gaveUps.has(opt.id);
+    const isOT = this.otItems.has(opt.id);
+
+    let cardClass = 'option-match-card';
+    if (isMatched) cardClass += ' matched';
+    else if (isGaveUp) cardClass += ' gave-up';
+    if (isOT) cardClass += ' overtime';
+
+    let statusHtml = '';
+    if (isMatched) statusHtml = `<span class="option-match-status matched-status">→ ${this.matches[opt.id]}</span>`;
+    else if (isGaveUp) statusHtml = `<span class="option-match-status gaveup-status">放弃</span>`;
+    else if (isOT) statusHtml = `<span class="option-match-status overtime-status">超时</span>`;
+    else statusHtml = `<span class="option-match-status pending-status">未做</span>`;
+
+    const elapsed = this.questionElapsed[opt.id] || 0;
+    const elapsedClass = elapsed > this.perQuestionLimit ? 'over' : '';
+
+    let html = `<div class="${cardClass}" data-opt="${opt.id}" id="opt-card-${opt.id}">`;
+    html += `<div class="option-match-id">`;
+    html += `<span><span class="id-num">${opt.id}.</span> ${statusHtml}</span>`;
+    html += `<span class="per-question-timer ${elapsedClass}" id="qtimer-${opt.id}">${elapsed > 0 ? this._fmtTime(elapsed) : ''}</span>`;
+    html += `</div>`;
+    html += `<div class="option-match-text" data-opt="${opt.id}">${this._esc(opt.text)}</div>`;
+
+    if (isMatched) {
+      const matchedParaId = this.matches[opt.id];
+      const matchedPara = (this.data.passage.paragraphs || []).find(p => p.id === matchedParaId);
+      if (matchedPara) {
+        html += `<div class="matched-para-toggle" id="para-toggle-${opt.id}" onclick="window._engine.toggleParaExpand(${opt.id})">📄 展开段落 ${matchedParaId}</div>`;
+        html += `<div class="matched-para-content" id="para-content-${opt.id}" style="display:none;">`;
+        html += `<div class="para-text" style="font-size:12px;line-height:1.8;color:var(--text2);background:var(--bg);padding:8px 10px;border-radius:6px;border:1px solid var(--border);">${this._esc(matchedPara.text)}</div>`;
+        html += `</div>`;
+      }
+    }
+
+    html += `<div class="para-selector" id="selector-${opt.id}">`;
+    (this.data.passage.paragraphs || []).forEach(para => {
+      const sel = this.matches[opt.id] === para.id ? ' selected' : '';
+      const disabled = isGaveUp ? ' disabled' : '';
+      html += `<div class="para-select-btn${sel}${disabled}" data-para="${para.id}" onclick="window._engine.selectPara(${opt.id},'${para.id}')">${para.id}</div>`;
+    });
+    html += `</div>`;
+    const giveupLabel = isGaveUp ? '恢复' : '放弃';
+    const giveupCls = isGaveUp ? 'giveup-btn undo' : 'giveup-btn';
+    const giveupActive = isGaveUp ? ' active' : '';
+    html += `<div style="margin-top:6px;">`;
+    html += `<span class="giveup-hint${isOT && !isMatched && !isGaveUp ? ' show' : ''}" id="hint-${opt.id}">建议放弃（超过60秒）</span>`;
+    html += `<button class="${giveupCls}${giveupActive}" id="giveup-btn-${opt.id}" onclick="window._engine.toggleGiveUp(${opt.id})">${giveupLabel}</button>`;
+    html += `</div>`;
+    html += `</div>`;
+    return html;
+  }
+
+  toggleParaExpand(optId) {
+    const content = document.getElementById('para-content-' + optId);
+    const toggle = document.getElementById('para-toggle-' + optId);
+    if (!content || !toggle) return;
+    if (content.style.display === 'none') {
+      content.style.display = 'block';
+      const matchedParaId = this.matches[optId];
+      toggle.textContent = '📄 收起段落 ' + matchedParaId;
+    } else {
+      content.style.display = 'none';
+      const matchedParaId = this.matches[optId];
+      toggle.textContent = '📄 展开段落 ' + matchedParaId;
+    }
   }
 
   _renderPhase3(container) {
@@ -252,6 +363,10 @@ class CET6LongReadEngine {
       const timingStr = timing > 0 ? `⏱ ${this._fmtTime(timing)}` : '';
       const otTag = isOT ? ' <span style="font-size:10px;color:var(--error);">超时</span>' : '';
 
+      const userLocateWords = this.locateWord ? this.locateWord.getForOption(ans.id) : [];
+      const correctLocateWords = this._getCorrectLocateWords(ans.id);
+      const locateCompare = this._renderLocateCompare(userLocateWords, correctLocateWords);
+
       html += `<div style="background:${bg};border:1px solid ${border};border-radius:8px;padding:10px;">`;
       html += `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;">`;
       html += `<span><b>${ans.id}.</b> ${icon} ${timingStr}${otTag}</span>`;
@@ -260,13 +375,47 @@ class CET6LongReadEngine {
       if (ans.tip) {
         html += `<div style="font-size:12px;color:var(--text2);margin-top:4px;">${ans.tip}</div>`;
       }
+      if (locateCompare) {
+        html += locateCompare;
+      }
       html += `</div>`;
     });
     html += `</div>`;
 
-    html += `</div>`; // card
+    html += `</div>`;
     div.innerHTML = html;
     container.appendChild(div);
+  }
+
+  _getCorrectLocateWords(optId) {
+    const opt = (this.data.options || []).find(o => o.id === optId);
+    if (!opt || !opt.locateWords) return [];
+    const result = [];
+    if (opt.locateWords.properNoun) result.push(...opt.locateWords.properNoun);
+    if (opt.locateWords.normalNoun) result.push(...opt.locateWords.normalNoun);
+    if (opt.locateWords.comparative) result.push(...opt.locateWords.comparative);
+    return result;
+  }
+
+  _renderLocateCompare(userWords, correctWords) {
+    if (userWords.length === 0 && correctWords.length === 0) return '';
+    let html = `<div class="locate-compare">`;
+    html += `<div style="font-size:11px;font-weight:600;margin-bottom:4px;">📍 定位词对比</div>`;
+    html += `<div style="font-size:11px;display:flex;gap:12px;flex-wrap:wrap;">`;
+    html += `<span>你标记: ${userWords.length > 0 ? userWords.map(w => `<span class="locate-compare-tag user">${this._esc(w)}</span>`).join(' ') : '<span style="color:var(--text3);">未标记</span>'}</span>`;
+    html += `<span>正确: ${correctWords.length > 0 ? correctWords.map(w => `<span class="locate-compare-tag correct">${this._esc(w)}</span>`).join(' ') : '<span style="color:var(--text3);">无</span>'}</span>`;
+    html += `</div>`;
+
+    if (userWords.length > 0 && correctWords.length > 0) {
+      const hits = userWords.filter(w => correctWords.map(c => c.toLowerCase()).includes(w.toLowerCase()));
+      if (hits.length > 0) {
+        html += `<div style="font-size:10px;color:var(--success);margin-top:2px;">✅ 命中 ${hits.length}/${userWords.length} 个定位词</div>`;
+      } else {
+        html += `<div style="font-size:10px;color:var(--error);margin-top:2px;">❌ 未命中任何正确定位词</div>`;
+      }
+    }
+    html += `</div>`;
+    return html;
   }
 
   _renderPhase4(container) {
@@ -284,6 +433,8 @@ class CET6LongReadEngine {
     html += this._renderTimingChart();
 
     html += this._renderGiveupSummary();
+
+    html += this._renderLocateWordStats();
 
     html += this._renderSynonymMapping();
 
@@ -316,6 +467,50 @@ class CET6LongReadEngine {
 
     div.innerHTML = html;
     container.appendChild(div);
+  }
+
+  _renderLocateWordStats() {
+    if (!this.locateWord) return '';
+    const data = this.locateWord.getAll();
+    const allMarked = Object.entries(data);
+    if (allMarked.length === 0) return '';
+
+    let html = `<div class="card"><div class="card-title">📍 定位词标记统计</div>`;
+    html += `<div style="font-size:11px;color:var(--text3);margin-bottom:8px;">你在 Phase 2 中标记的定位词 vs 正确答案的定位词</div>`;
+
+    let totalMarked = 0;
+    let totalHits = 0;
+
+    allMarked.forEach(([optId, words]) => {
+      const correctWords = this._getCorrectLocateWords(parseInt(optId));
+      const hits = words.filter(w => correctWords.map(c => c.toLowerCase()).includes(w.toLowerCase()));
+      totalMarked += words.length;
+      totalHits += hits.length;
+
+      html += `<div class="locate-stat-item">`;
+      html += `<span class="locate-stat-id">${optId}题</span>`;
+      html += `<span class="locate-stat-words">`;
+      words.forEach(w => {
+        const isHit = correctWords.map(c => c.toLowerCase()).includes(w.toLowerCase());
+        html += `<span class="locate-stat-tag ${isHit ? 'hit' : 'miss'}">${this._esc(w)}</span>`;
+      });
+      html += `</span>`;
+      html += `<span class="locate-stat-result">${hits.length}/${words.length} 命中</span>`;
+      html += `</div>`;
+    });
+
+    html += `<div class="locate-stat-summary">`;
+    html += `总计标记 ${totalMarked} 个定位词，命中 ${totalHits} 个`;
+    if (totalMarked > 0) {
+      const pct = Math.round(totalHits / totalMarked * 100);
+      html += ` (${pct}%)`;
+      if (pct >= 70) html += ` — 定位能力不错！`;
+      else if (pct >= 40) html += ` — 还需练习识别定位词。`;
+      else html += ` — 定位词选择偏差较大，建议复习三层定位法。`;
+    }
+    html += `</div>`;
+    html += `</div>`;
+    return html;
   }
 
   _renderScoreDisplay() {
@@ -465,11 +660,6 @@ class CET6LongReadEngine {
     }
   }
 
-  _parseTime(t) {
-    const parts = t.split(':');
-    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
-  }
-
   _fmtTime(seconds) {
     if (seconds < 60) return seconds + 's';
     const m = Math.floor(seconds / 60);
@@ -612,6 +802,47 @@ class CET6LongReadEngine {
     this._refreshPhase2UI();
   }
 
+  addLocateWord(optId, word) {
+    if (!this.locateWord) return;
+    this.locateWord.add(optId, word);
+    this._renderLocateWordPanel();
+    this.locateWord.applyToDOM();
+  }
+
+  removeLocateWord(optId, word) {
+    if (!this.locateWord) return;
+    this.locateWord.remove(optId, word);
+    this._renderLocateWordPanel();
+    this.reRenderCurrentPhase();
+  }
+
+  _renderLocateWordPanel() {
+    const container = document.getElementById('locateword-list');
+    const countEl = document.getElementById('locateword-count');
+    if (!container) return;
+    if (!this.locateWord) {
+      container.innerHTML = '<div class="locateword-empty">选中单词 → 点击"标记为定位词"</div>';
+      return;
+    }
+    const data = this.locateWord.getAll();
+    const total = this.locateWord.count();
+    if (countEl) countEl.textContent = total;
+    if (total === 0) {
+      container.innerHTML = '<div class="locateword-empty">选中单词 → 点击"标记为定位词"</div>';
+      return;
+    }
+    let html = '';
+    Object.entries(data).forEach(([optId, words]) => {
+      words.forEach((w, i) => {
+        html += `<div class="locateword-item">
+          <div><span class="lw-id">${optId}题</span> <span class="lw-word">${this._esc(w)}</span></div>
+          <span class="del" onclick="window._engine.removeLocateWord(${optId},'${this._esc(w)}');">✕</span>
+        </div>`;
+      });
+    });
+    container.innerHTML = html;
+  }
+
   _refreshPhase2UI() {
     const passageEl = document.getElementById('match-passage');
     const optionsEl = document.getElementById('match-options');
@@ -640,58 +871,17 @@ class CET6LongReadEngine {
 
     optionsEl.innerHTML = '';
     (this.data.options || []).forEach(opt => {
-      const isMatched = this.matches[opt.id] !== undefined;
-      const isGaveUp = this.gaveUps.has(opt.id);
-      const isOT = this.otItems.has(opt.id);
-      let cardClass = 'option-match-card';
-      if (isMatched) cardClass += ' matched';
-      else if (isGaveUp) cardClass += ' gave-up';
-      if (isOT) cardClass += ' overtime';
-
-      let statusHtml = '';
-      if (isMatched) statusHtml = `<span class="option-match-status matched-status">→ ${this.matches[opt.id]}</span>`;
-      else if (isGaveUp) statusHtml = `<span class="option-match-status gaveup-status">放弃</span>`;
-      else if (isOT) statusHtml = `<span class="option-match-status overtime-status">超时</span>`;
-      else statusHtml = `<span class="option-match-status pending-status">未做</span>`;
-
-      const elapsed = this.questionElapsed[opt.id] || 0;
-      const elapsedClass = elapsed > this.perQuestionLimit ? 'over' : '';
-
       const card = document.createElement('div');
-      card.className = cardClass;
-      card.setAttribute('data-opt', opt.id);
-      card.id = 'opt-card-' + opt.id;
-      card.onclick = function(e) {
-        if (e.target.closest('.para-select-btn') || e.target.closest('.giveup-btn')) return;
+      card.innerHTML = this._buildOptionCard(opt);
+      const cardEl = card.firstChild;
+      cardEl.onclick = function(e) {
+        if (e.target.closest('.para-select-btn') || e.target.closest('.giveup-btn') || e.target.closest('.matched-para-toggle')) return;
         window._engine.focusOption(opt.id);
       };
-
-      let selectorHtml = '<div class="para-selector" id="selector-' + opt.id + '">';
-      (this.data.passage.paragraphs || []).forEach(para => {
-        const sel = this.matches[opt.id] === para.id ? ' selected' : '';
-        const disabled = isGaveUp ? ' disabled' : '';
-        selectorHtml += `<div class="para-select-btn${sel}${disabled}" data-para="${para.id}" onclick="window._engine.selectPara(${opt.id},'${para.id}')">${para.id}</div>`;
-      });
-      selectorHtml += '</div>';
-
-      const giveupLabel = isGaveUp ? '恢复' : '放弃';
-      const giveupCls = isGaveUp ? 'giveup-btn undo' : 'giveup-btn';
-      const giveupActive = isGaveUp ? ' active' : '';
-
-      card.innerHTML = `
-        <div class="option-match-id">
-          <span><span class="id-num">${opt.id}.</span> ${statusHtml}</span>
-          <span class="per-question-timer ${elapsedClass}" id="qtimer-${opt.id}">${elapsed > 0 ? this._fmtTime(elapsed) : ''}</span>
-        </div>
-        <div class="option-match-text">${this._esc(opt.text)}</div>
-        ${selectorHtml}
-        <div style="margin-top:6px;">
-          <span class="giveup-hint${isOT && !isMatched && !isGaveUp ? ' show' : ''}" id="hint-${opt.id}">建议放弃（超过60秒）</span>
-          <button class="${giveupCls}${giveupActive}" id="giveup-btn-${opt.id}" onclick="window._engine.toggleGiveUp(${opt.id})">${giveupLabel}</button>
-        </div>`;
-
-      optionsEl.appendChild(card);
+      optionsEl.appendChild(cardEl);
     });
+
+    if (this.locateWord) this.locateWord.applyToDOM();
   }
 
   switchPhase(phase) {
@@ -738,6 +928,7 @@ class CET6LongReadEngine {
   _renderSidePanels() {
     this._renderVocabPanel();
     this._renderAnnotatePanel();
+    this._renderLocateWordPanel();
   }
 
   _renderVocabPanel() {

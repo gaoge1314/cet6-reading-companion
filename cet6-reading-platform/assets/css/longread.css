@@ -330,6 +330,219 @@
 .highlight-number { background: rgba(46,125,50,0.12); padding: 0 2px; border-radius: 2px; }
 .highlight-comp { background: rgba(245,127,23,0.12); padding: 0 2px; border-radius: 2px; }
 
+.passage-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.option-analysis-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 8px;
+}
+.option-analysis-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.option-analysis-header .id-num {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.option-analysis-header .location-tags {
+  margin-bottom: 0;
+}
+.option-analysis-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.thinking-prompt {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text2);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 8px 12px;
+  margin-top: 4px;
+}
+.overall-analysis {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text);
+  padding: 8px 0;
+}
+
+.locate-highlight {
+  background: rgba(255, 235, 59, 0.35);
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+.locateword-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  margin-bottom: 8px;
+}
+.locateword-panel .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.locateword-panel .count {
+  font-size: 11px;
+  color: var(--text3);
+  font-weight: 400;
+}
+.locateword-list {
+  max-height: 120px;
+  overflow-y: auto;
+}
+.locateword-empty {
+  font-size: 11px;
+  color: var(--text3);
+  text-align: center;
+  padding: 8px;
+}
+.locateword-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.locateword-item:last-child { border-bottom: none; }
+.locateword-item .lw-id {
+  font-weight: 600;
+  color: var(--accent);
+  margin-right: 6px;
+  font-size: 10px;
+}
+.locateword-item .lw-word {
+  color: var(--text);
+}
+.locateword-item .del {
+  cursor: pointer;
+  color: var(--text3);
+  font-size: 12px;
+  padding: 0 4px;
+}
+.locateword-item .del:hover { color: var(--error); }
+
+.matched-para-toggle {
+  font-size: 11px;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 4px;
+  user-select: none;
+}
+.matched-para-toggle:hover {
+  text-decoration: underline;
+}
+.matched-para-content {
+  margin-bottom: 8px;
+}
+
+.locate-compare {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border);
+}
+.locate-compare-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin: 1px 2px;
+}
+.locate-compare-tag.user {
+  background: rgba(255, 235, 59, 0.3);
+  color: #f57f17;
+}
+.locate-compare-tag.correct {
+  background: rgba(46, 125, 50, 0.1);
+  color: #2e7d32;
+}
+
+.locate-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.locate-stat-item:last-child { border-bottom: none; }
+.locate-stat-id {
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 36px;
+}
+.locate-stat-words {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.locate-stat-tag {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+.locate-stat-tag.hit {
+  background: var(--success-light);
+  color: #2e7d32;
+}
+.locate-stat-tag.miss {
+  background: #fff5f5;
+  color: #c62828;
+}
+.locate-stat-result {
+  font-size: 11px;
+  color: var(--text2);
+  white-space: nowrap;
+}
+.locate-stat-summary {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text2);
+  font-weight: 500;
+}
+
+.btn-locateword {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #f9a825;
+  background: #fff8e1;
+  cursor: pointer;
+  font-size: 12px;
+  color: #f57f17;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.btn-locateword:hover {
+  background: #fff176;
+  border-color: #f57f17;
+}
+
 @media (max-width: 900px) {
   .matching-layout { flex-direction: column; }
   .matching-options { max-width: none; }
