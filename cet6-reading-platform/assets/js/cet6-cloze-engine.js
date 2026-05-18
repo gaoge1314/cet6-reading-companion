@@ -4,29 +4,19 @@ class CET6ClozeEngine {
     this.vocab = vocab;
     this.annotate = annotate;
     this.selectedWords = {};
-    this.progressKey = CET6Utils.storageKeys.examsState + '-' + examId + '-cloze';
     this.currentPhase = '1';
     this._containerSelector = null;
-    this._loadProgress();
-  }
-
-  _loadProgress() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(this.progressKey) || '{}');
-      this.selectedWords = saved.selectedWords || {};
-      this.currentPhase = saved.currentPhase || '1';
-    } catch (e) {
-      this.selectedWords = {};
-      this.currentPhase = '1';
-    }
+    this.examId = examId;
+    const saved = ProgressStore.load(examId, 'cloze');
+    this.selectedWords = saved.selectedWords || {};
+    this.currentPhase = saved.currentPhase || '1';
   }
 
   _saveProgress() {
-    localStorage.setItem(this.progressKey, JSON.stringify({
+    ProgressStore.save(this.examId, 'cloze', {
       selectedWords: this.selectedWords,
-      currentPhase: this.currentPhase,
-      time: new Date().toISOString()
-    }));
+      currentPhase: this.currentPhase
+    });
   }
 
   init(containerSelector) {
@@ -34,9 +24,6 @@ class CET6ClozeEngine {
     const target = document.querySelector(containerSelector);
     if (!target) return;
     target.innerHTML = '';
-    this._renderPhase1(target);
-    this._renderPhase2(target);
-    this._renderPhase3(target);
     this.switchPhase(this.currentPhase);
     this._renderAnswerCard();
     this.updateSidebar();
@@ -45,10 +32,8 @@ class CET6ClozeEngine {
   reRenderCurrentPhase() {
     const target = document.querySelector('#main-content');
     if (!target) return;
-    target.innerHTML = '';
-    this._renderPhase1(target);
-    this._renderPhase2(target);
-    this._renderPhase3(target);
+    const old = document.getElementById('phase-' + this.currentPhase);
+    if (old) old.remove();
     this.switchPhase(this.currentPhase);
     this._renderAnswerCard();
     this.updateSidebar();
@@ -58,12 +43,23 @@ class CET6ClozeEngine {
     this.currentPhase = String(phase);
     this._saveProgress();
 
+    if (!document.getElementById('phase-' + phase)) {
+      const target = document.querySelector(this._containerSelector);
+      if (target) {
+        switch (phase) {
+          case '1': this._renderPhase1(target); break;
+          case '2': this._renderPhase2(target); break;
+          case '3': this._renderPhase3(target); break;
+        }
+      }
+    }
+
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     const tab = document.querySelector(`.tab[data-phase="${phase}"]`);
     if (tab) tab.classList.add('active');
 
     document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
-    const phaseEl = document.getElementById(`phase-${phase}`);
+    const phaseEl = document.getElementById('phase-' + phase);
     if (phaseEl) phaseEl.classList.add('active');
 
     this.updateSidebar();
@@ -111,11 +107,11 @@ class CET6ClozeEngine {
 
       if (blanksWithSame.length > 0) {
         const otherBlanks = blanksWithSame.map(([b]) => b).join('/');
-        return `<span class="blank-slot conflict" data-blank="${blankId}" title="与空位${otherBlanks}选择了同一个词！" onclick="window._engine.removeWord(${blankId})">${display} ⚠</span>`;
+        return `<span class="blank-slot conflict" data-blank="${blankId}" title="与空位${otherBlanks}选择了同一个词！" data-ea="engine" data-ea-method="removeWord" data-ea-args='[${blankId}]'>${display} ⚠</span>`;
       }
-      return `<span class="blank-slot filled" data-blank="${blankId}" onclick="window._engine.removeWord(${blankId})">${display}</span>`;
+      return `<span class="blank-slot filled" data-blank="${blankId}" data-ea="engine" data-ea-method="removeWord" data-ea-args='[${blankId}]'>${display}</span>`;
     }
-    return `<span class="blank-slot" data-blank="${blankId}" onclick="window._engine._showBankSelector(${blankId})">___${blankId}___</span>`;
+    return `<span class="blank-slot" data-blank="${blankId}" data-ea="engine" data-ea-method="_showBankSelector" data-ea-args='[${blankId}]'>___${blankId}___</span>`;
   }
 
   _showBankSelector(blankId) {
@@ -143,7 +139,7 @@ class CET6ClozeEngine {
 
     let html = `<div class="modal-header">
       <span>选择词 — 空位 ${blankId}</span>
-      <button class="modal-close" onclick="window._engine._closeModal()">✕</button>
+      <button class="modal-close" data-ea="engine" data-ea-method="_closeModal">✕</button>
     </div>`;
 
     html += `<div class="modal-bank-list">`;
@@ -156,7 +152,7 @@ class CET6ClozeEngine {
       group.forEach(b => {
         const isSelected = Object.values(this.selectedWords).includes(b.letter);
         html += `<div class="modal-bank-item${isSelected ? ' selected' : ''}"
-          onclick="window._engine._onModalSelect(${blankId},'${b.letter}')">
+          data-ea="engine" data-ea-method="_onModalSelect" data-ea-args='[${blankId},"${b.letter}"]'>
           <span class="m-letter">${b.letter}</span>
           <span class="m-word">${CET6Utils.esc(b.word)}</span>
           <span class="m-pos ${this._getPosClass(b.pos)}">${b.pos}</span>
@@ -176,7 +172,7 @@ class CET6ClozeEngine {
         group.forEach(b => {
           const isSelected = Object.values(this.selectedWords).includes(b.letter);
           html += `<div class="modal-bank-item${isSelected ? ' selected' : ''}"
-            onclick="window._engine._onModalSelect(${blankId},'${b.letter}')">
+            data-ea="engine" data-ea-method="_onModalSelect" data-ea-args='[${blankId},"${b.letter}"]'>
             <span class="m-letter">${b.letter}</span>
             <span class="m-word">${CET6Utils.esc(b.word)}</span>
             <span class="m-pos ${this._getPosClass(b.pos)}">${b.pos}</span>
@@ -192,7 +188,7 @@ class CET6ClozeEngine {
     const currentSelection = this.selectedWords[blankId];
     if (currentSelection) {
       html += `<div class="modal-footer">
-        <button class="modal-remove-btn" onclick="window._engine.removeWord(${blankId});window._engine._closeModal()">清除选择</button>
+        <button class="modal-remove-btn" data-ea="engine" data-ea-method="removeWord" data-ea-args='[${blankId}]' data-ea-after="_closeModal">清除选择</button>
       </div>`;
     }
 
@@ -309,7 +305,7 @@ class CET6ClozeEngine {
       group.forEach(b => {
         const isSelected = Object.values(this.selectedWords).includes(b.letter);
         const posClass = this._getPosClass(b.pos);
-        html += `<div class="bank-item${isSelected ? ' selected' : ''}" data-letter="${b.letter}" onclick="window._engine._onBankClick('${b.letter}')">`;
+        html += `<div class="bank-item${isSelected ? ' selected' : ''}" data-letter="${b.letter}" data-ea="engine" data-ea-method="_onBankClick" data-ea-args='["${b.letter}"]'>`;
         html += `<span class="letter">${b.letter}</span>`;
         html += `<span class="word-text">${CET6Utils.esc(b.word)}</span>`;
         html += `<span class="word-meaning">${CET6Utils.esc(b.meaning || '')}</span>`;
@@ -329,7 +325,7 @@ class CET6ClozeEngine {
       otherGroup.forEach(b => {
         const isSelected = Object.values(this.selectedWords).includes(b.letter);
         const posClass = this._getPosClass(b.pos);
-        html += `<div class="bank-item${isSelected ? ' selected' : ''}" data-letter="${b.letter}" onclick="window._engine._onBankClick('${b.letter}')">`;
+        html += `<div class="bank-item${isSelected ? ' selected' : ''}" data-letter="${b.letter}" data-ea="engine" data-ea-method="_onBankClick" data-ea-args='["${b.letter}"]'>`;
         html += `<span class="letter">${b.letter}</span>`;
         html += `<span class="word-text">${CET6Utils.esc(b.word)}</span>`;
         html += `<span class="word-meaning">${CET6Utils.esc(b.meaning || '')}</span>`;
@@ -347,7 +343,7 @@ class CET6ClozeEngine {
       banks.forEach(b => {
         const isSelected = Object.values(this.selectedWords).includes(b.letter);
         const posClass = this._getPosClass(b.pos);
-        html += `<div class="bank-item${isSelected ? ' selected' : ''}" data-letter="${b.letter}" onclick="window._engine._onBankClick('${b.letter}')">`;
+        html += `<div class="bank-item${isSelected ? ' selected' : ''}" data-letter="${b.letter}" data-ea="engine" data-ea-method="_onBankClick" data-ea-args='["${b.letter}"]'>`;
         html += `<span class="letter">${b.letter}</span>`;
         html += `<span class="word-text">${CET6Utils.esc(b.word)}</span>`;
         html += `<span class="word-meaning">${CET6Utils.esc(b.meaning || '')}</span>`;
@@ -599,7 +595,7 @@ class CET6ClozeEngine {
       html += `<div class="mnemonic-box">💡 ${CET6Utils.esc(wa.mnemonic)}</div>`;
     }
 
-    html += `<button class="add-vocab-btn${isAdded ? ' added' : ''}" onclick="window._engine.addToVocabSystem(${JSON.stringify(wa).replace(/"/g, '&quot;')})" ${isAdded ? 'disabled' : ''}>`;
+    html += `<button class="add-vocab-btn${isAdded ? ' added' : ''}" data-ea="engine" data-ea-method="addToVocabSystem" data-ea-args='${JSON.stringify(wa).replace(/"/g, '&quot;')}' ${isAdded ? 'disabled' : ''}>`;
     html += isAdded ? '✓ 已加入记忆系统' : '📥 加入记忆系统';
     html += `</button>`;
 
@@ -696,9 +692,9 @@ class CET6ClozeEngine {
     const annotateList = this.annotate ? this.annotate.getAll() : [];
     CET6Shell.updateSidebarCounts({ vocab: list.length, annotate: annotateList.length });
     const vocabListEl = document.getElementById('vocab-list');
-    if (vocabListEl) { vocabListEl.innerHTML = CET6Shell.renderVocabList(list, 'window._app.currentEngine.removeVocab'); }
+    if (vocabListEl) { vocabListEl.innerHTML = CET6Shell.renderVocabList(list, 'removeVocab'); }
     const annotateListEl = document.getElementById('annotate-list');
-    if (annotateListEl) { annotateListEl.innerHTML = CET6Shell.renderAnnotateList(annotateList, 'window._app.currentEngine.removeAnnotate'); }
+    if (annotateListEl) { annotateListEl.innerHTML = CET6Shell.renderAnnotateList(annotateList, 'removeAnnotate'); }
   }
   removeVocab(index) {
     if (this.vocab) { this.vocab.remove(index); this.reRenderCurrentPhase(); this.updateSidebar(); }

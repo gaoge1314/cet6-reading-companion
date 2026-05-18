@@ -60,42 +60,7 @@ var AppController = {
   },
 
   _migrateExistingData: function() {
-    const existing = CET6Utils.loadJSON(CET6Utils.storageKeys.exams);
-    if (existing && existing.length > 0) {
-      return false;
-    }
-
-    const dataFiles = [
-      { id: '2025-12-passage1', type: 'reading', path: 'assets/data/2025-12-passage1.json' },
-      { id: '2025-12-longread', type: 'matching', path: 'assets/data/2025-12-longread.json' },
-      { id: '2025-12-cloze', type: 'cloze', path: 'assets/data/2025-12-cloze.json' }
-    ];
-
-    const exam = {
-      id: '2025-12-exam1',
-      meta: {
-        examDate: '2025年12月',
-        level: 'CET6',
-        title: '2025年12月六级真题第1套',
-        importedAt: new Date().toISOString()
-      },
-      modules: {},
-      availableModules: []
-    };
-
-    Promise.all(dataFiles.map(item => CET6Loader.load(item.path).then(data => {
-      exam.modules[item.type] = data;
-      exam.availableModules.push(item.type);
-      return data;
-    }))).then(() => {
-      const exams = [exam];
-      CET6Utils.saveJSON(CET6Utils.storageKeys.exams, exams);
-      console.log('Auto migrated existing data to:', exam);
-    }).catch(err => {
-      console.error('Migration failed:', err);
-    });
-
-    return true;
+    return DataMigrator.migrateExistingData();
   },
 
   _renderHome: function() {
@@ -137,12 +102,18 @@ var AppController = {
       `;
       exams.forEach(exam => {
         const state = this._getExamState(exam.id);
-        const doneCount = exam.availableModules.filter(m => state[m] && state[m].currentPhase).length;
+        const completedCount = exam.availableModules.filter(function(m) { return state[m] && state[m].completed; }).length;
         const totalCount = exam.availableModules.length;
+        let progressText = completedCount + '/' + totalCount + ' 模块完成';
+        const completedModules = exam.availableModules.filter(function(m) { return state[m] && state[m].completed; });
+        if (completedModules.length > 0) {
+          const scores = completedModules.map(function(m) { return (state[m].score || 0) + '/' + (state[m].total || '?'); }).join(' · ');
+          progressText += '<br><span style="font-size:11px;color:var(--text3);">' + scores + '</span>';
+        }
         html += `
           <div class="exam-card" onclick="AppController.navTo('exam/${exam.id}')">
             <div class="exam-card-title">${exam.meta.title}</div>
-            <div class="exam-card-meta">${exam.meta.examDate} · ${doneCount}/${totalCount} 模块完成</div>
+            <div class="exam-card-meta">${exam.meta.examDate} · ${progressText}</div>
             <div class="exam-card-modules">
               ${exam.availableModules.map(m => `<span class="module-tag ${m}">${CET6Utils.moduleLabels[m]}</span>`).join('')}
             </div>
@@ -184,15 +155,79 @@ var AppController = {
             `}
           </div>
         </div>
+        <div class="home-section">
+          <div class="section-title">📋 试卷选择</div>
+          <div class="quick-buttons">
+            <button class="quick-btn" style="background:var(--primary);color:white;border-color:var(--primary);" onclick="AppController._showExamSelector()">📂 选择要做的试卷</button>
+          </div>
+        </div>
       </div>
     `;
 
     root.innerHTML = html;
   },
 
+  _showExamSelector: function() {
+    const exams = CET6Utils.loadJSON(CET6Utils.storageKeys.exams) || [];
+    if (exams.length === 0) {
+      this.navTo('import');
+      return;
+    }
+
+    const overlay = CET6Utils.el('div', { className: 'exam-selector-overlay', style: 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);z-index:1000;display:flex;align-items:center;justify-content:center;' });
+    const modal = CET6Utils.el('div', { className: 'exam-selector-modal', style: 'background:white;border-radius:12px;padding:20px;max-width:500px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.2);' });
+
+    let html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">';
+    html += '<h3 style="margin:0;font-size:18px;">📂 选择试卷</h3>';
+    html += '<button class="btn" id="exam-selector-close" style="font-size:20px;padding:4px 12px;">✕</button>';
+    html += '</div>';
+
+    html += '<div style="display:grid;gap:8px;">';
+    exams.forEach(function(exam) {
+      const moduleTags = exam.availableModules.map(function(m) {
+        const cls = m === 'reading' ? 'background:#e3f2fd;color:#1976d2' : m === 'matching' ? 'background:#e8f5e9;color:#388e3c' : 'background:#fff3e0;color:#f57c00';
+        return '<span style="font-size:11px;padding:2px 6px;border-radius:4px;' + cls + ';margin-right:4px;">' + CET6Utils.moduleLabels[m] + '</span>';
+      }).join('');
+      const state = AppController._getExamState(exam.id);
+      const completed = exam.availableModules.filter(function(m) { return state[m] && state[m].completed; }).length;
+      html += '<div class="exam-selector-item" data-id="' + exam.id + '" style="border:1px solid var(--border);border-radius:8px;padding:12px;cursor:pointer;transition:all 0.15s;">';
+      html += '<div style="font-weight:600;font-size:14px;">' + exam.meta.title + '</div>';
+      html += '<div style="font-size:12px;color:var(--text3);margin:4px 0;">' + exam.meta.examDate + ' · ' + completed + '/' + exam.availableModules.length + ' 完成</div>';
+      html += '<div>' + moduleTags + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+
+    modal.innerHTML = html;
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay || e.target.id === 'exam-selector-close') {
+        overlay.remove();
+      }
+    });
+
+    modal.querySelectorAll('.exam-selector-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        const id = item.dataset.id;
+        overlay.remove();
+        AppController.navTo('exam/' + id);
+      });
+    });
+  },
+
   _getExamState: function(examId) {
     const allStates = CET6Utils.loadJSON(CET6Utils.storageKeys.examsState) || {};
-    return allStates[examId] || {};
+    const state = allStates[examId] || {};
+
+    const types = ['reading', 'matching', 'cloze'];
+    types.forEach(function(t) {
+      const ps = ProgressStore.load(examId, t);
+      if (Object.keys(ps).length > 0) state[t] = ps;
+    });
+
+    return state;
   },
 
   _saveExamState: function(examId, module, state) {
@@ -204,115 +239,68 @@ var AppController = {
 
   _renderImport: function() {
     const root = document.getElementById('app-root');
-    const html = `
-      <div class="import-page">
-        ${CET6Shell.renderHeader('📥 导入新试卷', '手动填写真题内容 → 自动生成结构化数据', [
-          { text: '取消', onClick: () => this.navTo('home') },
-          { text: '提交', class: 'btn-accent', onClick: () => this._submitImport() }
-        ]).outerHTML}
-        <div class="import-content">
-          <div class="import-section collapsed" id="section-basic">
-            <div class="section-header" onclick="AppController._toggleSection('basic')">
-              <span class="section-title">▎基本信息</span>
-              <span class="toggle-icon">展开</span>
-            </div>
-            <div class="section-body" id="section-basic-body">
-              <div class="form-row">
-                <div class="form-group">
-                  <label>年份</label>
-                  <input type="text" id="form-year" placeholder="例如：2025" maxlength="4">
-                </div>
-                <div class="form-group">
-                  <label>月份</label>
-                  <input type="text" id="form-month" placeholder="例如：12" maxlength="2">
-                </div>
-                <div class="form-group">
-                  <label>套号</label>
-                  <input type="text" id="form-set" placeholder="例如：1" maxlength="1">
-                </div>
-              </div>
-              <div class="form-group">
-                <label>标题（可选）</label>
-                <input type="text" id="form-title" placeholder="例如：2025年12月六级真题第1套">
-              </div>
-            </div>
-          </div>
+    const page = CET6Utils.el('div', { className: 'import-page' });
 
-          <div class="import-section collapsed" id="section-reading">
-            <div class="section-header" onclick="AppController._toggleSection('reading')">
-              <span class="section-title">▎Section A：传统阅读</span>
-              <span class="toggle-icon">展开</span>
-            </div>
-            <div class="section-body" id="section-reading-body">
-              <div class="form-group">
-                <label>文章原文（段落用空行分隔）</label>
-                <textarea id="form-reading-passage" placeholder="粘贴文章全文，段落之间用一个空行分隔..."></textarea>
-              </div>
-              <div class="form-group">
-                <label>题干 + 选项（格式：Q1. xxx 换行 A. xxx B. xxx C. xxx D. xxx）</label>
-                <textarea id="form-reading-questions" placeholder="例如：
-Q1. What does the author say about...
-A. It can be beneficial...
-B. It may cause...
-C. It has changed...
-D. It is...
-                "></textarea>
-              </div>
-              <div class="form-group">
-                <label>答案（例如：46.A 47.C 48.B 49.D 50.A）</label>
-                <input type="text" id="form-reading-answers" placeholder="46.A 47.C 48.B 49.D 50.A">
-              </div>
-            </div>
-          </div>
+    page.appendChild(CET6Shell.renderHeader('📥 导入新试卷', '手动填写真题内容 → 自动生成结构化数据', [
+      { text: '取消', onClick: function() { AppController.navTo('home'); } },
+      { text: '提交', class: 'btn-accent', onClick: function() { AppController._submitImport(); } }
+    ]));
 
-          <div class="import-section collapsed" id="section-matching">
-            <div class="section-header" onclick="AppController._toggleSection('matching')">
-              <span class="section-title">▎Section B：长篇阅读（匹配题）</span>
-              <span class="toggle-icon">展开</span>
-            </div>
-            <div class="section-body" id="section-matching-body">
-              <div class="form-group">
-                <label>段落文本（段落用空行分隔）</label>
-                <textarea id="form-matching-paragraphs" placeholder="每个段落占一块，段落之间用空行分隔..."></textarea>
-              </div>
-              <div class="form-group">
-                <label>选项（每行一个选项）</label>
-                <textarea id="form-matching-options" placeholder="每行开头带序号：1. xxxxxx"></textarea>
-              </div>
-              <div class="form-group">
-                <label>答案（例如：1. 4 2. 6 → 选项号→段落号）</label>
-                <input type="text" id="form-matching-answers" placeholder="1.A 2.C 3. ...（A=第一段）"></input>
-              </div>
-            </div>
-          </div>
+    page.insertAdjacentHTML('beforeend', '<div class="import-content">' +
+      '<div class="import-section collapsed" id="section-basic">' +
+        '<div class="section-header" onclick="AppController._toggleSection(\'basic\')">' +
+          '<span class="section-title">▎基本信息</span>' +
+          '<span class="toggle-icon">展开</span>' +
+        '</div>' +
+        '<div class="section-body" id="section-basic-body">' +
+          '<div class="form-row">' +
+            '<div class="form-group"><label>年份</label><input type="text" id="form-year" placeholder="例如：2025" maxlength="4"></div>' +
+            '<div class="form-group"><label>月份</label><input type="text" id="form-month" placeholder="例如：12" maxlength="2"></div>' +
+            '<div class="form-group"><label>套号</label><input type="text" id="form-set" placeholder="例如：1" maxlength="1"></div>' +
+          '</div>' +
+          '<div class="form-group"><label>标题（可选）</label><input type="text" id="form-title" placeholder="例如：2025年12月六级真题第1套"></div>' +
+        '</div>' +
+      '</div>' +
 
-          <div class="import-section collapsed" id="section-cloze">
-            <div class="section-header" onclick="AppController._toggleSection('cloze')">
-              <span class="section-title">▎Section C：选词填空</span>
-              <span class="toggle-icon">展开</span>
-            </div>
-            <div class="section-body" id="section-cloze-body">
-              <div class="form-group">
-                <label>文章原文（空位用 ___36___ 标记）</label>
-                <textarea id="form-cloze-passage" placeholder="例如：When ___36___ comes to ..."></textarea>
-              </div>
-              <div class="form-group">
-                <label>候选词（每行：字母. 单词 词性. 释义）</label>
-                <textarea id="form-cloze-banks" placeholder="例如：
-A. persist v. 坚持 维持
-B. consistent adj. 一致的 连续的
-                "></textarea>
-              </div>
-              <div class="form-group">
-                <label>答案（例如：26.A 27.H ...）</label>
-                <input type="text" id="form-cloze-answers" placeholder="26.A 27.H 28..."></input>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-    root.innerHTML = html;
+      '<div class="import-section collapsed" id="section-reading">' +
+        '<div class="section-header" onclick="AppController._toggleSection(\'reading\')">' +
+          '<span class="section-title">▎Section A：传统阅读</span>' +
+          '<span class="toggle-icon">展开</span>' +
+        '</div>' +
+        '<div class="section-body" id="section-reading-body">' +
+          '<div class="form-group"><label>文章原文（段落用空行分隔）</label><textarea id="form-reading-passage" placeholder="粘贴文章全文，段落之间用一个空行分隔..."></textarea></div>' +
+          '<div class="form-group"><label>题干 + 选项（格式：Q1. xxx 换行 A. xxx B. xxx C. xxx D. xxx）</label><textarea id="form-reading-questions" placeholder="例如：\nQ1. What does the author say about...\nA. It can be beneficial...\nB. It may cause...\nC. It has changed...\nD. It is...\n"></textarea></div>' +
+          '<div class="form-group"><label>答案（例如：46.A 47.C 48.B 49.D 50.A）</label><input type="text" id="form-reading-answers" placeholder="46.A 47.C 48.B 49.D 50.A"></div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="import-section collapsed" id="section-matching">' +
+        '<div class="section-header" onclick="AppController._toggleSection(\'matching\')">' +
+          '<span class="section-title">▎Section B：长篇阅读（匹配题）</span>' +
+          '<span class="toggle-icon">展开</span>' +
+        '</div>' +
+        '<div class="section-body" id="section-matching-body">' +
+          '<div class="form-group"><label>段落文本（段落用空行分隔）</label><textarea id="form-matching-paragraphs" placeholder="每个段落占一块，段落之间用空行分隔..."></textarea></div>' +
+          '<div class="form-group"><label>选项（每行一个选项）</label><textarea id="form-matching-options" placeholder="每行开头带序号：1. xxxxxx"></textarea></div>' +
+          '<div class="form-group"><label>答案（例如：1. 4 2. 6 → 选项号→段落号）</label><input type="text" id="form-matching-answers" placeholder="1.A 2.C 3. ...（A=第一段）"></div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="import-section collapsed" id="section-cloze">' +
+        '<div class="section-header" onclick="AppController._toggleSection(\'cloze\')">' +
+          '<span class="section-title">▎Section C：选词填空</span>' +
+          '<span class="toggle-icon">展开</span>' +
+        '</div>' +
+        '<div class="section-body" id="section-cloze-body">' +
+          '<div class="form-group"><label>文章原文（空位用 ___36___ 标记）</label><textarea id="form-cloze-passage" placeholder="例如：When ___36___ comes to ..."></textarea></div>' +
+          '<div class="form-group"><label>候选词（每行：字母. 单词 词性. 释义）</label><textarea id="form-cloze-banks" placeholder="例如：\nA. persist v. 坚持 维持\nB. consistent adj. 一致的 连续的\n"></textarea></div>' +
+          '<div class="form-group"><label>答案（例如：26.A 27.H ...）</label><input type="text" id="form-cloze-answers" placeholder="26.A 27.H 28..."></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>');
+
+    root.innerHTML = '';
+    root.appendChild(page);
   },
 
   _toggleSection: function(id) {
@@ -328,280 +316,7 @@ B. consistent adj. 一致的 连续的
     }
   },
 
-  _parseReading: function(passageText, questionsText, answersText) {
-    if (!passageText.trim() || !questionsText.trim() || !answersText.trim()) return null;
 
-    const paragraphs = passageText.split(/\n\n+/).map(p => p.trim()).filter(p => p);
-
-    const questionMatches = questionsText.match(/(?:^|\n)(?:Q\d+\.|[\dX]+\.)\s*([\s\S]*?)(?=(?:\n(?:Q\d+\.|[\dX]+\.)\s)|$)/g);
-    const questions = [];
-    let qid = 46;
-    const processed = (questionMatches || []).map(qBlock => {
-      qBlock = qBlock.trim();
-      const firstLineBreak = qBlock.indexOf('\n');
-      const questionText = firstLineBreak > 0 ? qBlock.slice(0, firstLineBreak).trim().replace(/^[\dX]+\.\s*/, '') : qBlock.trim().replace(/^[\dX]+\.\s*/, '');
-      const optionsText = firstLineBreak > 0 ? qBlock.slice(firstLineBreak) : '';
-      const options = [];
-      const optionMatches = optionsText.match(/(?:^|\n)[A-D]\.\s*/g);
-      if (optionMatches) {
-        let lastIdx = 0;
-        ['A.', 'B.', 'C.', 'D.'].forEach((opt, idx) => {
-          const re = new RegExp('(?:^|\\n)' + opt + '\\s*');
-          const match = re.exec(optionsText);
-          if (match) {
-            const start = match.index + match[0].length;
-            let end;
-            if (idx < 3) {
-              const nextRe = new RegExp('(?:^|\\n)' + ['A.', 'B.', 'C.', 'D.'][idx + 1] + '\\s*');
-              const nextMatch = nextRe.exec(optionsText);
-              end = nextMatch ? nextMatch.index : optionsText.length;
-            } else {
-              end = optionsText.length;
-            }
-            const text = optionsText.slice(start, end).trim();
-            options.push({ label: opt[0], text });
-          }
-        });
-      }
-      questions.push({
-        id: qid++,
-        text: questionText,
-        options: options
-      });
-      return qBlock;
-    });
-
-    const answers = [];
-    const answerRegex = /(\d+)[.\s]+([A-D])/gi;
-    let match;
-    while ((match = answerRegex.exec(answersText))) {
-      answers.push({ id: parseInt(match[1]), correct: match[2] });
-    }
-
-    if (questions.length !== answers.length) {
-      throw new Error(`题目数量(${questions.length})与答案数量(${answers.length})不匹配`);
-    }
-
-    return {
-      meta: { type: 'reading' },
-      passage: { paragraphs },
-      questions: questions,
-      answers: answers,
-      phases: {
-        phase1: { topicPrediction: null, questionTypes: null },
-        phase2a: { instruction: { title: 'T1 全景扫描', content: '扫描题干 → 找关键词 → 判断题型' } },
-        phase2b: { instruction: { title: 'T3 中心做题', content: '用找到的中心去匹配选项' } },
-        phase2c: { instruction: { title: 'T4 定位 + T6 段落锁定 + T3 同义替换', content: '找到定位词 → 锁定段落' } },
-        phase3: { title: '统一对答案' },
-        phase4: { summary: { title: '文章复盘', content: '对照错题分析原因' } }
-      }
-    };
-  },
-
-  _parseMatching: function(paragraphsText, optionsText, answersText) {
-    if (!paragraphsText.trim() || !optionsText.trim() || !answersText.trim()) return null;
-
-    const paragraphs = paragraphsText.split(/\n\n+/).map((p, idx) => ({
-      id: String.fromCharCode(65 + idx),
-      text: p.trim()
-    })).filter(p => p.text);
-
-    const options = [];
-    const lines = optionsText.split('\n').map(l => l.trim()).filter(l => l);
-    lines.forEach(line => {
-      const m = line.match(/^(\d+)[\.、]?\s*(.+)$/);
-      if (m) {
-        options.push({ id: parseInt(m[1]), text: m[2] });
-      }
-    });
-
-    const answers = [];
-    const answerRegex = /(\d+)[.\s]+([A-P])[.\s]+(\d+)/gi;
-    let match;
-    while ((match = answerRegex.exec(answersText))) {
-      const paraId = String.fromCharCode(65 + (parseInt(match[3]) - 1));
-      answers.push({ id: parseInt(match[1]), correctPara: paraId });
-    }
-
-    if (options.length !== 10) throw new Error(`长篇阅读应有10个选项，当前${options.length}个`);
-    if (answers.length !== 10) throw new Error(`长篇阅读应有10个答案，当前${answers.length}个`);
-
-    return {
-      meta: { type: 'matching', timeLimit: 15 },
-      passage: { paragraphs },
-      options: options,
-      answers: answers,
-      phases: {
-        phase1: { instruction: { title: 'Phase 1', content: '选项扫读 → 识别定位词' } },
-        phase2: { instruction: { title: 'Phase 2', content: '带着定位词找匹配' } },
-        phase3: { title: '对答案' },
-        phase4: { summary: { title: '定位词分析', content: '对比自己标记与正确定位词' } }
-      },
-      overallAnalysis: ''
-    };
-  },
-
-  _parseCloze: function(passageText, banksText, answersText) {
-    if (!passageText.trim() || !banksText.trim() || !answersText.trim()) return null;
-
-    const blankRegex = /___(\d+)___/g;
-    const blanks = [];
-    let m;
-    while ((m = blankRegex.exec(passageText))) {
-      blanks.push(parseInt(m[1]));
-    }
-
-    const banks = [];
-    const lines = banksText.split('\n').map(l => l.trim()).filter(l => l);
-    lines.forEach(line => {
-      const m = line.match(/^([A-O])\.?\s*(\w+)\s*([a-z][a-z]\.?)\s*(.+)$/i);
-      if (m) {
-        banks.push({
-          letter: m[1],
-          word: m[2],
-          pos: m[3],
-          meaning: m[4]
-        });
-      }
-    });
-
-    if (banks.length !== 15) throw new Error(`选词填空应有15个候选词，当前${banks.length}个`);
-
-    const answers = [];
-    const answerRegex = /(\d+)[.\s]+([A-O])/gi;
-    while ((match = answerRegex.exec(answersText))) {
-      const bank = banks.find(b => b.letter === match[2]);
-      answers.push({
-        blank: parseInt(match[1]),
-        correct: match[2],
-        word: bank ? bank.word : ''
-      });
-    }
-
-    if (blanks.length !== 10) throw new Error(`选词填空应有10个空位，当前${blanks.length}个`);
-    if (answers.length !== 10) throw new Error(`选词填空应有10个答案，当前${answers.length}个`);
-
-    const paragraphs = [];
-    const paraBlocks = passageText.split(/\n\n+/);
-    paraBlocks.forEach(block => {
-      paragraphs.push(block.trim());
-    });
-
-    return {
-      meta: { type: 'cloze' },
-      passage: { paragraphs, blanks },
-      banks: banks,
-      answers: answers,
-      wordAnalysis: [],
-      phases: {
-        phase1: { instruction: '浏览全文 → 选词填空 → 词性分类缩小范围' },
-        phase2: { title: '对答案' },
-        phase3: { title: '单词舱' }
-      }
-    };
-  },
-
-  _generateClozeWordAnalysis: function(clozeData, rootRules) {
-    clozeData.banks.forEach(bank => {
-      const analysis = this._analyzeRoot(bank.word, rootRules);
-      bank.rootPrefix = analysis.prefix;
-      bank.rootExplanation = analysis.explanation;
-    });
-    clozeData.wordAnalysis = clozeData.banks.map(b => ({
-      word: b.word,
-      pos: b.pos,
-      meaning: b.meaning,
-      rootPrefix: b.rootPrefix,
-      rootExplanation: b.rootExplanation,
-      cognates: [],
-      examSentence: '',
-      mnemonic: '',
-      collocations: []
-    }));
-    return clozeData;
-  },
-
-  _analyzeRoot: function(word, rules) {
-    let bestMatch = null;
-    let maxLen = 0;
-    for (const suffix in rules) {
-      if (word.endsWith(suffix) && suffix.length > maxLen) {
-        maxLen = suffix.length;
-        bestMatch = rules[suffix];
-      }
-    }
-    if (bestMatch) {
-      return {
-        prefix: word.slice(0, -maxLen) + '-' + bestMatch.suffix,
-        explanation: bestMatch.meaning
-      };
-    }
-    return { prefix: '', explanation: '' };
-  },
-
-  _generateClozeGuides: function(clozeData) {
-    clozeData.answers.forEach(ans => {
-    });
-    return clozeData;
-  },
-
-  _extractVocabToGlobal: function(exam) {
-    if (exam.modules.cloze && exam.modules.cloze.wordAnalysis) {
-      exam.modules.cloze.wordAnalysis.forEach(wa => {
-        if (wa.word && !window._app.vocab.has(wa.word)) {
-          const source = exam.id + ' ' + CET6Utils.moduleLabels.cloze;
-          window._app.vocab.addRich(wa.word, {
-            pos: wa.pos,
-            meaning: wa.meaning,
-            source: source,
-            rootPrefix: wa.rootPrefix,
-            rootExplanation: wa.rootExplanation,
-            cognates: wa.cognates || [],
-            examSentence: wa.examSentence || '',
-            mnemonic: wa.mnemonic || '',
-            collocations: wa.collocations || []
-          });
-        }
-      });
-    }
-  },
-
-  _getRootRules: function() {
-    return {
-      'tion': { suffix: '-tion', meaning: '名词后缀，表示动作、状态' },
-      'sion': { suffix: '-sion', meaning: '名词后缀，表示动作、状态' },
-      'ment': { suffix: '-ment', meaning: '名词后缀，表示行为、结果' },
-      'ness': { suffix: '-ness', meaning: '名词后缀，表示性质、状态' },
-      'ity': { suffix: '-ity', meaning: '名词后缀，表示性质' },
-      'ty': { suffix: '-ty', meaning: '名词后缀' },
-      'al': { suffix: '-al', meaning: '形容词/名词后缀' },
-      'able': { suffix: '-able', meaning: '形容词后缀，表示可...的' },
-      'ible': { suffix: '-ible', meaning: '形容词后缀，表示可...的' },
-      'ive': { suffix: '-ive', meaning: '形容词后缀' },
-      'ous': { suffix: '-ous', meaning: '形容词后缀，表示多...的' },
-      'ful': { suffix: '-ful', meaning: '形容词后缀，表示充满...的' },
-      'less': { suffix: '-less', meaning: '形容词后缀，表示无...的' },
-      'ly': { suffix: '-ly', meaning: '副词/形容词后缀' },
-      'ify': { suffix: '-ify', meaning: '动词后缀，表示使...' },
-      'ize': { suffix: '-ize', meaning: '动词后缀，表示使...化' },
-      'ise': { suffix: '-ise', meaning: '动词后缀，表示使...化' },
-      'ing': { suffix: '-ing', meaning: '现在分词/动名词后缀' },
-      'ed': { suffix: '-ed', meaning: '过去分词/形容词后缀' },
-      'er': { suffix: '-er', meaning: '名词/动词后缀，表示人或物' },
-      'or': { suffix: '-or', meaning: '名词后缀，表示人' },
-      'tion': { suffix: '-tion', meaning: '名词后缀' },
-      'ic': { suffix: '-ic', meaning: '形容词后缀' },
-      'ical': { suffix: '-ical', meaning: '形容词后缀' },
-      'ant': { suffix: '-ant', meaning: '形容词/名词后缀' },
-      'ent': { suffix: '-ent', meaning: '形容词/名词后缀' },
-      'ance': { suffix: '-ance', meaning: '名词后缀' },
-      'ence': { suffix: '-ence', meaning: '名词后缀' },
-      'age': { suffix: '-age', meaning: '名词后缀' },
-      'ship': { suffix: '-ship', meaning: '名词后缀，表示状态、身份' },
-      'hood': { suffix: '-hood', meaning: '名词后缀，表示时期' },
-      'dom': { suffix: '-dom', meaning: '名词后缀，表示领域' }
-    };
-  },
 
   _submitImport: function() {
     const year = document.getElementById('form-year').value.trim();
@@ -625,7 +340,7 @@ B. consistent adj. 一致的 连续的
     const readingAnswers = document.getElementById('form-reading-answers').value.trim();
     if (readingPassage && readingQuestions && readingAnswers) {
       try {
-        modules.reading = this._parseReading(readingPassage, readingQuestions, readingAnswers);
+        modules.reading = ImportParser.parseReading(readingPassage, readingQuestions, readingAnswers);
         available.push('reading');
       } catch (e) {
         alert('传统阅读解析失败: ' + e.message);
@@ -638,7 +353,7 @@ B. consistent adj. 一致的 连续的
     const matchingAns = document.getElementById('form-matching-answers').value.trim();
     if (matchingPara && matchingOpts && matchingAns) {
       try {
-        modules.matching = this._parseMatching(matchingPara, matchingOpts, matchingAns);
+        modules.matching = ImportParser.parseMatching(matchingPara, matchingOpts, matchingAns);
         available.push('matching');
       } catch (e) {
         alert('长篇阅读解析失败: ' + e.message);
@@ -651,9 +366,9 @@ B. consistent adj. 一致的 连续的
     const clozeAns = document.getElementById('form-cloze-answers').value.trim();
     if (clozePassage && clozeBanks && clozeAns) {
       try {
-        modules.cloze = this._parseCloze(clozePassage, clozeBanks, clozeAns);
-        const rootRules = this._getRootRules();
-        modules.cloze = this._generateClozeWordAnalysis(modules.cloze, rootRules);
+        modules.cloze = ImportParser.parseCloze(clozePassage, clozeBanks, clozeAns);
+        const rootRules = ImportParser.getRootRules();
+        modules.cloze = ImportParser.generateClozeWordAnalysis(modules.cloze, rootRules);
         available.push('cloze');
       } catch (e) {
         alert('选词填空解析失败: ' + e.message);
@@ -728,7 +443,7 @@ B. consistent adj. 一致的 连续的
     let stepIndex = 1;
     const processNextStep = () => {
       if (stepIndex >= steps.length) {
-        this._extractVocabToGlobal(exam);
+        DataMigrator.extractVocabToGlobal(exam);
         setTimeout(() => this.navTo('exam/' + examId), 300);
         return;
       }
@@ -758,35 +473,36 @@ B. consistent adj. 一致的 连续的
 
     const state = this._getExamState(examId);
     const root = document.getElementById('app-root');
+    const container = CET6Utils.el('div', { className: 'exam-detail' });
 
-    let html = `
-      <div class="exam-detail">
-        ${CET6Shell.renderHeader(exam.meta.title, exam.meta.examDate, [
-          { text: '← 返回首页', onClick: () => this.navTo('home') }
-        ]).outerHTML}
-        <div class="exam-detail-content">
-          <div class="exam-modules">
-    `;
+    container.appendChild(CET6Shell.renderHeader(exam.meta.title, exam.meta.examDate, [
+      { text: '← 返回首页', onClick: function() { AppController.navTo('home'); } }
+    ]));
 
-    exam.availableModules.forEach(module => {
+    let html = '<div class="exam-detail-content"><div class="exam-modules">';
+
+    exam.availableModules.forEach(function(module) {
       const label = CET6Utils.moduleLabels[module];
       const modState = state[module] || {};
-      const doneCount = modState.currentPhase ? 1 : 0;
-      html += `
-        <div class="module-card ${module}" onclick="AppController.navTo('player/${module}/${examId}')">
-          <div class="module-card-title">${label}</div>
-          <div class="module-card-status">${modState.currentPhase ? '已开始' : '未开始'}</div>
-        </div>
-      `;
+      let statusText = '未开始';
+      let statusClass = '';
+      if (modState.completed) {
+        statusText = '✅ 已完成 ' + (modState.score || 0) + '/' + (modState.total || '?');
+        statusClass = 'completed';
+      } else if (modState.currentPhase) {
+        statusText = '已开始';
+        statusClass = 'started';
+      }
+      html += '<div class="module-card ' + module + ' ' + statusClass + '" onclick="AppController.navTo(\'player/' + module + '/' + examId + '\')">';
+      html += '<div class="module-card-title">' + label + '</div>';
+      html += '<div class="module-card-status">' + statusText + '</div>';
+      html += '</div>';
     });
 
-    html += `
-          </div>
-        </div>
-      </div>
-    `;
-
-    root.innerHTML = html;
+    html += '</div></div>';
+    container.insertAdjacentHTML('beforeend', html);
+    root.innerHTML = '';
+    root.appendChild(container);
   },
 
   _renderPlayer: function(type, examId) {
@@ -892,8 +608,7 @@ B. consistent adj. 一致的 连续的
     }
 
     this.currentEngine.init('#main-content');
-    window._engine = this.currentEngine;
-    window._vocab = this.currentVocab;
+    CET6Shell.initEventDelegate(this.currentEngine, this.currentVocab);
 
     if (type === 'matching') {
       const origStop = this.currentEngine.stopTimer.bind(this.currentEngine);

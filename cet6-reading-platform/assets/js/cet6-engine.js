@@ -7,25 +7,20 @@ class CET6Engine {
     this.currentPhase = '1';
     this._containerSelector = null;
     this.examId = examId;
-    this.progressKey = CET6Utils.storageKeys.examsState + '-' + examId + '-reading';
-    this._loadProgress();
+    const saved = ProgressStore.load(examId, 'reading');
+    this.selectedOptions = saved.selectedOptions || {};
+    this.currentPhase = saved.currentPhase || '1';
+    this.completed = saved.completed || false;
+    this.score = saved.score || 0;
+    this.total = saved.total || this.data.answers.length;
   }
-
-
 
   reRenderCurrentPhase() {
     const target = document.querySelector(this._containerSelector);
     if (!target) return;
-    target.innerHTML = '';
-    const phases = this.data.phases;
-    this._renderPhase1(target, phases.phase1);
-    this._renderPhase2a(target, phases.phase2a);
-    this._renderPhase2b(target, phases.phase2b);
-    this._renderPhase2c(target, phases.phase2c);
-    this._renderPhase3(target, phases.phase3);
-    this._renderPhase4(target, phases.phase4);
+    const old = document.getElementById('phase-' + this.currentPhase);
+    if (old) old.remove();
     this.switchPhase(this.currentPhase);
-    this._restoreSelections();
     this._renderAnswerCard();
     this.updateSidebar();
   }
@@ -38,23 +33,14 @@ class CET6Engine {
     });
   }
 
-  _loadProgress() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(this.progressKey) || '{}');
-      this.selectedOptions = saved.selectedOptions || {};
-      this.currentPhase = saved.currentPhase || '1';
-    } catch (e) {
-      this.selectedOptions = {};
-      this.currentPhase = '1';
-    }
-  }
-
   _saveProgress() {
-    localStorage.setItem(this.progressKey, JSON.stringify({
+    ProgressStore.save(this.examId, 'reading', {
       selectedOptions: this.selectedOptions,
       currentPhase: this.currentPhase,
-      time: new Date().toISOString()
-    }));
+      completed: this.completed,
+      score: this.score,
+      total: this.total
+    });
   }
 
   init(containerSelector) {
@@ -62,16 +48,6 @@ class CET6Engine {
     const target = document.querySelector(containerSelector);
     if (!target) return;
     target.innerHTML = '';
-
-    const phases = this.data.phases;
-
-    this._renderPhase1(target, phases.phase1);
-    this._renderPhase2a(target, phases.phase2a);
-    this._renderPhase2b(target, phases.phase2b);
-    this._renderPhase2c(target, phases.phase2c);
-    this._renderPhase3(target, phases.phase3);
-    this._renderPhase4(target, phases.phase4);
-
     this.switchPhase(this.currentPhase);
     this._restoreSelections();
     this._renderAnswerCard();
@@ -79,6 +55,45 @@ class CET6Engine {
   }
 
   destroy() {
+  }
+
+  _renderPhaseById(phase, container) {
+    const phases = this.data.phases;
+    switch (phase) {
+      case '1': this._renderPhase1(container, phases.phase1); break;
+      case '2a': this._renderPhase2a(container, phases.phase2a); break;
+      case '2b': this._renderPhase2b(container, phases.phase2b); break;
+      case '2c': this._renderPhase2c(container, phases.phase2c); break;
+      case '3': this._renderPhase3(container, phases.phase3); break;
+      case '4': this._renderPhase4(container, phases.phase4); break;
+    }
+  }
+
+  switchPhase(phase) {
+    this.currentPhase = String(phase);
+    this._saveProgress();
+
+    if (!document.getElementById('phase-' + phase)) {
+      const target = document.querySelector(this._containerSelector);
+      if (target) {
+        this._renderPhaseById(phase, target);
+        this._restoreSelections();
+      }
+    }
+
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    const tab = document.querySelector(`.tab[data-phase="${phase}"]`);
+    if (tab) tab.classList.add('active');
+
+    document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+    const phaseEl = document.getElementById('phase-' + phase);
+    if (phaseEl) phaseEl.classList.add('active');
+
+    if (phase === '3' || phase === 3) {
+      this._renderAnswerCard();
+    }
+
+    this.updateSidebar();
   }
 
   _renderPhase1(container, p) {
@@ -244,11 +259,18 @@ class CET6Engine {
     div.className = 'phase';
     div.id = 'phase-3';
 
+    const total = this.data.answers.length;
+    let score = 0;
+    let answered = 0;
+    this.data.answers.forEach(a => {
+      if (this.selectedOptions[a.id] !== undefined) answered++;
+      if (this.selectedOptions[a.id] === a.correct) score++;
+    });
+
     let html = `<div class="card"><div class="card-title">${p.title || '统一对答案'}`;
     if (p.source) html += ` <span class="tag tag-green">${p.source}</span>`;
     html += `</div>`;
-
-    html += this._renderScoreDisplay();
+    html += CET6Shell.renderScoreDisplay({ total: total, score: score, answered: answered });
 
     if (p.answers) {
       html += `<div style="display:grid;gap:6px;">`;
@@ -315,8 +337,21 @@ class CET6Engine {
     }
 
     html += `<div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn btn-accent" onclick="window._vocab.exportMarkdown('${this.data.meta?.title || '六级生词本'}')">导出 .md 生词本</button>
-      <button class="btn btn-danger" onclick="window._vocab.clear()">清空生词本</button>
+      <button class="btn btn-accent" data-ea="vocab" data-ea-method="exportMarkdown" data-ea-args='["${this.data.meta?.title || '六级生词本'}"]'>导出 .md 生词本</button>
+      <button class="btn btn-danger" data-ea="vocab" data-ea-method="clear">清空生词本</button>
+    </div>`;
+
+    const isCompleted = this.completed;
+    html += `<div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);text-align:center;">
+      ${isCompleted ? `
+        <div style="margin-bottom:12px;">
+          <span style="font-size:18px;font-weight:700;color:var(--success);">✅ 已完成</span>
+          <span style="font-size:14px;color:var(--text2);margin-left:8px;">得分 ${this.score || 0}/${this.total || this.data.answers.length}</span>
+        </div>
+        <button class="btn" data-ea="engine" data-ea-method="resetProgress">🔄 重新做题</button>
+      ` : `
+        <button class="btn btn-accent" style="font-size:16px;padding:12px 32px;" data-ea="engine" data-ea-method="markCompleted">✅ 标记完成</button>
+      `}
     </div>`;
 
     div.innerHTML = html;
@@ -347,9 +382,8 @@ class CET6Engine {
     let html = `<div class="options-grid" data-q="${qId}">`;
     question.options.forEach(opt => {
       const label = opt.label;
-      const cls = interactive ? 'option-item' : 'option-item';
-      const onclick = interactive ? `onclick="window._engine.selectOption(${qId},'${label}')"` : '';
-      html += `<div class="${cls}" ${onclick} data-opt="${label}">${label}) ${opt.text}</div>`;
+      const ea = interactive ? `data-ea="engine" data-ea-method="selectOption" data-ea-args='[${qId},"${label}"]'` : '';
+      html += `<div class="option-item" ${ea} data-opt="${label}">${label}) ${opt.text}</div>`;
     });
     html += `</div>`;
     return html;
@@ -363,32 +397,7 @@ class CET6Engine {
       if (this.selectedOptions[a.id] !== undefined) answered++;
       if (this.selectedOptions[a.id] === a.correct) score++;
     });
-
-    let desc = '';
-    if (answered === 0) desc = '暂未选择答案';
-    else if (answered < total) desc = `已做 ${answered}/${total} 题，正确 ${score} 题`;
-    else {
-      const pct = score / total;
-      if (pct === 1) desc = '全对！太棒了！';
-      else if (pct >= 0.8) desc = '非常好！继续保持！';
-      else if (pct >= 0.6) desc = '不错，还有提升空间！';
-      else desc = '需要加强，看看错题分析！';
-    }
-
-    const okPct = answered > 0 ? score / total : 0;
-    const failPct = answered > 0 ? (answered - score) / total : 0;
-    const remainingPct = 1 - okPct - failPct;
-
-    return `
-      <div class="score-display">
-        <div class="score-num">${score}/${total}</div>
-        <div><div style="font-weight:600;font-size:15px;">${desc}</div></div>
-      </div>
-      <div class="progress-bar" style="margin-bottom:12px;">
-        <div class="ok" style="flex:${Math.max(okPct * 100, 0)};"></div>
-        <div class="fail" style="flex:${Math.max(failPct * 100, 0)};"></div>
-        ${remainingPct > 0 ? `<div style="flex:${remainingPct * 100};background:#e0e0e0;"></div>` : ''}
-      </div>`;
+    return CET6Shell.renderScoreDisplay({ total: total, score: score, answered: answered });
   }
 
   _renderAnswerCard() {
@@ -419,14 +428,14 @@ class CET6Engine {
 
     const vocabListEl = document.getElementById('vocab-list');
     if (vocabListEl) {
-      vocabListEl.innerHTML = CET6Shell.renderVocabList(list, 'window._app.currentEngine.removeVocab');
+      vocabListEl.innerHTML = CET6Shell.renderVocabList(list, 'removeVocab');
     }
 
     const annotateListEl = document.getElementById('annotate-list');
     if (annotateListEl) {
       annotateListEl.innerHTML = CET6Shell.renderAnnotateList(
         this.annotate ? this.annotate.getAll() : [],
-        'window._app.currentEngine.removeAnnotate'
+        'removeAnnotate'
       );
     }
   }
@@ -448,45 +457,49 @@ class CET6Engine {
   }
 
   selectOption(qNum, opt) {
-    this.selectedOptions[qNum] = opt;
+    const prev = this.selectedOptions[qNum];
+    this.selectedOptions[qNum] = this.selectedOptions[qNum] === opt ? undefined : opt;
     this._saveProgress();
 
-    document.querySelectorAll(`.options-grid[data-q="${qNum}"] .option-item`).forEach(el => {
-      el.classList.remove('selected');
-      if (el.dataset.opt === opt) el.classList.add('selected');
-    });
-
-    this._renderAnswerCard();
-
-    const phase3 = document.getElementById('phase-3');
-    if (phase3) {
-      const card = phase3.querySelector('.card');
-      if (card) {
-        const scoreHTML = this._renderScoreDisplay();
-        const existingScore = card.querySelector('.score-display');
-        if (existingScore) {
-          existingScore.outerHTML = scoreHTML;
-        }
+    const grid = document.querySelector(`.options-grid[data-q="${qNum}"]`);
+    if (grid) {
+      grid.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+      if (this.selectedOptions[qNum]) {
+        grid.querySelector(`.option-item[data-opt="${opt}"]`).classList.add('selected');
       }
     }
+
+    this._renderAnswerCard();
   }
 
-  switchPhase(phase) {
-    this.currentPhase = String(phase);
+  _computeScore() {
+    let score = 0;
+    this.data.answers.forEach(a => {
+      if (this.selectedOptions[a.id] === a.correct) score++;
+    });
+    return { score: score, total: this.data.answers.length };
+  }
+
+  markCompleted() {
+    const result = this._computeScore();
+    this.completed = true;
+    this.score = result.score;
+    this.total = result.total;
     this._saveProgress();
+    this.reRenderCurrentPhase();
+  }
 
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    const tab = document.querySelector(`.tab[data-phase="${phase}"]`);
-    if (tab) tab.classList.add('active');
-
-    document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
-    const phaseEl = document.getElementById(`phase-${phase}`);
-    if (phaseEl) phaseEl.classList.add('active');
-
-    if (phase === '3' || phase === 3) {
-      this._renderAnswerCard();
+  resetProgress() {
+    if (!confirm('确定重置进度？所有作答记录将被清空。')) return;
+    this.selectedOptions = {};
+    this.currentPhase = '1';
+    this.completed = false;
+    this.score = 0;
+    this.total = this.data.answers.length;
+    this._saveProgress();
+    const root = document.getElementById('app-root');
+    if (root) {
+      AppController.navTo('player/reading/' + this.examId);
     }
-
-    this.updateSidebar();
   }
 }

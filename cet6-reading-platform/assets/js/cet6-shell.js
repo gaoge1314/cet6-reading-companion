@@ -226,10 +226,51 @@ var CET6Shell = {
     if (this._mousedownHandler) {
       document.removeEventListener('mousedown', this._mousedownHandler);
     }
+    this._destroyEventDelegate();
     this._selectionListenerActive = false;
     this._currentSelection = { text: '', paraIdx: 0 };
     const root = document.getElementById('app-root');
     if (root) root.innerHTML = '';
+  },
+
+  _delegateHandler: null,
+
+  initEventDelegate: function(engine, vocab) {
+    this._destroyEventDelegate();
+    const self = this;
+    this._delegateHandler = function(e) {
+      const target = e.target.closest('[data-ea]');
+      if (!target) return;
+      const ea = target.getAttribute('data-ea');
+      const argsAttr = target.getAttribute('data-ea-args');
+      const after = target.getAttribute('data-ea-after');
+      var args = [];
+      if (argsAttr) {
+        try { args = JSON.parse(argsAttr); } catch (err) { args = []; }
+      }
+      if (ea === 'engine' && engine) {
+        var method = target.getAttribute('data-ea-method');
+        if (method && typeof engine[method] === 'function') {
+          engine[method].apply(engine, args);
+        }
+      } else if (ea === 'vocab' && vocab) {
+        var method = target.getAttribute('data-ea-method');
+        if (method && typeof vocab[method] === 'function') {
+          vocab[method].apply(vocab, args);
+        }
+      }
+      if (after && engine && typeof engine[after] === 'function') {
+        engine[after]();
+      }
+    };
+    document.addEventListener('click', this._delegateHandler);
+  },
+
+  _destroyEventDelegate: function() {
+    if (this._delegateHandler) {
+      document.removeEventListener('click', this._delegateHandler);
+      this._delegateHandler = null;
+    }
   },
 
   renderVocabList: function(list, onDelete) {
@@ -239,7 +280,7 @@ var CET6Shell = {
     return list.map((w, i) => `
       <div class="vocab-item">
         <div><div class="word">${CET6Utils.esc(w.word)}</div><div class="src">${CET6Utils.esc(w.source || '')}</div></div>
-        <span class="del" onclick="${onDelete}(${i})">✕</span>
+        <span class="del" data-ea="engine" data-ea-method="${onDelete}" data-ea-args='[${i}]'>✕</span>
       </div>
     `).join('');
   },
@@ -255,7 +296,7 @@ var CET6Shell = {
           <div class="a-para">¶${(a.paraIdx + 1) || '-'}</div>
           ${a.annotation ? `<div class="a-note">${CET6Utils.esc(a.annotation)}</div>` : ''}
         </div>
-        <span class="del" onclick="${onDelete}(${i})">✕</span>
+        <span class="del" data-ea="engine" data-ea-method="${onDelete}" data-ea-args='[${i}]'>✕</span>
       </div>
     `).join('');
   },
@@ -269,11 +310,36 @@ var CET6Shell = {
       words.forEach((w, i) => {
         html += `<div class="locateword-item">
           <div><span class="lw-id">${optId}题</span> <span class="lw-word">${CET6Utils.esc(w)}</span></div>
-          <span class="del" onclick="${onDelete}(${optId},'${CET6Utils.esc(w).replace(/'/g, '\\\'')}')">✕</span>
+          <span class="del" data-ea="engine" data-ea-method="${onDelete}" data-ea-args='[${optId},"${CET6Utils.esc(w).replace(/"/g, '\\"')}"]'>✕</span>
         </div>`;
       });
     });
     return html;
+  },
+
+  renderScoreDisplay: function(stats) {
+    const total = stats.total || 0;
+    const score = stats.score || 0;
+    const answered = stats.answered || 0;
+
+    let desc = '';
+    if (answered === 0) desc = stats.emptyText || '暂未作答';
+    else if (answered < total) desc = '已做 ' + answered + '/' + total + ' 题，正确 ' + score + ' 题';
+    else {
+      const pct = total > 0 ? score / total : 0;
+      if (pct === 1) desc = '全对！太棒了！';
+      else if (pct >= 0.8) desc = '非常好！继续保持！';
+      else if (pct >= 0.6) desc = '不错，还有提升空间！';
+      else desc = '需要加强，看看错题分析！';
+    }
+    if (stats.extraText) desc += stats.extraText;
+
+    const okPct = total > 0 ? score / total : 0;
+    const failPct = total > 0 && answered > 0 ? (answered - score) / total : 0;
+    const remainingPct = Math.max(0, 1 - okPct - failPct - (stats.extraPct || 0));
+    const gaveUpPct = stats.extraPct || 0;
+
+    return '<div class="score-display"><div class="score-num">' + score + '/' + total + '</div><div><div style="font-weight:600;font-size:15px;">' + desc + '</div></div></div><div class="progress-bar" style="margin-bottom:12px;"><div class="ok" style="flex:' + Math.max(okPct * 100, 0) + ';"></div><div class="fail" style="flex:' + Math.max(failPct * 100, 0) + ';"></div>' + (gaveUpPct > 0 ? '<div style="flex:' + gaveUpPct * 100 + ';background:var(--warn);"></div>' : '') + (remainingPct > 0 ? '<div style="flex:' + remainingPct * 100 + ';background:#e0e0e0;"></div>' : '') + '</div>';
   },
 
   updateSidebarCounts: function(counts) {

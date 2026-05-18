@@ -22,50 +22,37 @@ class CET6LongReadEngine {
     this.perQuestionLimit = 60;
 
     this.dataId = data.meta.id;
-    this.progressKey = CET6Utils.storageKeys.examsState + '-' + examId + '-matching';
+    this.examId = examId;
     this.currentPhase = '1';
     this._contentEl = null;
     this._timerEl = null;
-    this._loadProgress();
+    const saved = ProgressStore.load(examId, 'matching');
+    this.matches = saved.matches || {};
+    this.gaveUps = new Set(saved.gaveUps || []);
+    this.otItems = new Set(saved.otItems || []);
+    this.timings = saved.timings || {};
+    this.currentPhase = saved.currentPhase || '1';
   }
 
   setAnnotate(annotate) {
     this.annotate = annotate;
   }
 
-  _loadProgress() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(this.progressKey) || '{}');
-      this.matches = saved.matches || {};
-      this.gaveUps = new Set(saved.gaveUps || []);
-      this.otItems = new Set(saved.otItems || []);
-      this.timings = saved.timings || {};
-      this.currentPhase = saved.currentPhase || '1';
-    } catch (e) {
-      this.matches = {};
-      this.gaveUps = new Set();
-      this.otItems = new Set();
-      this.timings = {};
-      this.currentPhase = '1';
-    }
-  }
-
   _saveProgress() {
-    localStorage.setItem(this.progressKey, JSON.stringify({
+    ProgressStore.save(this.examId, 'matching', {
       matches: this.matches,
       gaveUps: Array.from(this.gaveUps),
       otItems: Array.from(this.otItems),
       timings: this.timings,
-      currentPhase: this.currentPhase,
-      time: new Date().toISOString()
-    }));
+      currentPhase: this.currentPhase
+    });
   }
 
   init(containerSelector, contentEl) {
     this._containerSelector = containerSelector;
     this._contentEl = contentEl || document.querySelector(containerSelector);
     this._timerEl = document.getElementById('timer-display');
-    this.renderAll();
+    this._contentEl.innerHTML = '';
     this.switchPhase(this.currentPhase);
   }
 
@@ -73,14 +60,14 @@ class CET6LongReadEngine {
     if (this.timerRunning) this.stopTimer();
   }
 
-  renderAll() {
+  _renderPhaseById(phase) {
     const c = this._contentEl;
-    c.innerHTML = '';
-    this._renderPhase1(c);
-    this._renderPhase2(c);
-    this._renderPhase3(c);
-    this._renderPhase4(c);
-    this._updateTimerDisplay();
+    switch (phase) {
+      case '1': this._renderPhase1(c); break;
+      case '2': this._renderPhase2(c); break;
+      case '3': this._renderPhase3(c); break;
+      case '4': this._renderPhase4(c); break;
+    }
   }
 
   _buildThinkingPrompt(opt) {
@@ -295,7 +282,7 @@ class CET6LongReadEngine {
       const matchedParaId = this.matches[opt.id];
       const matchedPara = (this.data.passage.paragraphs || []).find(p => p.id === matchedParaId);
       if (matchedPara) {
-        html += `<div class="matched-para-toggle" id="para-toggle-${opt.id}" onclick="window._engine.toggleParaExpand(${opt.id})">📄 展开段落 ${matchedParaId}</div>`;
+        html += `<div class="matched-para-toggle" id="para-toggle-${opt.id}" data-ea="engine" data-ea-method="toggleParaExpand" data-ea-args='[${opt.id}]'>📄 展开段落 ${matchedParaId}</div>`;
         html += `<div class="matched-para-content" id="para-content-${opt.id}" style="display:none;">`;
         html += `<div class="para-text" style="font-size:12px;line-height:1.8;color:var(--text2);background:var(--bg);padding:8px 10px;border-radius:6px;border:1px solid var(--border);">${CET6Utils.esc(matchedPara.text)}</div>`;
         html += `</div>`;
@@ -306,7 +293,7 @@ class CET6LongReadEngine {
     (this.data.passage.paragraphs || []).forEach(para => {
       const sel = this.matches[opt.id] === para.id ? ' selected' : '';
       const disabled = isGaveUp ? ' disabled' : '';
-      html += `<div class="para-select-btn${sel}${disabled}" data-para="${para.id}" onclick="window._engine.selectPara(${opt.id},'${para.id}')">${para.id}</div>`;
+      html += `<div class="para-select-btn${sel}${disabled}" data-para="${para.id}" data-ea="engine" data-ea-method="selectPara" data-ea-args='[${opt.id},"${para.id}"]'>${para.id}</div>`;
     });
     html += `</div>`;
     const giveupLabel = isGaveUp ? '恢复' : '放弃';
@@ -314,7 +301,7 @@ class CET6LongReadEngine {
     const giveupActive = isGaveUp ? ' active' : '';
     html += `<div style="margin-top:6px;">`;
     html += `<span class="giveup-hint${isOT && !isMatched && !isGaveUp ? ' show' : ''}" id="hint-${opt.id}">建议放弃（超过60秒）</span>`;
-    html += `<button class="${giveupCls}${giveupActive}" id="giveup-btn-${opt.id}" onclick="window._engine.toggleGiveUp(${opt.id})">${giveupLabel}</button>`;
+    html += `<button class="${giveupCls}${giveupActive}" id="giveup-btn-${opt.id}" data-ea="engine" data-ea-method="toggleGiveUp" data-ea-args='[${opt.id}]'>${giveupLabel}</button>`;
     html += `</div>`;
     html += `</div>`;
     return html;
@@ -467,8 +454,8 @@ class CET6LongReadEngine {
     }
 
     html += `<div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn btn-accent" onclick="window._vocab.exportMarkdown('${this.data.meta.title || '生词本'}')">导出 .md 生词本</button>
-      <button class="btn btn-danger" onclick="window._vocab.clear()">清空生词本</button>
+      <button class="btn btn-accent" data-ea="vocab" data-ea-method="exportMarkdown" data-ea-args='["${this.data.meta.title || '生词本'}"]'>导出 .md 生词本</button>
+      <button class="btn btn-danger" data-ea="vocab" data-ea-method="clear">清空生词本</button>
     </div>`;
 
     div.innerHTML = html;
@@ -531,34 +518,20 @@ class CET6LongReadEngine {
       if (this.matches[a.id] === a.correct) score++;
     });
 
-    let desc = '';
-    if (answered === 0) desc = '暂未匹配任何题';
-    else if (answered < total) desc = `已做 ${answered - gaveUp}/${total} 题，放弃 ${gaveUp} 题，正确 ${score} 题`;
-    else {
-      desc = `全部完成 · 正确 ${score}/${total} 题 · 放弃 ${gaveUp} 题`;
-    }
-
-    const okPct = total > 0 ? score / total : 0;
-    const failPct = total > 0 ? (answered - gaveUp - score) / total : 0;
     const gaveUpPct = total > 0 ? gaveUp / total : 0;
-    const remainingPct = Math.max(0, 1 - okPct - failPct - gaveUpPct);
+    let extraText = '';
+    if (gaveUp > 0) extraText += ' · 放弃 ' + gaveUp + ' 题';
+    const totalTime = Object.values(this.timings).reduce(function(a,b) { return a+b; }, 0);
+    if (totalTime > 0) extraText += ' · 总用时 ' + this._fmtTime(totalTime);
 
-    return `
-      <div class="score-display">
-        <div class="score-num">${score}/${total}</div>
-        <div>
-          <div style="font-weight:600;font-size:15px;">${desc}</div>
-          <div style="font-size:12px;color:var(--text2);">
-            ${Object.values(this.timings).reduce((a,b) => a+b, 0) > 0 ? '总用时: ' + this._fmtTime(Object.values(this.timings).reduce((a,b) => a+b, 0)) : ''}
-          </div>
-        </div>
-      </div>
-      <div class="progress-bar" style="margin-bottom:12px;">
-        <div class="ok" style="flex:${Math.max(okPct * 100, 0)};"></div>
-        <div class="fail" style="flex:${Math.max(failPct * 100, 0)};"></div>
-        ${gaveUpPct > 0 ? `<div style="flex:${gaveUpPct * 100};background:var(--warn);"></div>` : ''}
-        ${remainingPct > 0 ? `<div style="flex:${remainingPct * 100};background:#e0e0e0;"></div>` : ''}
-      </div>`;
+    return CET6Shell.renderScoreDisplay({
+      total: total,
+      score: score,
+      answered: answered,
+      emptyText: '暂未匹配任何题',
+      extraText: extraText,
+      extraPct: gaveUpPct
+    });
   }
 
   _renderTimingChart() {
@@ -847,13 +820,14 @@ class CET6LongReadEngine {
     });
 
     optionsEl.innerHTML = '';
+    const self = this;
     (this.data.options || []).forEach(opt => {
       const card = document.createElement('div');
       card.innerHTML = this._buildOptionCard(opt);
       const cardEl = card.firstChild;
       cardEl.onclick = function(e) {
         if (e.target.closest('.para-select-btn') || e.target.closest('.giveup-btn') || e.target.closest('.matched-para-toggle')) return;
-        window._engine.focusOption(opt.id);
+        self.focusOption(opt.id);
       };
       optionsEl.appendChild(cardEl);
     });
@@ -865,12 +839,16 @@ class CET6LongReadEngine {
     this.currentPhase = String(phase);
     this._saveProgress();
 
+    if (!document.getElementById('phase-' + phase)) {
+      this._renderPhaseById(phase);
+    }
+
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     const tab = document.querySelector(`.tab[data-phase="${phase}"]`);
     if (tab) tab.classList.add('active');
 
     document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
-    const phaseEl = document.getElementById(`phase-${phase}`);
+    const phaseEl = document.getElementById('phase-' + phase);
     if (phaseEl) phaseEl.classList.add('active');
 
     if (phase === '2') {
@@ -914,15 +892,15 @@ class CET6LongReadEngine {
 
     const vocabListEl = document.getElementById('vocab-list');
     if (vocabListEl) {
-      vocabListEl.innerHTML = CET6Shell.renderVocabList(list, 'window._app.currentEngine.removeVocab');
+      vocabListEl.innerHTML = CET6Shell.renderVocabList(list, 'removeVocab');
     }
     const annotateListEl = document.getElementById('annotate-list');
     if (annotateListEl) {
-      annotateListEl.innerHTML = CET6Shell.renderAnnotateList(annotateList, 'window._app.currentEngine.removeAnnotate');
+      annotateListEl.innerHTML = CET6Shell.renderAnnotateList(annotateList, 'removeAnnotate');
     }
     const locateListEl = document.getElementById('locateword-list');
     if (locateListEl) {
-      locateListEl.innerHTML = CET6Shell.renderLocateWordList(locateWordData, 'window._app.currentEngine.removeLocateWord');
+      locateListEl.innerHTML = CET6Shell.renderLocateWordList(locateWordData, 'removeLocateWord');
     }
   }
 
@@ -934,7 +912,8 @@ class CET6LongReadEngine {
   }
 
   reRenderCurrentPhase() {
-    this.renderAll();
+    const old = document.getElementById('phase-' + this.currentPhase);
+    if (old) old.remove();
     this.switchPhase(this.currentPhase);
   }
 }

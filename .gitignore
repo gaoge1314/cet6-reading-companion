@@ -1,18 +1,36 @@
-# 临时文件
-.superpowers/
-.trae-cn/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
 
-# 试题 PDF 文件（用户自行放置）
-*.pdf
+# Temp extract files
+cet6-reading-platform/assets/data/pdf_*.txt
+cet6-reading-platform/assets/data/_extract_*.txt
+cet6-reading-platform/assets/data/_ocr_*.txt
 
-# 音频文件
-*.mp3
-*.m4a
-*.aac
+# Python scripts (one-time tools)
+cet6-reading-platform/extract_*.py
+cet6-reading-platform/build_*.py
+cet6-reading-platform/check_data.py
+cet6-reading-platform/fix_*.py
+cet6-reading-platform/ocr_*.py
+cet6-reading-platform/run_*.py
+cet6-reading-platform/generate_*.py
 
-# Word 文档
-*.docx
+# Temp directories
+cet6-reading-platform/extract_*/
+cet6-reading-platform/assets/data/build_exams_temp*/
 
-# 系统文件
+# OS files
 Thumbs.db
 .DS_Store
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

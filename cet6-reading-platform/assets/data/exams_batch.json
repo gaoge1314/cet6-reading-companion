@@ -1,0 +1,3593 @@
+[
+  {
+    "id": "2025-12-exam2",
+    "meta": {
+      "examDate": "2025年12月",
+      "level": "CET6",
+      "title": "2025年12月六级真题第2套",
+      "importedAt": "2026-05-18T12:00:00.000Z"
+    },
+    "modules": {
+      "reading": {
+        "meta": {
+          "type": "reading",
+          "id": "2025-12-exam2"
+        },
+        "passage": {
+          "paragraphs": [
+            "As interdependent beings we cannot thrive independent of others. We like to work with people who are like-minded, with whom we share a common interest, or who also believe in a cause we are serious about. This is evident in how we have organised ourselves into various collective groups such as nations, regions, communities, organisations, and families.",
+            "Does the group you belong to have a strong collective consciousness or shared beliefs? Is there interdependence among its members? Do you consider this group a significant part of your existence? If your answers are affirmative, then you are experiencing a micro version of solidarity.",
+            "What is solidarity? Its simplest definition in the dictionary is: \"...a unifying opinion, feeling, purpose or interest among a group of people.\"",
+            "In this increasingly diverse society we live in, solidarity takes on a complex and multifaceted character as it forms bonds of interdependence among unique individuals living in a fast-changing environment and working within a complex division of labour.",
+            "One facet of solidarity fits well with the principles of communitarianism. In this setting, individuals give up their own interests to serve the common good. However, its strict adherence to social cohesiveness and exclusiveness restricts expression and practice of individual differences and preferences. Consequently, individuality and autonomy is sacrificed to maintain the unity of the group.",
+            "Solidarity is also viewed as a reaction to the extreme emphasis on individualism and freedom of choice. It goes against the liberal idea of unrestricted individuals who see society as a hindrance to their freedom to make choices and to act according to what is good for them regardless of how these will affect others.",
+            "But despite its many facets, social theorists have viewed solidarity as a key factor in bringing about order and progress in society. They believe that for human society to survive as it becomes more diverse, more new bonds need to be formed based on the differences. In the light of this, they regard a genuine solidarity as more than just shallow relationships based on common interests. Solidarity is not just a product of strategic calculations of how much it will benefit the self. It is not an exclusive class founded on the you-and-me-against-the-world principle. Rather, it is inclusive and is not forced. Acting out of solidarity means supporting and standing up for each other—in recognition that one's fate is in the fate of the other. It is a bond characterised by cooperative practices and strengthened by the concern for the well-being of others or the common good. It fights for the protection of human dignity and listens to and acts on the cries of the most vulnerable."
+          ]
+        },
+        "questions": [
+          {
+            "id": 46,
+            "number": "46",
+            "text": "What does the author say about human beings?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They cannot prosper without cooperating with each other."
+              },
+              {
+                "label": "B",
+                "text": "They share a common interest and believe in a just cause."
+              },
+              {
+                "label": "C",
+                "text": "They think and behave alike in different social groups."
+              },
+              {
+                "label": "D",
+                "text": "They cannot gain independence without fighting for it."
+              }
+            ]
+          },
+          {
+            "id": 47,
+            "number": "47",
+            "text": "What do we learn about solidarity in an increasingly diverse society?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It gives rise to a complicated division of labour."
+              },
+              {
+                "label": "B",
+                "text": "It involves many aspects with great complexity."
+              },
+              {
+                "label": "C",
+                "text": "It brings individuals together as environment changes."
+              },
+              {
+                "label": "D",
+                "text": "It embraces the characteristics of different individuals."
+              }
+            ]
+          },
+          {
+            "id": 48,
+            "number": "48",
+            "text": "What would we witness in the setting of communitarianism?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Ruling of social norms and ridding of individuality."
+              },
+              {
+                "label": "B",
+                "text": "Emphasis on the adherence to individual differences."
+              },
+              {
+                "label": "C",
+                "text": "Sacrifice of personal interests for the common good."
+              },
+              {
+                "label": "D",
+                "text": "Elimination of individualism and personal choices."
+              }
+            ]
+          },
+          {
+            "id": 49,
+            "number": "49",
+            "text": "What does solidarity entail according to the passage?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "A limit to personal differences."
+              },
+              {
+                "label": "B",
+                "text": "An opposition to individualism."
+              },
+              {
+                "label": "C",
+                "text": "A hindrance to social advancement."
+              },
+              {
+                "label": "D",
+                "text": "An inevitable end to liberal pursuits."
+              }
+            ]
+          },
+          {
+            "id": 50,
+            "number": "50",
+            "text": "What do social theorists think of solidarity?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It is especially relevant to the most vulnerable."
+              },
+              {
+                "label": "B",
+                "text": "It is most effective in protecting human dignity."
+              },
+              {
+                "label": "C",
+                "text": "It is essential to progress and order in society."
+              },
+              {
+                "label": "D",
+                "text": "It is indispensable to avoiding shallow relationships."
+              }
+            ]
+          },
+          {
+            "id": 51,
+            "number": "51",
+            "text": "What is the finding of one study about people who keep giving unsolicited advice?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They turn out to be well-meaning."
+              },
+              {
+                "label": "B",
+                "text": "They are genuinely kind-hearted."
+              },
+              {
+                "label": "C",
+                "text": "They are capable of influencing others."
+              },
+              {
+                "label": "D",
+                "text": "They are inclined to crave for power."
+              }
+            ]
+          },
+          {
+            "id": 52,
+            "number": "52",
+            "text": "What is the problem with people who are driven to give you unsolicited advice?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They may be quick to upset others."
+              },
+              {
+                "label": "B",
+                "text": "They may be emotionally vulnerable."
+              },
+              {
+                "label": "C",
+                "text": "They want their voice to be the loudest."
+              },
+              {
+                "label": "D",
+                "text": "They respond to discomfort excessively."
+              }
+            ]
+          },
+          {
+            "id": 53,
+            "number": "53",
+            "text": "What is the advice receiver tempted to do when noticing the advice giver's underlying anxiety?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Reveal the undesirable result of their approach."
+              },
+              {
+                "label": "B",
+                "text": "Refuse their advice in an undisguised manner."
+              },
+              {
+                "label": "C",
+                "text": "Bring their real motives to the surface."
+              },
+              {
+                "label": "D",
+                "text": "Accuse them of trying to control others."
+              }
+            ]
+          },
+          {
+            "id": 54,
+            "number": "54",
+            "text": "How is the advice giver likely to react to the rejection of their advice?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They may regard it as a threat."
+              },
+              {
+                "label": "B",
+                "text": "They may modify their behavior."
+              },
+              {
+                "label": "C",
+                "text": "They get ready for a larger conflict."
+              },
+              {
+                "label": "D",
+                "text": "They begin to doubt their self-worth."
+              }
+            ]
+          },
+          {
+            "id": 55,
+            "number": "55",
+            "text": "What should the advice receiver do to avoid unnecessary conflict?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Concede the advice is perfectly reasonable."
+              },
+              {
+                "label": "B",
+                "text": "Give their reasons for not taking the advice."
+              },
+              {
+                "label": "C",
+                "text": "Understand why the advice giver offers the advice."
+              },
+              {
+                "label": "D",
+                "text": "Explain their chosen way of handling the situation."
+              }
+            ]
+          }
+        ],
+        "answers": [
+          {
+            "id": 46,
+            "correct": "A"
+          },
+          {
+            "id": 47,
+            "correct": "B"
+          },
+          {
+            "id": 48,
+            "correct": "C"
+          },
+          {
+            "id": 49,
+            "correct": "B"
+          },
+          {
+            "id": 50,
+            "correct": "C"
+          },
+          {
+            "id": 51,
+            "correct": "D"
+          },
+          {
+            "id": 52,
+            "correct": "B"
+          },
+          {
+            "id": 53,
+            "correct": "B"
+          },
+          {
+            "id": 54,
+            "correct": "A"
+          },
+          {
+            "id": 55,
+            "correct": "C"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "topicPrediction": null,
+            "questionTypes": null
+          },
+          "phase2a": {
+            "instruction": {
+              "title": "T1 全景扫描",
+              "content": "扫描题干 → 找关键词 → 判断题型"
+            }
+          },
+          "phase2b": {
+            "instruction": {
+              "title": "T3 中心做题",
+              "content": "用找到的中心去匹配选项"
+            }
+          },
+          "phase2c": {
+            "instruction": {
+              "title": "T4 定位 + T6 段落锁定 + T3 同义替换",
+              "content": "找到定位词 → 锁定段落"
+            }
+          },
+          "phase3": {
+            "title": "统一对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "文章复盘",
+              "content": "对照错题分析原因"
+            }
+          }
+        }
+      },
+      "matching": {
+        "meta": {
+          "type": "matching",
+          "timeLimit": 15,
+          "id": "2025-12-exam2"
+        },
+        "passage": {
+          "paragraphs": [
+            {
+              "id": "A",
+              "text": "Projects, relationships, and jobs don't always work out as planned—and it's not always clear when to give up. We've all repeatedly heard the saying that \"quitters never win,\" but sometimes the best decision is to cut our losses."
+            },
+            {
+              "id": "B",
+              "text": "Think about that relationship you held on to even after it had run its course or the job you stayed in despite your boss making you miserable. Many of us try to hold onto the last ray of hope, thinking we can make it work, whatever \"it\" is. And while perseverance is generally an excellent quality, it may also incline you to over-invest in something that is no longer a good idea."
+            },
+            {
+              "id": "C",
+              "text": "As an executive coach, I work with numerous passionate and hard-working leaders who don't want to \"quit.\" But the smartest leaders learn to discern the difference between quitting too soon and holding onto something that they shouldn't."
+            },
+            {
+              "id": "D",
+              "text": "We are all susceptible to the sunk-cost delusion, an unconscious bias that leads us to persist in an endeavor we have already invested time, effort, or money into—even when abandoning it would be more beneficial. We realize that we can't get back the resources we've given, so we persevere—investing in a project that should be halted, staying in a relationship that should be over, or finishing a book we no longer enjoy and should put down, because we're already halfway through it."
+            },
+            {
+              "id": "E",
+              "text": "The sunk-cost delusion causes us to overly worry about what we'll lose if we move on and not think enough about the costs of not moving on. To offset this bias, deliberately refocus your thinking on the gains so you can more objectively weigh the alternatives. Ask yourself: What might I gain by cutting my losses now?"
+            },
+            {
+              "id": "F",
+              "text": "The illusion of control can also interfere with our best judgment, leading us to overestimate our ability to control events and attain a positive outcome. This bias gives us a sense of agency and can promote mental health. However, the bias can also result in escalating commitment to a losing course of action. Especially when combined with an \"I'm not a quitter\" mentality, feeling like we have more control over an event or person than we do puts us at risk of doubling down when we should pull out."
+            },
+            {
+              "id": "G",
+              "text": "To counteract this bias, consider your situation and make a simple two-column list of what's in your control and what's not. Think rigorously. While you may be able to influence other people and various circumstances, you can't force them to change or go your way."
+            },
+            {
+              "id": "H",
+              "text": "Getting clear on what you can control and what you can't is essential to making a quality decision about whether to call it quits or persevere. With a written list in hand, you can ensure you focus on what you can control and better assess whether your continued efforts are worth the expense."
+            },
+            {
+              "id": "I",
+              "text": "Research indicates that people link their self-identity and social status to their commitments. And because we identify with our commitments, withdrawing from one can feel like a threat to our identity or status."
+            },
+            {
+              "id": "J",
+              "text": "Take my client Ryan, a leader at a technology company. Ryan had invested two years and a lot of effort in a design project that wasn't delivering the needed outcomes, but the thought of abandoning it after all she had put in was hard to bear. As Ryan and I explored whether she should cancel the initiative she'd been leading or continue to persevere, she stated, \"The thing is, I'm not a quitter.\""
+            },
+            {
+              "id": "K",
+              "text": "Our self-concept and identity are mental concepts that influence our behavior. If you strongly identify as not being a quitter, you can end up staying stuck in a course of action due to your narrow and rigid self-concept. To overcome this kind of internal obstacle, recall your other positive traits and personality characteristics."
+            },
+            {
+              "id": "L",
+              "text": "Now, examine your situation through the lens of each of these facets of yourself. What does the discerning part of you say? The brave part? Considering your decision through these different characteristics will enable you to see that you have more choices."
+            },
+            {
+              "id": "M",
+              "text": "Ideally, seek out people who are less invested in your decision than you are. If you're considering whether to shut down your entrepreneurial venture, for instance, reach out to other founders as opposed to just your business partner."
+            },
+            {
+              "id": "N",
+              "text": "Alternately, you could also seek out hard data that illuminates your real chance of success in whatever endeavor you are contemplating. Sticking with the example of the entrepreneurial venture, numbers are your best friend. Use them to remove yourself from the love you have for this idea and consider your burn rate relative to growth plan."
+            },
+            {
+              "id": "O",
+              "text": "When something that seemed so promising at the start doesn't turn out the way we imagined, we can become overly self-critical. Nobody likes to feel that they've made a poor decision, especially if making intelligent decisions is a quality you hold in high esteem."
+            },
+            {
+              "id": "P",
+              "text": "Instead of deliberating and criticizing yourself, focus instead on what you can learn from this situation. For example, Ryan recognized she had developed various new skills and leadership capabilities from leading the design project."
+            },
+            {
+              "id": "Q",
+              "text": "Undeniably, perseverance can help us succeed. But for your wellbeing, it's important to learn how to distinguish quitting too soon and clinging to a losing course of action. While letting go can be difficult, it will free up your time, energy, and mental space to imagine new possibilities."
+            }
+          ]
+        },
+        "options": [
+          {
+            "id": 36,
+            "text": "Feeling like they have more control over something or someone than they do, people get more committed to their pursuit when they should give up."
+          },
+          {
+            "id": 37,
+            "text": "If you regard yourself as one who never quits, you may end up trapped in your course of action."
+          },
+          {
+            "id": 38,
+            "text": "One of the author's clients found it hard to give up a design project, in which she had put in a lot of time and effort."
+          },
+          {
+            "id": 39,
+            "text": "The author suggests that one should direct their thoughts to the gains of quitting timely so as to move on."
+          },
+          {
+            "id": 40,
+            "text": "When making a decision, you'd better ask for opinions of those who have less stake in your decision."
+          },
+          {
+            "id": 41,
+            "text": "For people associating their identity with their commitments, quitting can feel like their identity is threatened."
+          },
+          {
+            "id": 42,
+            "text": "People who regard highly the quality of making wise decisions do not feel good when they make a bad one."
+          },
+          {
+            "id": 43,
+            "text": "The wisest leaders learn to distinguish between giving up too soon and sticking with something irrationally."
+          },
+          {
+            "id": 44,
+            "text": "When people are thinking of an endeavor, they should dig out reliable data that tells them how likely they are to succeed."
+          },
+          {
+            "id": 45,
+            "text": "Having a clear view of what's in your control and what's not is vital to making a good decision regarding whether to give up or stick it out."
+          }
+        ],
+        "answers": [
+          {
+            "id": 36,
+            "correctPara": "F"
+          },
+          {
+            "id": 37,
+            "correctPara": "K"
+          },
+          {
+            "id": 38,
+            "correctPara": "J"
+          },
+          {
+            "id": 39,
+            "correctPara": "E"
+          },
+          {
+            "id": 40,
+            "correctPara": "M"
+          },
+          {
+            "id": 41,
+            "correctPara": "I"
+          },
+          {
+            "id": 42,
+            "correctPara": "O"
+          },
+          {
+            "id": 43,
+            "correctPara": "C"
+          },
+          {
+            "id": 44,
+            "correctPara": "N"
+          },
+          {
+            "id": 45,
+            "correctPara": "H"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "instruction": {
+              "title": "Phase 1",
+              "content": "选项扫读 → 识别定位词"
+            }
+          },
+          "phase2": {
+            "instruction": {
+              "title": "Phase 2",
+              "content": "带着定位词找匹配"
+            }
+          },
+          "phase3": {
+            "title": "对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "定位词分析",
+              "content": "对比自己标记与正确定位词"
+            }
+          }
+        },
+        "overallAnalysis": ""
+      },
+      "cloze": {
+        "meta": {
+          "type": "cloze",
+          "id": "2025-12-exam2"
+        },
+        "passage": {
+          "paragraphs": [
+            "We humans love to believe we are special, but science and technology have repeatedly proved this conviction wrong. People ___26___ thought that humans were the only animals to use tools, to form teams or to propagate culture, but science has shown that other animals do each of these things.",
+            "Meanwhile, technology has quashed, one by one, claims that ___27___ tasks require a human brain. The first adding machine was invented in 1623. This past year, a computer-generated work won an art contest. I believe the moment when computers meet and ___28___ human intelligence is on the horizon.",
+            "How will human intelligence and creativity be valued when machines become smarter and more creative than the brightest people? There will likely be a spectrum. In some ___29___, people still value humans doing things, even if a computer can do it better.",
+            "In other fields, human skill will seem costly and ___30___. Take illustration for example: most readers don't care whether the graphic ___31___ a magazine article was drawn by a person or a computer.",
+            "And, of course, this question isn't black or white. Many fields will be a ___33___, where some humans find a lucky place, but most of the work is done by computers, like in manufacturing today.",
+            "If history is any guide, it's almost certain that advances in AI will cause more jobs to ___35___, that creative workers with human-only skills will become richer but fewer in number."
+          ],
+          "blanks": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ]
+        },
+        "banks": [
+          {
+            "letter": "A",
+            "word": "accompanying",
+            "pos": "adj./v.",
+            "meaning": "伴随的；陪同"
+          },
+          {
+            "letter": "B",
+            "word": "cognitive",
+            "pos": "adj.",
+            "meaning": "认知的"
+          },
+          {
+            "letter": "C",
+            "word": "domains",
+            "pos": "n.",
+            "meaning": "领域；范围"
+          },
+          {
+            "letter": "D",
+            "word": "entertaining",
+            "pos": "adj.",
+            "meaning": "有趣的；娱乐的"
+          },
+          {
+            "letter": "E",
+            "word": "evoking",
+            "pos": "v.",
+            "meaning": "唤起；引起"
+          },
+          {
+            "letter": "F",
+            "word": "hybrid",
+            "pos": "n./adj.",
+            "meaning": "混合体；混合的"
+          },
+          {
+            "letter": "G",
+            "word": "impetus",
+            "pos": "n.",
+            "meaning": "推动力；刺激"
+          },
+          {
+            "letter": "H",
+            "word": "intuitive",
+            "pos": "adj.",
+            "meaning": "直觉的"
+          },
+          {
+            "letter": "I",
+            "word": "once",
+            "pos": "adv.",
+            "meaning": "曾经；一旦"
+          },
+          {
+            "letter": "J",
+            "word": "oversee",
+            "pos": "v.",
+            "meaning": "监督；管理"
+          },
+          {
+            "letter": "K",
+            "word": "redundant",
+            "pos": "adj.",
+            "meaning": "多余的；冗余的"
+          },
+          {
+            "letter": "L",
+            "word": "stances",
+            "pos": "n.",
+            "meaning": "立场；姿态"
+          },
+          {
+            "letter": "M",
+            "word": "surpass",
+            "pos": "v.",
+            "meaning": "超越；超过"
+          },
+          {
+            "letter": "N",
+            "word": "tentatively",
+            "pos": "adv.",
+            "meaning": "暂时地；试探地"
+          },
+          {
+            "letter": "O",
+            "word": "vanish",
+            "pos": "v.",
+            "meaning": "消失；消散"
+          }
+        ],
+        "answers": [
+          {
+            "blank": 26,
+            "correct": "I",
+            "word": "once"
+          },
+          {
+            "blank": 27,
+            "correct": "B",
+            "word": "cognitive"
+          },
+          {
+            "blank": 28,
+            "correct": "M",
+            "word": "surpass"
+          },
+          {
+            "blank": 29,
+            "correct": "C",
+            "word": "domains"
+          },
+          {
+            "blank": 30,
+            "correct": "K",
+            "word": "redundant"
+          },
+          {
+            "blank": 31,
+            "correct": "A",
+            "word": "accompanying"
+          },
+          {
+            "blank": 32,
+            "correct": "D",
+            "word": "entertaining"
+          },
+          {
+            "blank": 33,
+            "correct": "F",
+            "word": "hybrid"
+          },
+          {
+            "blank": 34,
+            "correct": "J",
+            "word": "oversee"
+          },
+          {
+            "blank": 35,
+            "correct": "O",
+            "word": "vanish"
+          }
+        ],
+        "wordAnalysis": [],
+        "phases": {
+          "phase1": {
+            "instruction": "浏览全文 → 选词填空 → 词性分类缩小范围"
+          },
+          "phase2": {
+            "title": "对答案"
+          },
+          "phase3": {
+            "title": "单词舱"
+          }
+        }
+      }
+    },
+    "availableModules": [
+      "reading",
+      "matching",
+      "cloze"
+    ]
+  },
+  {
+    "id": "2025-12-exam3",
+    "meta": {
+      "examDate": "2025年12月",
+      "level": "CET6",
+      "title": "2025年12月六级真题第3套",
+      "importedAt": "2026-05-18T18:00:00.000Z"
+    },
+    "modules": {
+      "reading": {
+        "meta": {
+          "type": "reading",
+          "id": "2025-12-exam3"
+        },
+        "passage": {
+          "paragraphs": [
+            "Mindfulness has been shown to have a number of meaningful health benefits—it can help reduce anxiety and promote healing in those suffering from chronic illness.",
+            "The practice is based on an insight first described in ancient Buddhist texts that human beings have the capacity to observe experience without being caught up in it.",
+            "This practice of mindfulness can help calm the mind and the body as we learn not to react to experience with likes and dislikes or judgments of good and bad.",
+            "One of the challenges of practicing mindfulness in our contemporary world is that there has been a profound transformation in human attention. The artist Jenny Odell argues that in our \"attention economy\" human attention has been transformed into a commodity that big corporations buy and sell.",
+            "The devices most people use are a perpetual diversion from the present moment. The result is that it can feel as though our ability to focus, and be fully present, has been stolen.",
+            "Most mindfulness research focuses on the individual benefits of the practice, but some scholars assert that we can not only practice mindfulness for ourselves but also practice it for others. It can help us build stronger, healthier relationships.",
+            "The sad truth is that living in the attention economy, most of us have become bad listeners.",
+            "The gift of mindfulness is a practice of listening with compassion to others describe their experiences. To give this gift means putting away your phone, turning off social media.",
+            "If we judge the value of gifts based on their price, this gift may seem worthless, but in a distracted world, it is a precious one."
+          ]
+        },
+        "questions": [
+          {
+            "id": 46,
+            "number": "46",
+            "text": "What do we learn from the passage about practicing mindfulness?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It triggers our mind to reflect on past experiences."
+              },
+              {
+                "label": "B",
+                "text": "It focuses our attention on the present moment without making judgments."
+              },
+              {
+                "label": "C",
+                "text": "It concentrates our mind on our personal feelings."
+              },
+              {
+                "label": "D",
+                "text": "It helps our mind to stay calm when facing judgments from others."
+              }
+            ]
+          },
+          {
+            "id": 47,
+            "number": "47",
+            "text": "What do we see in today’s “attention economy” according to Jenny Odell?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Focus on tech advances continuously updates products."
+              },
+              {
+                "label": "B",
+                "text": "People’s attention is turned into something that can be bought and sold."
+              },
+              {
+                "label": "C",
+                "text": "Businesses profit from selling mobile phones."
+              },
+              {
+                "label": "D",
+                "text": "People tend to purchase products without careful thinking."
+              }
+            ]
+          },
+          {
+            "id": 48,
+            "number": "48",
+            "text": "What happens with the prevalent use of mobile phones or social media?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They keep distracting users from the here and now."
+              },
+              {
+                "label": "B",
+                "text": "They render users incapable of resisting temptation."
+              },
+              {
+                "label": "C",
+                "text": "They rob users of their ability to observe experience."
+              },
+              {
+                "label": "D",
+                "text": "They tempt users to endorse the attention economy."
+              }
+            ]
+          },
+          {
+            "id": 49,
+            "number": "49",
+            "text": "What benefit can practicing mindfulness bring to us according to some scholars?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It prevents us from making arbitrary judgments about others."
+              },
+              {
+                "label": "B",
+                "text": "It shifts our attention from material to spiritual pursuits."
+              },
+              {
+                "label": "C",
+                "text": "It is conducive to forging better interpersonal relationships."
+              },
+              {
+                "label": "D",
+                "text": "It helps in regaining our ability to enjoy what we have."
+              }
+            ]
+          },
+          {
+            "id": 50,
+            "number": "50",
+            "text": "What does the author suggest we do in another person’s presence?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Share each other’s experience frankly."
+              },
+              {
+                "label": "B",
+                "text": "Pay full attention to establishing close relationships."
+              },
+              {
+                "label": "C",
+                "text": "Be attentive listeners while refraining from making judgments."
+              },
+              {
+                "label": "D",
+                "text": "Remind them of the distraction from mobile phones."
+              }
+            ]
+          },
+          {
+            "id": 51,
+            "number": "51",
+            "text": "How did the author respond to the Captcha test?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "He clicked on the cells randomly."
+              },
+              {
+                "label": "B",
+                "text": "He accepted the challenge readily."
+              },
+              {
+                "label": "C",
+                "text": "He completed it confidently."
+              },
+              {
+                "label": "D",
+                "text": "He worked on it submissively."
+              }
+            ]
+          },
+          {
+            "id": 52,
+            "number": "52",
+            "text": "What is ironic about the Captcha test?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "A machine can respond to the test as well as humans do."
+              },
+              {
+                "label": "B",
+                "text": "A machine can outperform humans in object identification."
+              },
+              {
+                "label": "C",
+                "text": "A test designed to test machines is now used by machines to test humans."
+              },
+              {
+                "label": "D",
+                "text": "A test conceived to tell human from robot can now do tricks humans can’t."
+              }
+            ]
+          },
+          {
+            "id": 53,
+            "number": "53",
+            "text": "Why does the author use the metaphor of the boiling frog?",
+            "type": "推断题",
+            "options": [
+              {
+                "label": "A",
+                "text": "To show that humans are unwilling to trade convenience."
+              },
+              {
+                "label": "B",
+                "text": "To show that humans are unaware of the potential danger of smart tech."
+              },
+              {
+                "label": "C",
+                "text": "To question whether humans are conditioned to accept digital tech."
+              },
+              {
+                "label": "D",
+                "text": "To question whether humans are as vulnerable as the boiling frog."
+              }
+            ]
+          },
+          {
+            "id": 54,
+            "number": "54",
+            "text": "Why does the author think Frischmann and Selinger are right?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "A large part of digital tech now uses humans to meet its own ends."
+              },
+              {
+                "label": "B",
+                "text": "Humans are now locked in a race against digital tech."
+              },
+              {
+                "label": "C",
+                "text": "Digital tech can serve human needs in ways previously impossible."
+              },
+              {
+                "label": "D",
+                "text": "Digital tech is doing thinking while humans do repetitive work."
+              }
+            ]
+          },
+          {
+            "id": 55,
+            "number": "55",
+            "text": "What does the author imply by asking “Are we smart enough to jump out before it’s too late?”",
+            "type": "推断题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It is not sensible to expect digital tech to take humans’ interest to heart."
+              },
+              {
+                "label": "B",
+                "text": "It is hard to say whether tech or humans will get the upper hand."
+              },
+              {
+                "label": "C",
+                "text": "We may have to search the web to get the answer."
+              },
+              {
+                "label": "D",
+                "text": "We may not awake in time to the danger digital tech poses to us."
+              }
+            ]
+          }
+        ],
+        "answers": [
+          {
+            "id": 46,
+            "correct": "B"
+          },
+          {
+            "id": 47,
+            "correct": "B"
+          },
+          {
+            "id": 48,
+            "correct": "A"
+          },
+          {
+            "id": 49,
+            "correct": "C"
+          },
+          {
+            "id": 50,
+            "correct": "C"
+          },
+          {
+            "id": 51,
+            "correct": "D"
+          },
+          {
+            "id": 52,
+            "correct": "C"
+          },
+          {
+            "id": 53,
+            "correct": "B"
+          },
+          {
+            "id": 54,
+            "correct": "A"
+          },
+          {
+            "id": 55,
+            "correct": "D"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "topicPrediction": null,
+            "questionTypes": null
+          },
+          "phase2a": {
+            "instruction": {
+              "title": "T1 全景扫描",
+              "content": "扫描题干→找关键词→判断题型"
+            }
+          },
+          "phase2b": {
+            "instruction": {
+              "title": "T3 中心做题",
+              "content": "用找到的中心去匹配选项"
+            }
+          },
+          "phase2c": {
+            "instruction": {
+              "title": "T4 定位+T6 段落锁定+T3 同义替换",
+              "content": "找到定位词→锁定段落"
+            }
+          },
+          "phase3": {
+            "title": "统一对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "文章复盘",
+              "content": "对照错题分析原因"
+            }
+          }
+        }
+      },
+      "matching": {
+        "meta": {
+          "type": "matching",
+          "timeLimit": 15,
+          "id": "2025-12-exam3"
+        },
+        "passage": {
+          "paragraphs": [
+            {
+              "id": "A",
+              "text": "Timed traffic lights are set according to schedules..."
+            },
+            {
+              "id": "B",
+              "text": "The first traffic light was invented in London in the 1860s..."
+            },
+            {
+              "id": "C",
+              "text": "The life of the first traffic light signal was short-lived..."
+            },
+            {
+              "id": "D",
+              "text": "Automating traffic signals stalled after the London incident..."
+            },
+            {
+              "id": "E",
+              "text": "The United States is a car culture like no other country..."
+            },
+            {
+              "id": "F",
+              "text": "As traffic and cities grew, so did the race to solve growing traffic problems..."
+            },
+            {
+              "id": "G",
+              "text": "In 1912, Lester Wire developed a manually switched stop light..."
+            },
+            {
+              "id": "H",
+              "text": "Like the 1910 semaphore, the first electric signal used words..."
+            },
+            {
+              "id": "I",
+              "text": "The system allowed police officers to move from the middle of the street to a corner..."
+            },
+            {
+              "id": "J",
+              "text": "In 1920, the first three-color light system was introduced in Detroit..."
+            },
+            {
+              "id": "K",
+              "text": "Stop and go were insufficient for the new volumes of cars..."
+            },
+            {
+              "id": "L",
+              "text": "Stop lights were incredibly important in chaotic city streets..."
+            },
+            {
+              "id": "M",
+              "text": "The development of the modern traffic light may have started in London..."
+            },
+            {
+              "id": "N",
+              "text": "Morgan sold the patent to General Electric..."
+            },
+            {
+              "id": "O",
+              "text": "Red arrows mean you cannot turn right on a red in most states..."
+            },
+            {
+              "id": "P",
+              "text": "Flashing Red is the same as a stop sign..."
+            },
+            {
+              "id": "Q",
+              "text": "Flashing Yellow Arrows are part of a four-signal traffic light..."
+            },
+            {
+              "id": "R",
+              "text": "Traffic light meaning is fairly consistent across the board..."
+            }
+          ]
+        },
+        "options": [
+          {
+            "id": 36,
+            "text": "Upon seeing a flashing yellow arrow, a driver should let pedestrians and traffic pass first."
+          },
+          {
+            "id": 37,
+            "text": "The red and green automatic traffic light system originated in an American city."
+          },
+          {
+            "id": 38,
+            "text": "Residents of an American city tend to share the opinion that time saved on the road justifies the cost."
+          },
+          {
+            "id": 39,
+            "text": "Mass production of cars made it possible for ordinary people to buy them."
+          },
+          {
+            "id": 40,
+            "text": "What a traffic light means is almost the same everywhere despite some variations."
+          },
+          {
+            "id": 41,
+            "text": "Pedestrian crossings came into being only in the mid-twentieth century."
+          },
+          {
+            "id": 42,
+            "text": "People raced to address increasing traffic problems along with the expansion of cities."
+          },
+          {
+            "id": 43,
+            "text": "When the warning yellow light was introduced, driving became safer and accidents reduced."
+          },
+          {
+            "id": 44,
+            "text": "The signal system on the railroad served as the basis for the first traffic light."
+          },
+          {
+            "id": 45,
+            "text": "Even though a green light signals go, attention should be paid to traffic on either side."
+          }
+        ],
+        "answers": [
+          {
+            "id": 36,
+            "correctPara": "Q"
+          },
+          {
+            "id": 37,
+            "correctPara": "I"
+          },
+          {
+            "id": 38,
+            "correctPara": "A"
+          },
+          {
+            "id": 39,
+            "correctPara": "J"
+          },
+          {
+            "id": 40,
+            "correctPara": "R"
+          },
+          {
+            "id": 41,
+            "correctPara": "L"
+          },
+          {
+            "id": 42,
+            "correctPara": "F"
+          },
+          {
+            "id": 43,
+            "correctPara": "K"
+          },
+          {
+            "id": 44,
+            "correctPara": "B"
+          },
+          {
+            "id": 45,
+            "correctPara": "N"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "instruction": {
+              "title": "Phase 1",
+              "content": "选项扫读→识别定位词"
+            }
+          },
+          "phase2": {
+            "instruction": {
+              "title": "Phase 2",
+              "content": "带着定位词找匹配"
+            }
+          },
+          "phase3": {
+            "title": "对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "定位词分析",
+              "content": "对比自己标记与正确定位词"
+            }
+          }
+        },
+        "overallAnalysis": ""
+      },
+      "cloze": {
+        "meta": {
+          "type": "cloze",
+          "id": "2025-12-exam3"
+        },
+        "passage": {
+          "paragraphs": [
+            "It’s best to think of an accent as a distinct, systematic and rule-governed way of speaking. Accent is not a ___26___ for dialect, but it’s related.",
+            "Many ___27___ presume that there is a single standard way of speaking in each country, with one single standard accent, and that this perceived standard is ___28___ the best form of speech.",
+            "One reason linguists agree there is no one true standard is that, through the years, there have been ___30___ supposed standards, depending on time and place.",
+            "Even so, this idea of a standard accent is ___32___ and many workplace and educational environments perpetuate the idea that accents that ___33___ from the current standard are less appropriate."
+          ],
+          "blanks": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ]
+        },
+        "banks": [
+          {
+            "letter": "A",
+            "word": "affix",
+            "pos": "n./v.",
+            "meaning": "词缀；粘贴"
+          },
+          {
+            "letter": "B",
+            "word": "correlate",
+            "pos": "v.",
+            "meaning": "相关；关联"
+          },
+          {
+            "letter": "C",
+            "word": "deviate",
+            "pos": "v.",
+            "meaning": "偏离；背离"
+          },
+          {
+            "letter": "D",
+            "word": "domains",
+            "pos": "n.",
+            "meaning": "领域；范围"
+          },
+          {
+            "letter": "E",
+            "word": "influential",
+            "pos": "adj.",
+            "meaning": "有影响力的"
+          },
+          {
+            "letter": "F",
+            "word": "inherently",
+            "pos": "adv.",
+            "meaning": "本质上；固有地"
+          },
+          {
+            "letter": "G",
+            "word": "laymen",
+            "pos": "n.",
+            "meaning": "外行人；门外汉"
+          },
+          {
+            "letter": "H",
+            "word": "multiple",
+            "pos": "adj.",
+            "meaning": "多个的；多种的"
+          },
+          {
+            "letter": "I",
+            "word": "properties",
+            "pos": "n.",
+            "meaning": "属性；财产"
+          },
+          {
+            "letter": "J",
+            "word": "reality",
+            "pos": "n.",
+            "meaning": "现实；实际"
+          },
+          {
+            "letter": "K",
+            "word": "reciprocally",
+            "pos": "adv.",
+            "meaning": "相互地；互惠地"
+          },
+          {
+            "letter": "L",
+            "word": "specimen",
+            "pos": "n.",
+            "meaning": "标本；样本"
+          },
+          {
+            "letter": "M",
+            "word": "spectrum",
+            "pos": "n.",
+            "meaning": "范围；光谱"
+          },
+          {
+            "letter": "N",
+            "word": "synonym",
+            "pos": "n.",
+            "meaning": "同义词"
+          },
+          {
+            "letter": "O",
+            "word": "unanimous",
+            "pos": "adj.",
+            "meaning": "一致的；全体同意的"
+          }
+        ],
+        "answers": [
+          {
+            "blank": 26,
+            "correct": "N",
+            "word": "synonym"
+          },
+          {
+            "blank": 27,
+            "correct": "G",
+            "word": "laymen"
+          },
+          {
+            "blank": 28,
+            "correct": "F",
+            "word": "inherently"
+          },
+          {
+            "blank": 29,
+            "correct": "J",
+            "word": "reality"
+          },
+          {
+            "blank": 30,
+            "correct": "H",
+            "word": "multiple"
+          },
+          {
+            "blank": 31,
+            "correct": "M",
+            "word": "spectrum"
+          },
+          {
+            "blank": 32,
+            "correct": "E",
+            "word": "influential"
+          },
+          {
+            "blank": 33,
+            "correct": "C",
+            "word": "deviate"
+          },
+          {
+            "blank": 34,
+            "correct": "D",
+            "word": "domains"
+          },
+          {
+            "blank": 35,
+            "correct": "B",
+            "word": "correlate"
+          }
+        ],
+        "wordAnalysis": [],
+        "phases": {
+          "phase1": {
+            "instruction": "浏览全文→选词填空→词性分类缩小范围"
+          },
+          "phase2": {
+            "title": "对答案"
+          },
+          "phase3": {
+            "title": "单词舱"
+          }
+        }
+      }
+    },
+    "availableModules": [
+      "reading",
+      "matching",
+      "cloze"
+    ]
+  },
+  {
+    "id": "2025-06-exam1",
+    "meta": {
+      "examDate": "2025年6月",
+      "level": "CET6",
+      "title": "2025年6月六级真题第1套",
+      "importedAt": "2026-05-18T18:00:00.000Z"
+    },
+    "modules": {
+      "reading": {
+        "meta": {
+          "type": "reading",
+          "id": "2025-06-exam1"
+        },
+        "passage": {
+          "paragraphs": [
+            "Nationally, one in six children miss 15 or more days of school in a year.",
+            "These chronically absent students suffer academically because of all the classroom instruction they miss out on.",
+            "Worrying about whether children attend school makes sense.",
+            "But what if America's attendance crisis is about much more than students missing class?",
+            "As social scientists we investigated how excused and unexcused absences relate to children's academic achievement.",
+            "We find that absences excused by a parent do little to harm children's learning.",
+            "Meanwhile, the average child with even just one unexcused absence does much worse academically.",
+            "We believe unexcused absence is a strong signal of the many challenges children and families face.",
+            "Our evidence suggests unexcused absences are problematic, but for a different reason than people often think.",
+            "How we choose to think of school absences matters for educational policy.",
+            "These policies assume that missing school for any reason harms children academically.",
+            "As a result, these attendance policies end up disproportionately punishing families dealing with out-of-school crises.",
+            "We instead suggest using unexcused absence from school as a signal to channel resources to the children and families who need them most."
+          ]
+        },
+        "questions": [
+          {
+            "id": 46,
+            "number": "46",
+            "text": "What does the U.S. secretary of education say in his open letter?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It is of vital importance to respond promptly to the school absence crisis."
+              },
+              {
+                "label": "B",
+                "text": "The academic performance of chronically absent students is deplorable."
+              },
+              {
+                "label": "C",
+                "text": "Low academic achievement is mainly attributed to school absences."
+              },
+              {
+                "label": "D",
+                "text": "The effect of school absences on American education is worrisome."
+              }
+            ]
+          },
+          {
+            "id": 47,
+            "number": "47",
+            "text": "What do the authors find about school absences?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Excused school absences have little impact on children's learning."
+              },
+              {
+                "label": "B",
+                "text": "There is little difference between unexcused and excused absences."
+              },
+              {
+                "label": "C",
+                "text": "Excused absences lead to comparatively better school performance."
+              },
+              {
+                "label": "D",
+                "text": "Unexcused absences are a big challenge to both schools and families."
+              }
+            ]
+          },
+          {
+            "id": 48,
+            "number": "48",
+            "text": "What do the authors believe concerning unexcused school absences?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They cause a decrease in students' academic achievements due to missed instruction."
+              },
+              {
+                "label": "B",
+                "text": "They point directly to many out-of-school challenges confronting children."
+              },
+              {
+                "label": "C",
+                "text": "They are matters the government typically ignores."
+              },
+              {
+                "label": "D",
+                "text": "They give a clear signal of crises they are likely to face in the future."
+              }
+            ]
+          },
+          {
+            "id": 49,
+            "number": "49",
+            "text": "What is the assumption underlying education policies in the U.S.?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Children's academic performance depends on reducing absences."
+              },
+              {
+                "label": "B",
+                "text": "Schools can boost children's performance by effective intervention."
+              },
+              {
+                "label": "C",
+                "text": "Schools and families should be held responsible for out-of-school crises."
+              },
+              {
+                "label": "D",
+                "text": "Children's performance is closely related to the quality of instruction."
+              }
+            ]
+          },
+          {
+            "id": 50,
+            "number": "50",
+            "text": "What do the authors suggest doing regarding school absences?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Identifying their underlying causes."
+              },
+              {
+                "label": "B",
+                "text": "Reframing school attendance policies."
+              },
+              {
+                "label": "C",
+                "text": "Directing resources to helping needy children."
+              },
+              {
+                "label": "D",
+                "text": "Pressuring schools to reduce unexcused ones."
+              }
+            ]
+          },
+          {
+            "id": 51,
+            "number": "51",
+            "text": "What did the author advise people do for almost a decade?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Figure out what is the most fascinating job."
+              },
+              {
+                "label": "B",
+                "text": "Follow widely accepted career counsel."
+              },
+              {
+                "label": "C",
+                "text": "Pursue their careers with passion."
+              },
+              {
+                "label": "D",
+                "text": "Do whatever they are zealous for."
+              }
+            ]
+          },
+          {
+            "id": 52,
+            "number": "52",
+            "text": "How did the author feel about the passion principle through his research?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "He was astonished by its consequences."
+              },
+              {
+                "label": "B",
+                "text": "He was further convinced of its soundness."
+              },
+              {
+                "label": "C",
+                "text": "He was actually right to follow it through."
+              },
+              {
+                "label": "D",
+                "text": "He was struck by its broad popularity."
+              }
+            ]
+          },
+          {
+            "id": 53,
+            "number": "53",
+            "text": "What is important to turning one's passion into a stable, good-paying job?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Willingness to take unpaid internships."
+              },
+              {
+                "label": "B",
+                "text": "Full academic preparedness and career counseling."
+              },
+              {
+                "label": "C",
+                "text": "Hard work and sacrifice of leisure time."
+              },
+              {
+                "label": "D",
+                "text": "Financial backing and social connections."
+              }
+            ]
+          },
+          {
+            "id": 54,
+            "number": "54",
+            "text": "What happens when everyone is encouraged to follow their passion?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Many more career aspirants end up unemployed."
+              },
+              {
+                "label": "B",
+                "text": "People are less concerned with socioeconomic inequality."
+              },
+              {
+                "label": "C",
+                "text": "Socioeconomic inequality is likely to persist."
+              },
+              {
+                "label": "D",
+                "text": "Career counselors are going to lose credibility."
+              }
+            ]
+          },
+          {
+            "id": 55,
+            "number": "55",
+            "text": "What does the author say about employers of passionate workers?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They provide these workers with job stability and good salary."
+              },
+              {
+                "label": "B",
+                "text": "They exploit these workers' passion to benefit themselves."
+              },
+              {
+                "label": "C",
+                "text": "They level the playing field for these workers."
+              },
+              {
+                "label": "D",
+                "text": "They encourage these workers to realize their aspirations."
+              }
+            ]
+          }
+        ],
+        "answers": [
+          {
+            "id": 46,
+            "correct": "C"
+          },
+          {
+            "id": 47,
+            "correct": "A"
+          },
+          {
+            "id": 48,
+            "correct": "B"
+          },
+          {
+            "id": 49,
+            "correct": "D"
+          },
+          {
+            "id": 50,
+            "correct": "C"
+          },
+          {
+            "id": 51,
+            "correct": "D"
+          },
+          {
+            "id": 52,
+            "correct": "A"
+          },
+          {
+            "id": 53,
+            "correct": "D"
+          },
+          {
+            "id": 54,
+            "correct": "C"
+          },
+          {
+            "id": 55,
+            "correct": "B"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "topicPrediction": null,
+            "questionTypes": null
+          },
+          "phase2a": {
+            "instruction": {
+              "title": "T1 全景扫描",
+              "content": "扫描题干→找关键词→判断题型"
+            }
+          },
+          "phase2b": {
+            "instruction": {
+              "title": "T3 中心做题",
+              "content": "用找到的中心去匹配选项"
+            }
+          },
+          "phase2c": {
+            "instruction": {
+              "title": "T4 定位+T6 段落锁定+T3 同义替换",
+              "content": "找到定位词→锁定段落"
+            }
+          },
+          "phase3": {
+            "title": "统一对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "文章复盘",
+              "content": "对照错题分析原因"
+            }
+          }
+        }
+      },
+      "matching": {
+        "meta": {
+          "type": "matching",
+          "timeLimit": 15,
+          "id": "2025-06-exam1"
+        },
+        "passage": {
+          "paragraphs": [
+            {
+              "id": "A",
+              "text": "Librarians know the value of their community services, and their patrons appreciate their importance as well. But in an increasingly digital world, we see the role of libraries as community and cultural centers at times undervalued."
+            },
+            {
+              "id": "B",
+              "text": "Many people point out the value public libraries bring to their communities. More than just books and banks of computers, libraries are still places where individuals gather to explore, interact, and imagine."
+            },
+            {
+              "id": "C",
+              "text": "As community builders libraries are engaged in incredible work. From tiny public libraries to huge city institutions with multiple branches, libraries across the United States are building community and supporting local culture in exciting ways."
+            },
+            {
+              "id": "D",
+              "text": "Place-based economic development stresses the importance of offering attractive, functional, and community-based places, such as libraries, in town squares and depressed neighborhoods. Like a major department store in a mall, libraries attract large numbers of people, creating economic opportunities for numerous businesses."
+            },
+            {
+              "id": "E",
+              "text": "As key municipal agencies, and focal points for community education, libraries are major players in creating livable, environmentally friendly cities and towns."
+            },
+            {
+              "id": "F",
+              "text": "Archives preserve historic artifacts, oral histories, digital history projects, and scholarly writings relevant to the community, including minority groups. An organized archive is a place where people can research their ancestry and immigration history."
+            },
+            {
+              "id": "G",
+              "text": "In the words of Robert Putnam, 'People may go to the library looking mainly for information, but they find each other there.' New moms connect at baby story-times; elderly people attend events and find that they make new friends."
+            },
+            {
+              "id": "H",
+              "text": "As Keith Richards said, 'The public library is the great equalizer.' Despite the rising costs of concert and theater tickets, public library events are often offered free of charge, enabling people of any income level to attend."
+            },
+            {
+              "id": "I",
+              "text": "In a time when education is increasingly expensive, public libraries provide information and educational opportunities free for all people, regardless of their socio-economic status."
+            },
+            {
+              "id": "J",
+              "text": "Librarians know that patrons aren't just information consumers, they're information producers. Patrons use the library to gain knowledge in order to create their own new and independent works."
+            },
+            {
+              "id": "K",
+              "text": "The decline of civil discourse stems in part from the fact that it is so easy for people to engage only with those of similar backgrounds. Public libraries can help build small communities of difference that encourage people to interact with and learn from each other."
+            },
+            {
+              "id": "L",
+              "text": "Free tutoring, homework help programs, and summer reading programs for kids and teens help bridge the economic divide that impacts students' academic performance."
+            },
+            {
+              "id": "M",
+              "text": "Through library collections, programs, and physical spaces, children learn to share, to be engaged in their communities, to participate in the arts, and to explore their immediate world."
+            },
+            {
+              "id": "N",
+              "text": "These examples are just a few of the many amazing things that public libraries around the United States are doing to build and maintain strong community connections."
+            }
+          ]
+        },
+        "options": [
+          {
+            "id": 36,
+            "text": "People going to the library in search of information can build connections with each other there."
+          },
+          {
+            "id": 37,
+            "text": "According to advocates of libraries as community builders, librarians are not doing their job well if they do not change their communities."
+          },
+          {
+            "id": 38,
+            "text": "With the costs of education continually rising, public libraries remain places where all people can have access to education."
+          },
+          {
+            "id": 39,
+            "text": "Libraries draw large crowds, thus creating lots of business opportunities in neighboring areas."
+          },
+          {
+            "id": 40,
+            "text": "With the world more and more digitalized, people sometimes underestimate the role of libraries as community and cultural centers."
+          },
+          {
+            "id": 41,
+            "text": "Various programs organized by public libraries for children and adolescents help narrow the gap between students from varying economic backgrounds."
+          },
+          {
+            "id": 42,
+            "text": "In an organized archive, people can do research on their family history and find out how their ancestors came to settle in the new land."
+          },
+          {
+            "id": 43,
+            "text": "Public libraries organize cultural events, often allowing people of different income levels to attend free of charge."
+          },
+          {
+            "id": 44,
+            "text": "Besides being an information provider, the library performs many other important services for the community."
+          },
+          {
+            "id": 45,
+            "text": "Public libraries can help build small communities of people with different backgrounds and ideologies."
+          }
+        ],
+        "answers": [
+          {
+            "id": 36,
+            "correctPara": "G"
+          },
+          {
+            "id": 37,
+            "correctPara": "C"
+          },
+          {
+            "id": 38,
+            "correctPara": "I"
+          },
+          {
+            "id": 39,
+            "correctPara": "D"
+          },
+          {
+            "id": 40,
+            "correctPara": "A"
+          },
+          {
+            "id": 41,
+            "correctPara": "L"
+          },
+          {
+            "id": 42,
+            "correctPara": "F"
+          },
+          {
+            "id": 43,
+            "correctPara": "H"
+          },
+          {
+            "id": 44,
+            "correctPara": "B"
+          },
+          {
+            "id": 45,
+            "correctPara": "K"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "instruction": {
+              "title": "Phase 1",
+              "content": "选项扫读→识别定位词"
+            }
+          },
+          "phase2": {
+            "instruction": {
+              "title": "Phase 2",
+              "content": "带着定位词找匹配"
+            }
+          },
+          "phase3": {
+            "title": "对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "定位词分析",
+              "content": "对比自己标记与正确定位词"
+            }
+          }
+        },
+        "overallAnalysis": ""
+      },
+      "cloze": {
+        "meta": {
+          "type": "cloze",
+          "id": "2025-06-exam1"
+        },
+        "passage": {
+          "paragraphs": [
+            "In her second year, Charlene Duong learned of the use of poisonous, synthetic pesticides on her college campus. Shocked but not surprised, she knew she had to do something.",
+            "Like many, Charlene experiences climate anxiety—a ___27___ fear of a climate catastrophe—and was, at the time, looking for an ___28___. When she discovered the HFC movement.",
+            "Toxic herbicide use in university land care is not unique. Most institutions of higher education rely on synthetic pesticides and fertilizers to achieve ___30___ goals.",
+            "Pesticide use on college campuses also contributes to our global climate crisis. The use of chemicals can increase indirect ___33___, as they can include petroleum-based ingredients.",
+            "Instead of using toxic chemicals, students working with HFC help out with ___35___ the campus grounds."
+          ],
+          "blanks": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ]
+        },
+        "banks": [
+          {
+            "letter": "A",
+            "word": "aesthetic",
+            "pos": "adj.",
+            "meaning": "审美的；美学的"
+          },
+          {
+            "letter": "B",
+            "word": "chronic",
+            "pos": "adj.",
+            "meaning": "慢性的；长期的"
+          },
+          {
+            "letter": "C",
+            "word": "contaminated",
+            "pos": "adj.",
+            "meaning": "受污染的"
+          },
+          {
+            "letter": "D",
+            "word": "conventionally",
+            "pos": "adv.",
+            "meaning": "传统地；惯例地"
+          },
+          {
+            "letter": "E",
+            "word": "emissions",
+            "pos": "n.",
+            "meaning": "排放物；排放"
+          },
+          {
+            "letter": "F",
+            "word": "environment",
+            "pos": "n.",
+            "meaning": "环境"
+          },
+          {
+            "letter": "G",
+            "word": "hampering",
+            "pos": "v.",
+            "meaning": "阻碍；妨碍"
+          },
+          {
+            "letter": "H",
+            "word": "incidentally",
+            "pos": "adv.",
+            "meaning": "顺便地；偶然地"
+          },
+          {
+            "letter": "I",
+            "word": "infringement",
+            "pos": "n.",
+            "meaning": "侵犯；违反"
+          },
+          {
+            "letter": "J",
+            "word": "intrigued",
+            "pos": "v./adj.",
+            "meaning": "引起兴趣；好奇的"
+          },
+          {
+            "letter": "K",
+            "word": "juvenile",
+            "pos": "adj./n.",
+            "meaning": "青少年的；青少年"
+          },
+          {
+            "letter": "L",
+            "word": "outlet",
+            "pos": "n.",
+            "meaning": "出口；发泄途径"
+          },
+          {
+            "letter": "M",
+            "word": "rotating",
+            "pos": "v./adj.",
+            "meaning": "轮流；旋转的"
+          },
+          {
+            "letter": "N",
+            "word": "vibrations",
+            "pos": "n.",
+            "meaning": "振动；共鸣"
+          },
+          {
+            "letter": "O",
+            "word": "weeding",
+            "pos": "n./v.",
+            "meaning": "除草；除杂草"
+          }
+        ],
+        "answers": [
+          {
+            "blank": 26,
+            "correct": "F",
+            "word": "environment"
+          },
+          {
+            "blank": 27,
+            "correct": "B",
+            "word": "chronic"
+          },
+          {
+            "blank": 28,
+            "correct": "L",
+            "word": "outlet"
+          },
+          {
+            "blank": 29,
+            "correct": "J",
+            "word": "intrigued"
+          },
+          {
+            "blank": 30,
+            "correct": "A",
+            "word": "aesthetic"
+          },
+          {
+            "blank": 31,
+            "correct": "D",
+            "word": "conventionally"
+          },
+          {
+            "blank": 32,
+            "correct": "C",
+            "word": "contaminated"
+          },
+          {
+            "blank": 33,
+            "correct": "E",
+            "word": "emissions"
+          },
+          {
+            "blank": 34,
+            "correct": "G",
+            "word": "hampering"
+          },
+          {
+            "blank": 35,
+            "correct": "O",
+            "word": "weeding"
+          }
+        ],
+        "wordAnalysis": [],
+        "phases": {
+          "phase1": {
+            "instruction": "浏览全文→选词填空→词性分类缩小范围"
+          },
+          "phase2": {
+            "title": "对答案"
+          },
+          "phase3": {
+            "title": "单词舱"
+          }
+        }
+      }
+    },
+    "availableModules": [
+      "reading",
+      "matching",
+      "cloze"
+    ]
+  },
+  {
+    "id": "2025-06-exam2",
+    "meta": {
+      "examDate": "2025年6月",
+      "level": "CET6",
+      "title": "2025年6月六级真题第2套",
+      "importedAt": "2026-05-18T18:07:09.000Z"
+    },
+    "modules": {
+      "reading": {
+        "meta": {
+          "type": "reading",
+          "id": "2025-06-exam2"
+        },
+        "passage": {
+          "paragraphs": [
+            "Simulators are most often utilized within industries such as nuclear power, aviation and surgery where failure results in disastrous consequences. To maximize the value from a simulation learning experience, participants should immediately and directly apply their learning to a specific intervention within their organization.",
+            "Most organizations aspire to deploy significant change programs, only to find them nearly impossible to implement. That is largely because successful change requires more than a vision; it requires a workforce that not only doesn't resist change, but embraces it.",
+            "To achieve success, an organization must build a transformation program that will allow change to be rapidly pulled across its departments and throughout its layers. Regardless of the level of senior management commitment, unless key thought leaders at all levels embrace the change, the initiative will wither and die. To create this kind of widespread passion, learning leaders must expose the workforce to what could be, which will enable them to rethink their mental models, enable them to break free from their deep-rooted paradigms and embrace the opportunity to learn. Allowing participants to enter a simulated environment provides them with the opportunity to experience alternative realities which can prompt them to rethink their current beliefs.",
+            "Behavioral change is not easy for most adults. Lectures, training programs and workshops can explain the intellectual elements of transformation, but they are seldom effective at getting to the behavioral aspects that lie at the heart of a significant change initiative. Further, under normal working conditions, managers rarely see the full effect of their employee development efforts. As such, an intervention like a simulation can provide the stimulus for change.",
+            "An effective simulation can be better than experience as a learning tool because it accelerates time, compresses space, and unlike reality, is specifically designed to maximize participant learning. Simulations provide an immersive learning experience where skills, processes and knowledge all can be highlighted in a way reality cannot. The ability to explore, experiment and repeatedly apply new knowledge in unlimited, risk-free models is what makes simulation one of the most productive forms of learning.",
+            "Well-designed simulations can enable individuals and groups to develop a deep level of understanding about how their decisions and intuitive responses to business stimuli affect their fellow participants and the organization as a whole. To reap the benefits, however, simulations must feel like reality. At the end of the successful simulation, participants must declare \"this is us.\" If they don't, they will view the experience as a game, which can be difficult to apply on the job, or worse, irrelevant to everyday work tasks. To maximize benefits from simulation, participants should immediately apply the learning from the experience to forge a smooth link between learning and doing."
+          ]
+        },
+        "questions": [
+          {
+            "id": 46,
+            "number": "46",
+            "text": "What do we learn about successful changes in organizations?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They can be immediately implemented with great ease."
+              },
+              {
+                "label": "B",
+                "text": "They are usually led by organization leaders of vision."
+              },
+              {
+                "label": "C",
+                "text": "They call for enthusiastic support from the workforce."
+              },
+              {
+                "label": "D",
+                "text": "They often result from simulation learning experiences."
+              }
+            ]
+          },
+          {
+            "id": 47,
+            "number": "47",
+            "text": "What should learning leaders do to arouse learners' passion for change?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Allow them to see what could possibly be achieved."
+              },
+              {
+                "label": "B",
+                "text": "Help them break free from their old paradigms."
+              },
+              {
+                "label": "C",
+                "text": "Encourage them to rethink their thought models."
+              },
+              {
+                "label": "D",
+                "text": "Stimulate them to embrace fresh opportunities."
+              }
+            ]
+          },
+          {
+            "id": 48,
+            "number": "48",
+            "text": "What does the passage say about lectures, training programs and workshops?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They are generally incapable of changing workers' behaviors on the job."
+              },
+              {
+                "label": "B",
+                "text": "They are interventions different from simulations in creating stimuli for change."
+              },
+              {
+                "label": "C",
+                "text": "They aim at transforming the behaviors of the workers in an organization."
+              },
+              {
+                "label": "D",
+                "text": "They help managers achieve the full effect of employee development efforts."
+              }
+            ]
+          },
+          {
+            "id": 49,
+            "number": "49",
+            "text": "What makes simulation one of the most fruitful forms of learning?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Its capability of saving time by accelerating the immersive learning experience."
+              },
+              {
+                "label": "B",
+                "text": "Its potential for learners to examine their skills, knowledge and learning process."
+              },
+              {
+                "label": "C",
+                "text": "Its capability of providing all participants with a practical learning experience."
+              },
+              {
+                "label": "D",
+                "text": "Its potential for learners to explore, experiment and practice without any risk."
+              }
+            ]
+          },
+          {
+            "id": 50,
+            "number": "50",
+            "text": "What should participants do in a simulation to reap the greatest benefits possible?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Take the experience as a mere game."
+              },
+              {
+                "label": "B",
+                "text": "Apply promptly what they learn to their jobs."
+              },
+              {
+                "label": "C",
+                "text": "Develop a deep level of understanding."
+              },
+              {
+                "label": "D",
+                "text": "Strive to connect closely with their leaders."
+              }
+            ]
+          },
+          {
+            "id": 51,
+            "number": "51",
+            "text": "What does the passage say is the more recent thinking of economic growth?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It should be made sustainable."
+              },
+              {
+                "label": "B",
+                "text": "It is vital to the future of humanity."
+              },
+              {
+                "label": "C",
+                "text": "It should be governments' chief concern."
+              },
+              {
+                "label": "D",
+                "text": "It is an indicator of government performance."
+              }
+            ]
+          },
+          {
+            "id": 52,
+            "number": "52",
+            "text": "Why are some people opposed to the idea that governments should focus on happiness?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Governments cannot impose happiness on citizens."
+              },
+              {
+                "label": "B",
+                "text": "People's happiness is built upon their own endeavor."
+              },
+              {
+                "label": "C",
+                "text": "Happiness means different things to different people."
+              },
+              {
+                "label": "D",
+                "text": "Happiness depends on sustainable economic growth."
+              }
+            ]
+          },
+          {
+            "id": 53,
+            "number": "53",
+            "text": "What does philosopher Julian Baggini suggest governments do in a recently published article?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Try to reduce inequality between the rich and the poor."
+              },
+              {
+                "label": "B",
+                "text": "Provide people with access to resources for a better life."
+              },
+              {
+                "label": "C",
+                "text": "Change people's behaviors to put social wealth to better use."
+              },
+              {
+                "label": "D",
+                "text": "Make use of advanced technologies to improve people's lives."
+              }
+            ]
+          },
+          {
+            "id": 54,
+            "number": "54",
+            "text": "Why does the WHO feel the need to appeal to the economic benefits of improving mental health to justify its recommendations?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Mental health programs cannot be executed without GDP growth."
+              },
+              {
+                "label": "B",
+                "text": "Psychological interventions are conducive to people's well-being."
+              },
+              {
+                "label": "C",
+                "text": "Poor mental health is detrimental to a nation's economic system."
+              },
+              {
+                "label": "D",
+                "text": "Governments still take economic development as their priority."
+              }
+            ]
+          },
+          {
+            "id": 55,
+            "number": "55",
+            "text": "What message does the author try to convey at the end of the passage?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Governments' goal should be prosperity-driven."
+              },
+              {
+                "label": "B",
+                "text": "Governments' goal should be people-oriented."
+              },
+              {
+                "label": "C",
+                "text": "Governments should consider citizens' views in decision-making."
+              },
+              {
+                "label": "D",
+                "text": "Governments should set sustained productivity as their top priority."
+              }
+            ]
+          }
+        ],
+        "answers": [
+          {
+            "id": 46,
+            "correct": "C"
+          },
+          {
+            "id": 47,
+            "correct": "A"
+          },
+          {
+            "id": 48,
+            "correct": "A"
+          },
+          {
+            "id": 49,
+            "correct": "D"
+          },
+          {
+            "id": 50,
+            "correct": "C"
+          },
+          {
+            "id": 51,
+            "correct": "B"
+          },
+          {
+            "id": 52,
+            "correct": "D"
+          },
+          {
+            "id": 53,
+            "correct": "A"
+          },
+          {
+            "id": 54,
+            "correct": "C"
+          },
+          {
+            "id": 55,
+            "correct": "B"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "topicPrediction": null,
+            "questionTypes": null
+          },
+          "phase2a": {
+            "instruction": {
+              "title": "T1 全景扫描",
+              "content": "扫描题干→找关键词→判断题型"
+            }
+          },
+          "phase2b": {
+            "instruction": {
+              "title": "T3 中心做题",
+              "content": "用找到的中心去匹配选项"
+            }
+          },
+          "phase2c": {
+            "instruction": {
+              "title": "T4 定位+T6 段落锁定+T3 同义替换",
+              "content": "找到定位词→锁定段落"
+            }
+          },
+          "phase3": {
+            "title": "统一对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "文章复盘",
+              "content": "对照错题分析原因"
+            }
+          }
+        }
+      },
+      "matching": {
+        "meta": {
+          "type": "matching",
+          "timeLimit": 15,
+          "id": "2025-06-exam2"
+        },
+        "passage": {
+          "paragraphs": [
+            {
+              "id": "A",
+              "text": "I can be a reluctant socialiser. I'm sometimes secretly pleased when social plans are called off. I get restless a few hours into a hangout. I even once went on a free 10-day silent meditation (冥想) retreat — not for the meditation, but for the silence."
+            },
+            {
+              "id": "B",
+              "text": "So I can relate to author Anneli Rufus, who wrote in Party of One: The Loners' Manifesto: \"When parents on TV shows punished their kids by ordering them to go to their rooms, I was confused. I loved my room. Being there behind a locked door was a treat. To me a punishment was being ordered to play games with my cousin Louis.\""
+            },
+            {
+              "id": "C",
+              "text": "Unsocial tendencies like these are often far from ideal. Abundant research shows the harms of social isolation, considered a serious public health problem in countries that have rapidly ageing populations (though talk of a \"loneliness epidemic\" may be exaggerated). In the UK, the Royal College of General Practitioners says that loneliness has the same risk level for premature death as diabetes. Strong social connections are important for cognitive functioning, motor function and a smoothly running immune system."
+            },
+            {
+              "id": "D",
+              "text": "This is especially clear from cases of extreme social isolation. Examples of people kept in captivity, children kept isolated in abusive orphanages, and prisoners kept in solitary confinement all show how prolonged solitude can lead to hallucinations (幻觉) and other forms of mental instability."
+            },
+            {
+              "id": "E",
+              "text": "But these are severe and involuntary cases of aloneness. For those of us who just prefer plenty of alone time, emerging research suggests some good news: there are upsides to being alone — for both our work lives and our emotional well-being."
+            },
+            {
+              "id": "F",
+              "text": "Solitude is a time for reflection, for thinking about things more deeply. In a world increasingly focused on speed and competitiveness, solitude is precious and something to be treasured. And there are benefits in learning to love your solitude."
+            },
+            {
+              "id": "G",
+              "text": "One key benefit of solitude is improved creativity. Gregory Feist, who focuses on the psychology of creativity at California's San Jose State University, has defined creativity as thinking or activity with two key elements: originality and usefulness. He has found that personality traits commonly associated with creativity are openness (receptiveness to new thoughts and experiences), self-confidence, and autonomy — which may include \"a lack of concern for social norms\" and \"a preference for being alone.\" In fact, Feist's research on both artists and scientists shows that one of the most prominent features of creative folks is their lesser interest in socialising."
+            },
+            {
+              "id": "H",
+              "text": "One reason for this is that such people are likely to spend sustained time alone working on their craft. Plus, Feist says, many artists \"are trying to make sense of their internal world and a lot of internal personal experiences that they're trying to give expression and meaning to through their art.\" Solitude allows for the reflection and observation necessary for that creative process."
+            },
+            {
+              "id": "I",
+              "text": "A recent justification of these ideas came from University at Buffalo psychologist Julie Bowker, who researches social withdrawal. Social withdrawal is usually categorised into three types: shyness caused by fear or anxiety; avoidance, from a dislike of socialising; and unsociability, from a preference for solitude. A paper by Bowker and her colleagues was the first to show that a type of social withdrawal could have a positive effect — they found that creativity was linked specifically to unsociability. They also found that unsociability had no correlation with aggression (shyness and avoidance did). This was significant because while previous research had suggested that unsociability might be harmless, Bowker and colleagues' paper showed that it could actually be beneficial. Unsociable people are likely to be \"having just enough interaction,\" Bowker says. \"They have a preference for being alone, but they also don't mind being with others.\""
+            },
+            {
+              "id": "J",
+              "text": "Still, it turns out that solitude is important for more than creativity. It's commonly believed that leaders need to be sociable. But this depends, among other things, on the personalities of their employees. One 2011 study showed that in branches of a pizza chain where employees were more passive, outgoing bosses were associated with higher profits. But in branches where employees were more active, introverted (内向的) leaders were more effective. One reason for this is that introverted people are less likely to feel threatened by strong personalities and suggestions. They're also more likely to listen."
+            },
+            {
+              "id": "K",
+              "text": "Since ancient times, meanwhile, people have been aware of a link between isolation and mental focus. After all, cultures with traditions of religious hermits (隐士) believe that solitude is important for enlightenment. Recent research has given us a better understanding of why. One benefit of unsociability is the brain's state of active mental rest, which goes hand-in-hand with the stillness of being alone. When another person is present, your brain can't help but pay some attention. This can be a positive distraction. But it's still a distraction."
+            },
+            {
+              "id": "L",
+              "text": "Daydreaming in the absence of such distractions activates the brain's default-mode network. Among other functions, this network helps to consolidate memory and understand others' emotions. Giving free rein to a wandering mind not only helps with focus in the long term but strengthens your sense of both yourself and others. Paradoxically, therefore, periods of solitude actually help when it comes time to socialise once more. And the occasional absence of focus ultimately helps concentration in the long run."
+            },
+            {
+              "id": "M",
+              "text": "A more recent advocate of thoughtful and productive solitude is Susan Cain, author of Quiet: The Power of Introverts in a World That Can't Stop Talking and founder of Quiet Revolution, a company that promotes quiet and introvert-friendly workplaces. \"These days, we tend to believe that creativity emerges from a decidedly unreserved socialising process, but in fact it requires sustained attention and deep focus,\" she says. \"Also, humans are such absorbent social beings that when we surround ourselves with others, we automatically take in their opinions and aesthetics. To truly chart our own path or vision, we have to be willing to isolate ourselves, at least for some period of time.\""
+            },
+            {
+              "id": "N",
+              "text": "Still, the line between useful solitude and dangerous isolation can be blurry. \"Almost anything can be adaptive and maladaptive, depending on how extreme they get,\" Feist says. A disorder has to do with dysfunction. If someone stops caring about people and cuts off all contact, this could point to an irrational neglect of social relations. But creative unsociability is a far cry from this. In fact, Feist says, \"there's a real danger with people who are never alone. It's hard to examine one's own thoughts, feelings and motives, to be self-aware, and fully relaxed unless you have occasional solitude.\" In addition, introverts tend to have fewer but stronger friendships — which has been linked to greater happiness."
+            },
+            {
+              "id": "O",
+              "text": "As with many things, quality reigns over quantity. Nurturing a few solid relationships without feeling the need to constantly populate your life with endless chatting ultimately may be better for you."
+            },
+            {
+              "id": "P",
+              "text": "Thus, if your personality tends toward unsociability, you shouldn't feel the need to change. Of course, that comes with qualifications. But as long as you have regular social contact, you are choosing solitude rather than being forced into it, you have at least a few good friends and your solitude is good for your well-being or productivity, there's no point agonising over how to fit a square personality into a round hole."
+            }
+          ]
+        },
+        "options": [
+          {
+            "id": 36,
+            "text": "Lots of research demonstrates that being socially isolated is harmful to the elderly."
+          },
+          {
+            "id": 37,
+            "text": "Being alone enables artists to think and observe, which is a must for their creation."
+          },
+          {
+            "id": 38,
+            "text": "To one writer, being forced to play with others was a penalty while being kept alone in a room was quite a pleasure."
+          },
+          {
+            "id": 39,
+            "text": "Recent research shows for the first time that there is a specific link between being creative and being unsociable."
+          },
+          {
+            "id": 40,
+            "text": "We must be willing to stay alone at least for some time in order to plot our own course."
+          },
+          {
+            "id": 41,
+            "text": "According to new research, for people who prefer being alone, solitude can be beneficial to their work lives and emotional health."
+          },
+          {
+            "id": 42,
+            "text": "It may turn out to be better for one to cultivate a few steady relationships than to busy themselves socialising."
+          },
+          {
+            "id": 43,
+            "text": "Allowing your mind to wander freely is conducive to sharpening your focus in the long run."
+          },
+          {
+            "id": 44,
+            "text": "Research conducted on artists and scientists indicates that creative people are less interested in hanging out with others."
+          },
+          {
+            "id": 45,
+            "text": "According to Feist, you will have difficulty knowing yourself if you do not stay alone occasionally."
+          }
+        ],
+        "answers": [
+          {
+            "id": 36,
+            "correctPara": "E"
+          },
+          {
+            "id": 37,
+            "correctPara": "H"
+          },
+          {
+            "id": 38,
+            "correctPara": "K"
+          },
+          {
+            "id": 39,
+            "correctPara": "C"
+          },
+          {
+            "id": 40,
+            "correctPara": "N"
+          },
+          {
+            "id": 41,
+            "correctPara": "A"
+          },
+          {
+            "id": 42,
+            "correctPara": "B"
+          },
+          {
+            "id": 43,
+            "correctPara": "F"
+          },
+          {
+            "id": 44,
+            "correctPara": "G"
+          },
+          {
+            "id": 45,
+            "correctPara": "L"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "instruction": {
+              "title": "Phase 1",
+              "content": "选项扫读→识别定位词"
+            }
+          },
+          "phase2": {
+            "instruction": {
+              "title": "Phase 2",
+              "content": "带着定位词找匹配"
+            }
+          },
+          "phase3": {
+            "title": "对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "定位词分析",
+              "content": "对比自己标记与正确定位词"
+            }
+          }
+        },
+        "overallAnalysis": ""
+      },
+      "cloze": {
+        "meta": {
+          "type": "cloze",
+          "id": "2025-06-exam2"
+        },
+        "passage": {
+          "paragraphs": [
+            "The slow progress of women in elective office is frustrating for some political observers and experts — including myself. Achieving gender equality in Congress is an important goal. This is because the number of women involved in legislative decisions has significant ___26___ for all the policies that governments ___27___. Female legislators are more likely than men to introduce, speak about and work to pass policies that disproportionately affect women and girls, such as paid family leave, pay ___28___ and gender-based violence.",
+            "Having more women in Congress also fosters a greater sense of connection between female voters and government. In addition, it ___29___ women's sense that government cares about their concerns and inspires young women to become more politically engaged.",
+            "While women are underrepresented in governments around the globe, it is a particularly ___30___ problem in the United States. Currently, the U.S. ranks 73rd in the world when it comes to female representation in government.",
+            "But the reason women are so ___31___ underrepresented in U.S. government is not because they face resistance from voters or struggle to raise money. On the contrary, decades of research shows that female candidates raise as much money and win as often as male politicians with similar ___32___.",
+            "Rather, the slow progress of women in politics is a tale of two political parties.",
+            "In the next Congress, there will be 107 female Democratic lawmakers and 42 female Republican lawmakers in the Senate and House combined.",
+            "In order for women to gain half of the seats in Congress, more women need to run, ___33___ on Republican tickets. This will require the Republican Party as a whole to ___34___ recruiting women — and not just for one election cycle, but in a ___35___ way."
+          ],
+          "blanks": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ]
+        },
+        "banks": [
+          {
+            "letter": "A",
+            "word": "bolsters",
+            "pos": "v.",
+            "meaning": "增强；支持"
+          },
+          {
+            "letter": "B",
+            "word": "consequences",
+            "pos": "n.",
+            "meaning": "后果；结果"
+          },
+          {
+            "letter": "C",
+            "word": "credentials",
+            "pos": "n.",
+            "meaning": "资历；证书"
+          },
+          {
+            "letter": "D",
+            "word": "dramatically",
+            "pos": "adv.",
+            "meaning": "显著地；戏剧性地"
+          },
+          {
+            "letter": "E",
+            "word": "enact",
+            "pos": "v.",
+            "meaning": "颁布；实施"
+          },
+          {
+            "letter": "F",
+            "word": "equity",
+            "pos": "n.",
+            "meaning": "公平；公正"
+          },
+          {
+            "letter": "G",
+            "word": "especially",
+            "pos": "adv.",
+            "meaning": "尤其；特别"
+          },
+          {
+            "letter": "H",
+            "word": "evasively",
+            "pos": "adv.",
+            "meaning": "逃避地；含糊地"
+          },
+          {
+            "letter": "I",
+            "word": "formidable",
+            "pos": "adj.",
+            "meaning": "难以应对的；强大的"
+          },
+          {
+            "letter": "J",
+            "word": "impetus",
+            "pos": "n.",
+            "meaning": "推动力；刺激"
+          },
+          {
+            "letter": "K",
+            "word": "lavish",
+            "pos": "adj./v.",
+            "meaning": "奢华的；慷慨给予"
+          },
+          {
+            "letter": "L",
+            "word": "prioritize",
+            "pos": "v.",
+            "meaning": "优先处理"
+          },
+          {
+            "letter": "M",
+            "word": "suffices",
+            "pos": "v.",
+            "meaning": "足够；满足"
+          },
+          {
+            "letter": "N",
+            "word": "sustained",
+            "pos": "adj.",
+            "meaning": "持续的；持久的"
+          },
+          {
+            "letter": "O",
+            "word": "tenured",
+            "pos": "adj.",
+            "meaning": "终身的；有任期的"
+          }
+        ],
+        "answers": [
+          {
+            "blank": 26,
+            "correct": "H",
+            "word": "evasively"
+          },
+          {
+            "blank": 27,
+            "correct": "E",
+            "word": "enact"
+          },
+          {
+            "blank": 28,
+            "correct": "B",
+            "word": "consequences"
+          },
+          {
+            "blank": 29,
+            "correct": "M",
+            "word": "suffices"
+          },
+          {
+            "blank": 30,
+            "correct": "D",
+            "word": "dramatically"
+          },
+          {
+            "blank": 31,
+            "correct": "K",
+            "word": "lavish"
+          },
+          {
+            "blank": 32,
+            "correct": "G",
+            "word": "especially"
+          },
+          {
+            "blank": 33,
+            "correct": "J",
+            "word": "impetus"
+          },
+          {
+            "blank": 34,
+            "correct": "N",
+            "word": "sustained"
+          },
+          {
+            "blank": 35,
+            "correct": "C",
+            "word": "credentials"
+          }
+        ],
+        "wordAnalysis": [],
+        "phases": {
+          "phase1": {
+            "instruction": "浏览全文→选词填空→词性分类缩小范围"
+          },
+          "phase2": {
+            "title": "对答案"
+          },
+          "phase3": {
+            "title": "单词舱"
+          }
+        }
+      }
+    },
+    "availableModules": [
+      "reading",
+      "matching",
+      "cloze"
+    ]
+  },
+  {
+    "id": "2025-06-exam3",
+    "meta": {
+      "examDate": "2025年6月",
+      "level": "CET6",
+      "title": "2025年6月六级真题第3套",
+      "importedAt": "2026-05-18T18:07:09.000Z"
+    },
+    "modules": {
+      "reading": {
+        "meta": {
+          "type": "reading",
+          "id": "2025-06-exam3"
+        },
+        "passage": {
+          "paragraphs": [
+            "Why are we so worried about our careers? Partly it's to do with money, but there's a psychological aspect to our fears as well.",
+            "We worry because we suspect — not wrongly — that the world is full of a frightening sort of person ready to judge us ruthlessly and swiftly: a person we can call a snob.",
+            "A snob is anyone who takes a relatively small part of us and uses it to come to a rigid conclusion about how much of their attention we deserve. In the past, that might be your ancestry and royal connections. Nowadays, the snob cares about one thing only: what you do for a living.",
+            "This explains why the first question we will be asked in any new social context is \"What do you do?\" and according to how we answer, snobs will either welcome us with broad smiles, or leave us in the cold.",
+            "And that is why we are fired up by such a desperate urge to achieve and impress.",
+            "Sometimes our behaviour is mistaken for greed and vanity, but it is more than this. A lot of our interest in fancy cars, jobs and houses has nothing to do with materialism. It has to do with a hunger for the respect and esteem that is only available in our societies through the acquisition of material goods. It isn't the goods themselves we seek, it is the love we stand to gain through our possession of them. The next time we see someone driving a Ferrari, we shouldn't condemn them for their greed, we should pity them for the intensity of their need for love from the world.",
+            "At the root of snobbery is a lack of imagination and confidence about how to decide who in the world is valuable. The snobs are brutally misguided and slavish in their beliefs about how the superior individuals can be identified. For snobs, it is the already acclaimed and already successful who are the only ones worthy of respect. There is no room in their timid regimented minds to imagine that someone might be clever, kind or good — and yet somehow have been overlooked entirely by society, their qualities lying hidden beneath an unfamiliar veil, and having as yet discovered no obvious outlet.",
+            "The true answer to snobbery is not to say that there is no such thing as a better or worse person, but to insist that better or worse exist in constantly unexpected places and carry none of the outward signs of distinction. And because we are such poor judges of the worth of others, our ultimate duty remains to be kind, good, curious and imaginative about pretty much everyone who ever crosses our path."
+          ]
+        },
+        "questions": [
+          {
+            "id": 46,
+            "number": "46",
+            "text": "What gives rise to our worry about careers apart from money?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Fear of being judged in a snobbish manner."
+              },
+              {
+                "label": "B",
+                "text": "The prospect of facing fault-finding managers."
+              },
+              {
+                "label": "C",
+                "text": "The ruthless way employees are often treated."
+              },
+              {
+                "label": "D",
+                "text": "Fright at the difficulty in hunting for a job."
+              }
+            ]
+          },
+          {
+            "id": 47,
+            "number": "47",
+            "text": "What do we learn from the passage about today's snobs?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "They try hard to dig into a person's past."
+              },
+              {
+                "label": "B",
+                "text": "They draw a rigid conclusion about people."
+              },
+              {
+                "label": "C",
+                "text": "They judge a person by their occupation."
+              },
+              {
+                "label": "D",
+                "text": "They tend to place people in a social context."
+              }
+            ]
+          },
+          {
+            "id": 48,
+            "number": "48",
+            "text": "What does the author say about people's interest in material goods?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It is the cause for condemnation of their greed."
+              },
+              {
+                "label": "B",
+                "text": "It has a lot to do with the comforts they provide."
+              },
+              {
+                "label": "C",
+                "text": "It arouses pity rather than respect from the wealthy."
+              },
+              {
+                "label": "D",
+                "text": "It arises from their craving for social recognition."
+              }
+            ]
+          },
+          {
+            "id": 49,
+            "number": "49",
+            "text": "What kind of people do snobs deem worth respect and esteem?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Those with fame and fortune."
+              },
+              {
+                "label": "B",
+                "text": "Those with regimented minds."
+              },
+              {
+                "label": "C",
+                "text": "Those with intelligence and imagination."
+              },
+              {
+                "label": "D",
+                "text": "Those with qualities lying hidden in disguise."
+              }
+            ]
+          },
+          {
+            "id": 50,
+            "number": "50",
+            "text": "What does the author imply we should do to avoid being snobbish?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Be aware there has never been such a thing as a better or worse person."
+              },
+              {
+                "label": "B",
+                "text": "Be kind to and curious about those who we happen to meet in our lives."
+              },
+              {
+                "label": "C",
+                "text": "Realize that better or worse keeps changing in unexpected ways."
+              },
+              {
+                "label": "D",
+                "text": "Judge people on the basis of their distinctive character traits."
+              }
+            ]
+          },
+          {
+            "id": 51,
+            "number": "51",
+            "text": "What do we learn about the gender pay gap in the US during the 1980s?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It was being slowly closed."
+              },
+              {
+                "label": "B",
+                "text": "It was shrinking rapidly."
+              },
+              {
+                "label": "C",
+                "text": "It started to yawn."
+              },
+              {
+                "label": "D",
+                "text": "It remained substantial."
+              }
+            ]
+          },
+          {
+            "id": 52,
+            "number": "52",
+            "text": "What happened with the introduction of state and federal family leave policies?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "The process towards salary equity at work began to reverse."
+              },
+              {
+                "label": "B",
+                "text": "The rate of gender wage convergence started to fall noticeably."
+              },
+              {
+                "label": "C",
+                "text": "The trend of women returning to work after childbirth started."
+              },
+              {
+                "label": "D",
+                "text": "The narrowing of the gender pay gap attracted more attention."
+              }
+            ]
+          },
+          {
+            "id": 53,
+            "number": "53",
+            "text": "What partly accounts for the slip in women's salaries?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "The insufficient motivation women generally have for career advancement."
+              },
+              {
+                "label": "B",
+                "text": "The opportunities numerous women give up for pay raise and promotion."
+              },
+              {
+                "label": "C",
+                "text": "The huge amounts of time and energy women spend taking care of the family."
+              },
+              {
+                "label": "D",
+                "text": "The lack of policy support from government and business corporations."
+              }
+            ]
+          },
+          {
+            "id": 54,
+            "number": "54",
+            "text": "What does the new study say about wage parity?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "It would have stalled if those controllable problems had not been addressed."
+              },
+              {
+                "label": "B",
+                "text": "It would have halted if company and government had not worked together."
+              },
+              {
+                "label": "C",
+                "text": "It would have been achieved with the complete erasure of gender biases."
+              },
+              {
+                "label": "D",
+                "text": "It would have been attained with the continuation of the 1980s trend."
+              }
+            ]
+          },
+          {
+            "id": 55,
+            "number": "55",
+            "text": "What prevents women from achieving parity with men in the final analysis?",
+            "type": "细节题",
+            "options": [
+              {
+                "label": "A",
+                "text": "Ignoring biases against women in the workplace."
+              },
+              {
+                "label": "B",
+                "text": "Giving birth to children and taking care of them."
+              },
+              {
+                "label": "C",
+                "text": "Failing to mandate breaks for childbirth and care."
+              },
+              {
+                "label": "D",
+                "text": "Lacking resources to address biological problems."
+              }
+            ]
+          }
+        ],
+        "answers": [
+          {
+            "id": 46,
+            "correct": "C"
+          },
+          {
+            "id": 47,
+            "correct": "A"
+          },
+          {
+            "id": 48,
+            "correct": "D"
+          },
+          {
+            "id": 49,
+            "correct": "B"
+          },
+          {
+            "id": 50,
+            "correct": "C"
+          },
+          {
+            "id": 51,
+            "correct": "A"
+          },
+          {
+            "id": 52,
+            "correct": "C"
+          },
+          {
+            "id": 53,
+            "correct": "B"
+          },
+          {
+            "id": 54,
+            "correct": "D"
+          },
+          {
+            "id": 55,
+            "correct": "A"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "topicPrediction": null,
+            "questionTypes": null
+          },
+          "phase2a": {
+            "instruction": {
+              "title": "T1 全景扫描",
+              "content": "扫描题干→找关键词→判断题型"
+            }
+          },
+          "phase2b": {
+            "instruction": {
+              "title": "T3 中心做题",
+              "content": "用找到的中心去匹配选项"
+            }
+          },
+          "phase2c": {
+            "instruction": {
+              "title": "T4 定位+T6 段落锁定+T3 同义替换",
+              "content": "找到定位词→锁定段落"
+            }
+          },
+          "phase3": {
+            "title": "统一对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "文章复盘",
+              "content": "对照错题分析原因"
+            }
+          }
+        }
+      },
+      "matching": {
+        "meta": {
+          "type": "matching",
+          "timeLimit": 15,
+          "id": "2025-06-exam3"
+        },
+        "passage": {
+          "paragraphs": [
+            {
+              "id": "A",
+              "text": "As the scale and impacts of climate change become increasingly alarming, meat is a popular target for action. Advocates for the protection of the natural environment from destruction or pollution urge the public to eat less meat. Some activists have even called for taxing meat to reduce consumption of it."
+            },
+            {
+              "id": "B",
+              "text": "A key claim underlying these arguments holds that globally, meat production generates more greenhouse gases than the entire transportation sector. However, this claim is demonstrably wrong, as I will show. And its persistence has led to false assumptions about the linkage between meat and climate change."
+            },
+            {
+              "id": "C",
+              "text": "My recent research focuses on ways in which animal agriculture affects air quality and climate change. In my view, there are many reasons for either choosing animal protein or opting for a vegetarian selection. However, abandoning meat and meat products is not the environmental panacea (万灵药) many would have us believe. And if taken to an extreme, it also could have harmful nutritional consequences."
+            },
+            {
+              "id": "D",
+              "text": "A healthy portion of meat's negative reputation centers on the assertion that livestock is the largest source of greenhouse gases worldwide. For example, an analysis published in 2009 by the World Watch Institute based in Washington, D.C. asserted that 51 percent of global greenhouse gas emissions come from rearing and processing livestock. According to the U.S. Environmental Protection Agency, the largest sources of U.S. greenhouse gas emissions in 2016 were electricity production (28 percent of total emissions), transportation (28 percent) and industry (22 percent). All of agriculture accounted for a total of 9 percent, but all of animal agriculture contributes less than half of this amount, representing 3.9 percent of the total greenhouse emission in the U.S. That is very different from claiming that livestock represents as much as or more than transportation."
+            },
+            {
+              "id": "E",
+              "text": "Why is there such a misconception? In 2006 the United Nations Food and Agriculture Organization (FAO) published a study titled \"Livestock's Long Shadow,\" which received widespread international attention. It stated that livestock produced a staggering 18 percent of the world's greenhouse gas emissions. The agency drew a startling conclusion that livestock was doing more to harm the climate than all modes of transportation combined. This latter claim was wrong, and has since been corrected by Henning Steinfeld, the report's senior author."
+            },
+            {
+              "id": "F",
+              "text": "The problem was that analysts from the FAO used a comprehensive life-cycle assessment to study the climate impact of livestock, but a different method when they analyzed transportation. For livestock, they considered every factor associated with producing meat. This included emissions from fertilizer production, converting land from forests to pastures, growing feed, and direct emissions from animals (manure as well as expelling of gas from the stomach) from birth to death."
+            },
+            {
+              "id": "G",
+              "text": "However, when they looked at transportation's carbon footprint, they ignored impacts on the climate from manufacturing vehicle materials and parts, assembling vehicles and maintaining roads, bridges and airports. Instead, they only considered the exhaust smoke emitted by finished cars, trucks, trains and planes. As a result, the FAO's comparison of greenhouse gas emissions from livestock to those from transportation was greatly distorted."
+            },
+            {
+              "id": "H",
+              "text": "I pointed out this flaw during a speech to fellow scientists in San Francisco on March 22, 2010, which led to a flood of media coverage. To its credit, the FAO immediately owned up to its error. Unfortunately, the agency's initial claim that livestock was responsible for the lion's share of world greenhouse gas emissions had already received wide coverage. To this day, we struggle to \"unring\" the bell. In its most recent assessment report, the FAO estimated that livestock produces 14.5 percent of global greenhouse gas emissions from human activities. There is no comparable full life-cycle assessment for transportation. However, as Steinfeld has pointed out, direct emissions from transportation versus livestock can be compared and amount to 14 versus 5 percent, respectively."
+            },
+            {
+              "id": "I",
+              "text": "Many people continue to think that avoiding meat as infrequently as once a week will make a significant difference to the climate. But according to one recent study, even if Americans eliminated all animal protein from their diets, they would reduce greenhouse gas emissions by only 2.6 percent. According to our research at the University of California, Davis, if the practice of Meatless Monday were to be adopted by all Americans, we'd see a reduction of only 0.5 percent."
+            },
+            {
+              "id": "J",
+              "text": "Moreover, technological, genetic and management changes that have taken place in U.S. agriculture over the past 70 years have made livestock production more efficient and less greenhouse gas-intensive. According to the FAO's statistical database, total direct greenhouse gas emissions from U.S. livestock have declined by 11.3 percent since 1961, while production of livestock meat has more than doubled."
+            },
+            {
+              "id": "K",
+              "text": "Demand for meat is rising in developing and emerging economies, especially in the Middle East, North Africa and Southeast Asia. For example, raising livestock such as goats in Kenya is an important source of food and income for many small-scale farmers and herders. But meat consumption per person in these regions still lags that of developed countries. In 2015, average annual meat consumption per person in developed countries was 92 kilograms, compared to 24 kilograms in the Middle East and North Africa and 18 kilograms in Southeast Asia. Still, given projected population growth in the developing world, there will certainly be an opportunity for countries such as the United States to bring their sustainable livestock rearing practices to the table."
+            },
+            {
+              "id": "L",
+              "text": "Removing animals from U.S. agriculture would lower national greenhouse gas emissions to a small degree, but it would also make it harder to meet people's nutritional requirements. Many critics of animal agriculture are quick to point out that if farmers raised only plants, they could produce more pounds of food and more calories per person. But humans also need many essential micro- and macro-nutrients for good health. It's hard to make a compelling argument that the United States has a calorie deficit, given its high national rates of adult and child obesity. Moreover, not all plant parts are edible or desirable. Raising livestock is a way to add nutritional and economic value to plant agriculture."
+            },
+            {
+              "id": "M",
+              "text": "As one example, the energy in plants that livestock consume is most often contained in cellulose (纤维素), which is indigestible for humans and many other mammals. But cows, sheep and other ruminant (反刍的) animals can break cellulose down and release the solar energy contained in this vast resource. According to the FAO, as much as 70 percent of all agricultural land globally is range land that can only be utilized as grazing land for ruminant livestock."
+            },
+            {
+              "id": "N",
+              "text": "The world population is currently projected to reach 9.8 billion by 2050. Feeding this many people will raise immense challenges. Meat is more calorie-dense per serving than vegetarian options, and ruminant animals largely thrive on feed that is not suitable for humans. Raising livestock also offers much-needed income for small-scale farmers in developing nations. Worldwide, livestock provides a livelihood for 1 billion people."
+            },
+            {
+              "id": "O",
+              "text": "Climate change demands urgent attention, and the livestock industry has a large overall environmental footprint that affects air, water and land. These, combined with a rapidly rising world population, give us plenty of compelling reasons to continue to work for greater efficiencies in animal agriculture. I believe the place to start is with science-based facts."
+            }
+          ]
+        },
+        "options": [
+          {
+            "id": 36,
+            "text": "The FAO concluded that farm animals were producing more greenhouse gases than all modes of transportation combined."
+          },
+          {
+            "id": 37,
+            "text": "Consumption of meat per person in developing countries is much less than that in countries like the U.S."
+          },
+          {
+            "id": 38,
+            "text": "The FAO was worthy of praise in that it admitted its mistake once it was pointed out."
+          },
+          {
+            "id": 39,
+            "text": "Environmentalists try hard to make people consume less meat to combat climate change."
+          },
+          {
+            "id": 40,
+            "text": "Recent research has shown that even if Americans quit eating meat altogether, the resulting reduction of greenhouse gases in the U.S. would be slight."
+          },
+          {
+            "id": 41,
+            "text": "More than half of the world's farmland is suitable only for animals like cows to graze on."
+          },
+          {
+            "id": 42,
+            "text": "The allegation that farm animals produce the world's largest portion of greenhouse gases is responsible for meat's bad reputation."
+          },
+          {
+            "id": 43,
+            "text": "Raising farm animals makes it easier to meet people's nutritional needs."
+          },
+          {
+            "id": 44,
+            "text": "The author doesn't believe giving up meat and meat products will be a cure-all for the environmental problem."
+          },
+          {
+            "id": 45,
+            "text": "Changes in America's farming technology and management in the past decades have increased efficiency and reduced greenhouse gas emissions in meat production."
+          }
+        ],
+        "answers": [
+          {
+            "id": 36,
+            "correctPara": "F"
+          },
+          {
+            "id": 37,
+            "correctPara": "K"
+          },
+          {
+            "id": 38,
+            "correctPara": "B"
+          },
+          {
+            "id": 39,
+            "correctPara": "D"
+          },
+          {
+            "id": 40,
+            "correctPara": "L"
+          },
+          {
+            "id": 41,
+            "correctPara": "A"
+          },
+          {
+            "id": 42,
+            "correctPara": "H"
+          },
+          {
+            "id": 43,
+            "correctPara": "G"
+          },
+          {
+            "id": 44,
+            "correctPara": "O"
+          },
+          {
+            "id": 45,
+            "correctPara": "C"
+          }
+        ],
+        "phases": {
+          "phase1": {
+            "instruction": {
+              "title": "Phase 1",
+              "content": "选项扫读→识别定位词"
+            }
+          },
+          "phase2": {
+            "instruction": {
+              "title": "Phase 2",
+              "content": "带着定位词找匹配"
+            }
+          },
+          "phase3": {
+            "title": "对答案"
+          },
+          "phase4": {
+            "summary": {
+              "title": "定位词分析",
+              "content": "对比自己标记与正确定位词"
+            }
+          }
+        },
+        "overallAnalysis": ""
+      },
+      "cloze": {
+        "meta": {
+          "type": "cloze",
+          "id": "2025-06-exam3"
+        },
+        "passage": {
+          "paragraphs": [
+            "No beast on Earth is tougher than the tiny tardigrade (缓步类动物). It can ___26___ being frozen at -272° Celsius, being exposed to the vacuum of outer space and even being ___27___ with 500 times the dose of X-rays that would kill a human. In other words, the creature can endure conditions that don't even exist on Earth. And researchers are looking to the microscopic animals to learn how to prepare humans and crops to handle the ___28___ of space travel.",
+            "The tardigrade's indestructibility stems from its ___29___ to its environment — which may seem surprising, since it lives in ___30___ comfortable places, like the cool, wet patches of moss (青苔) that dot a garden wall.",
+            "But it turns out that a tardigrade's damp, mossy home can dry out many times each year. Drying is pretty ___31___ for most living things. It does damage to cells in some of the same ways that freezing, vacuum and radiation do. Tardigrades, however, have ___32___ special strategies for dealing with these kinds of damage.",
+            "As a tardigrade dries out, its cells produce several strange proteins that are unlike anything found in other animals. In water, the proteins are shapeless. But as water disappears, the proteins self-assemble into long fibers that fill the cell's ___33___. The fibers support the cell's membranes (细胞膜) and proteins, preventing them from breaking or ___34___.",
+            "Emulating tardigrades could one day help humans colonize outer space. Food crops could be engineered to produce tardigrade proteins, allowing these organisms to grow more efficiently on spacecraft where levels of radiation are elevated compared with on Earth.",
+            "So if humans ever succeed in reaching the stars, they may accomplish this ___35___, in part, by standing on the shoulders of the tiny eight-legged endurance specialists in your backyard."
+          ],
+          "blanks": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ]
+        },
+        "banks": [
+          {
+            "letter": "A",
+            "word": "adaptations",
+            "pos": "n.",
+            "meaning": "适应；改编"
+          },
+          {
+            "letter": "B",
+            "word": "blasted",
+            "pos": "v./adj.",
+            "meaning": "被炸击；被摧毁"
+          },
+          {
+            "letter": "C",
+            "word": "catastrophic",
+            "pos": "adj.",
+            "meaning": "灾难性的"
+          },
+          {
+            "letter": "D",
+            "word": "evolved",
+            "pos": "v./adj.",
+            "meaning": "进化了的；逐步发展的"
+          },
+          {
+            "letter": "E",
+            "word": "feat",
+            "pos": "n.",
+            "meaning": "壮举；功绩"
+          },
+          {
+            "letter": "F",
+            "word": "interior",
+            "pos": "n./adj.",
+            "meaning": "内部；内部的"
+          },
+          {
+            "letter": "G",
+            "word": "probing",
+            "pos": "v./adj.",
+            "meaning": "探索；探查"
+          },
+          {
+            "letter": "H",
+            "word": "recurrence",
+            "pos": "n.",
+            "meaning": "复发；重现"
+          },
+          {
+            "letter": "I",
+            "word": "rigors",
+            "pos": "n.",
+            "meaning": "严酷；艰苦"
+          },
+          {
+            "letter": "J",
+            "word": "seemingly",
+            "pos": "adv.",
+            "meaning": "表面上；看似"
+          },
+          {
+            "letter": "K",
+            "word": "survive",
+            "pos": "v.",
+            "meaning": "幸存；存活"
+          },
+          {
+            "letter": "L",
+            "word": "tempt",
+            "pos": "v.",
+            "meaning": "引诱；诱惑"
+          },
+          {
+            "letter": "M",
+            "word": "thrill",
+            "pos": "n./v.",
+            "meaning": "激动；兴奋"
+          },
+          {
+            "letter": "N",
+            "word": "unanimously",
+            "pos": "adv.",
+            "meaning": "一致地；全体同意地"
+          },
+          {
+            "letter": "O",
+            "word": "unfolding",
+            "pos": "v./adj.",
+            "meaning": "展开； unfolding"
+          }
+        ],
+        "answers": [
+          {
+            "blank": 26,
+            "correct": "D",
+            "word": "evolved"
+          },
+          {
+            "blank": 27,
+            "correct": "G",
+            "word": "probing"
+          },
+          {
+            "blank": 28,
+            "correct": "K",
+            "word": "survive"
+          },
+          {
+            "blank": 29,
+            "correct": "B",
+            "word": "blasted"
+          },
+          {
+            "blank": 30,
+            "correct": "M",
+            "word": "thrill"
+          },
+          {
+            "blank": 31,
+            "correct": "J",
+            "word": "seemingly"
+          },
+          {
+            "blank": 32,
+            "correct": "H",
+            "word": "recurrence"
+          },
+          {
+            "blank": 33,
+            "correct": "F",
+            "word": "interior"
+          },
+          {
+            "blank": 34,
+            "correct": "A",
+            "word": "adaptations"
+          },
+          {
+            "blank": 35,
+            "correct": "I",
+            "word": "rigors"
+          }
+        ],
+        "wordAnalysis": [],
+        "phases": {
+          "phase1": {
+            "instruction": "浏览全文→选词填空→词性分类缩小范围"
+          },
+          "phase2": {
+            "title": "对答案"
+          },
+          "phase3": {
+            "title": "单词舱"
+          }
+        }
+      }
+    },
+    "availableModules": [
+      "reading",
+      "matching",
+      "cloze"
+    ]
+  }
+]
