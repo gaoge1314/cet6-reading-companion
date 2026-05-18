@@ -1,0 +1,117 @@
+{
+  "_comment": "CET6长篇阅读（匹配题）陪练平台 · JSON数据模板",
+  "_usage": "复制此文件，填写 meta / passage / options / answers / phases 即可",
+
+  "meta": {
+    "id": "2025-12-cet6-longread",
+    "examDate": "2025年12月",
+    "level": "CET6",
+    "type": "matching",
+    "title": "文章主题",
+    "titleEn": "English Title",
+    "description": "2025年12月六级真题 · 长篇阅读",
+    "timeLimit": 15
+  },
+
+  "passage": {
+    "paragraphs": [
+      { "id": "A", "text": "第A段英文原文..." },
+      { "id": "B", "text": "第B段英文原文..." },
+      { "id": "C", "text": "第C段英文原文..." },
+      { "id": "D", "text": "第D段英文原文..." },
+      { "id": "E", "text": "第E段英文原文..." },
+      { "id": "F", "text": "第F段英文原文..." },
+      { "id": "G", "text": "第G段英文原文..." },
+      { "id": "H", "text": "第H段英文原文..." },
+      { "id": "I", "text": "第I段英文原文..." }
+    ]
+  },
+
+  "options": [
+    {
+      "id": 36,
+      "text": "选项36的英文原文陈述...",
+      "correctPara": "A",
+      "locateWords": {
+        "properNoun": ["专有名词"],
+        "normalNoun": ["普通名词", "verb"],
+        "comparative": ["比较级词汇"]
+      },
+      "synonymMapping": "选项中的xxx ≈ 原文中的yyy"
+    },
+    {
+      "id": 37,
+      "text": "选项37的英文原文陈述...",
+      "correctPara": "C",
+      "locateWords": {
+        "properNoun": [],
+        "normalNoun": ["普通名词"],
+        "comparative": []
+      },
+      "synonymMapping": ""
+    }
+  ],
+
+  "answers": [
+    { "id": 36, "correct": "A", "tip": "定位：专有名词xxx → A段" },
+    { "id": 37, "correct": "C", "tip": "定位：普通名词yyy → C段，动词zzz → 同义替换为www" }
+  ],
+
+  "phases": {
+    "phase1": {
+      "instruction": {
+        "title": "Phase 1 · 选项扫读",
+        "content": "先快速浏览10个选项，识别每道题的定位词类型。不需要看原文，只需要训练你「一眼识别定位词」的能力。"
+      },
+      "locateStrategy": {
+        "title": "三层定位法",
+        "items": [
+          { "level": "① 最佳", "type": "专有名词", "desc": "时间、地点、人名、地名、机构名、数字" },
+          { "level": "② 备用", "type": "普通名词 + 动词", "desc": "注意同义替换的可能性" },
+          { "level": "③ 兜底", "type": "比较级 / 最高级", "desc": "形容词易被替换，但比较级/最高级是锚点" }
+        ]
+      }
+    },
+
+    "phase2": {
+      "instruction": {
+        "title": "Phase 2 · 计时定位匹配",
+        "content": "15分钟严格限时。用三层定位法快速匹配选项与段落。超过1分钟找不到的题果断放弃。目标是做对7-8道。"
+      },
+      "timing": {
+        "totalMinutes": 15,
+        "warnMinutes": [10, 5, 1],
+        "perQuestionLimit": 60
+      }
+    },
+
+    "phase3": {
+      "title": "Phase 3 · 对答案",
+      "source": "官方解析",
+      "instruction": "校对答案，重点关注：你做对了但超时的题 · 做错了但花时间少的题 · 主动放弃的题 · 超时未做的题"
+    },
+
+    "phase4": {
+      "summary": {
+        "title": "复盘总结",
+        "content": "长篇阅读的核心是「快速定位能力」+「学会放弃」。复盘重点：定位策略是否高效、放弃决策是否合理、时间分配是否科学。"
+      },
+      "skillStats": {
+        "title": "定位策略使用统计",
+        "items": [
+          { "name": "专有名词", "desc": "使用次数", "questionIds": "" },
+          { "name": "普通名词/动词", "desc": "使用次数", "questionIds": "" },
+          { "name": "比较级/最高级", "desc": "使用次数", "questionIds": "" }
+        ]
+      },
+      "pitfalls": {
+        "title": "易错点提醒",
+        "content": "• 注意同义替换陷阱：选项中的词汇可能在原文中被替换成近义词<br>• 注意段落可能匹配多个选项，也可能不匹配任何选项<br>• 注意专有名词可能以缩写、全称、代称等形式出现"
+      },
+      "vocabSummary": {
+        "title": "生词汇总",
+        "words": ["生词1", "生词2"]
+      }
+    }
+  }
+}
